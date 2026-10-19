@@ -207,7 +207,7 @@ if(window.L){
  try{
   const cached=JSON.parse(localStorage.getItem(savedBuildingsKey)||"null");
   if(cached?.features?.length){
-    const doRestore=()=>{if(boundary)setImportedBuildings(cached.features,cached.source||"ไฟล์บันทึก");else setTimeout(doRestore,400);};
+    let retries=0;const doRestore=()=>{if(boundary)setImportedBuildings(cached.features,cached.source||"ไฟล์บันทึก");else if(retries++<25)setTimeout(doRestore,400);};
     doRestore();
   }
  }catch(e){}
