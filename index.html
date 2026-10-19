@@ -41,7 +41,7 @@ footer{text-align:center;color:#607d89;padding:25px}
 <header class="hero"><h1>ระบบเฝ้าระวังโรค บ้านดอนแท่น</h1><p>ตำบลกลางเวียง อำเภอเวียงสา จังหวัดน่าน</p><span class="tag">ระบบต้นแบบ • ข้อมูลสมมติทั้งหมด ไม่ใช่รายงานสถานการณ์จริง</span></header>
 <main>
 <section class="row" aria-label="สรุปข้อมูล"><div class="card"><div class="label">จำนวนผู้ป่วยตัวอย่าง</div><div id="total" class="number">—</div></div><div class="card"><div class="label">โรคที่ติดตาม</div><div class="number">4</div></div><div class="card"><div class="label">ช่วงเวลาตัวอย่าง</div><div class="number">6 <small style="font-size:15px">เดือน</small></div></div><div class="card"><div class="label">หมู่บ้านเป้าหมาย</div><div class="number">1</div></div></section>
-<section class="layout"><div class="card"><h2>แผนที่หมู่บ้านดอนแท่น: ขอบเขต · หลังคาอาคาร · ภาพดาวเทียม</h2><div class="controls"><button id="loadRoofs" type="button">โหลดชั้นหลังคา/อาคาร</button><button id="drawHouse" type="button" style="background:#256e9a">เพิ่มจุดบ้านจากสำรวจ</button><button id="drawRoof" type="button" style="background:#586582">วาดรูปอาคารจากสำรวจ</button><button id="finishRoof" type="button" style="display:none;background:#136c54">จบรูปอาคาร</button><button id="cancelDraw" type="button" style="display:none;background:#a14d35">ยกเลิกวาด</button><button id="exportSurvey" type="button" style="background:#176945">ส่งออก GeoJSON</button><button id="importSurvey" type="button" style="background:#566a78">นำเข้าไฟล์สำรวจ</button><input id="importSurveyFile" type="file" accept=".geojson,.json,application/geo+json" style="display:none"><button id="zoomVillage" type="button" style="background:#edf6f6;color:#0b677b">ซูมขอบเขตหมู่บ้าน</button></div><p class="note" id="roofStatus">จำนวนอาคาร: ยังไม่โหลดข้อมูล • เปิดชั้นข้อมูลได้ที่มุมขวาบนของแผนที่</p><p class="note" id="surveyStatus">แผนที่เดินดิน: ยังไม่มีรายการสำรวจ • เพิ่มจุดบ้านหรือวาดรูปอาคาร แล้วส่งออกไฟล์เพื่อเก็บรักษา</p><div id="map" aria-label="แผนที่ OpenStreetMap แสดงจุดอ้างอิงบ้านดอนแท่น"></div><p class="note">เส้นสีเขียวคือขอบเขตฉบับที่คุณตรวจและยืนยันแล้ว (ไม่ใช่แนวเขตทางการ) • สีเทาคือรูปอาคารใน OSM อาจไม่ครบ • จุดบ้านและรูปอาคารที่คุณสำรวจจะเป็นสีส้ม • ต้องกดส่งออก GeoJSON เพื่อสำรองข้อมูล • ไม่ควรระบุชื่อผู้ป่วยหรือข้อมูลสุขภาพรายบุคคล</p><a target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=18.58096&mlon=100.74879#map=16/18.58096/100.74879">เปิดแผนที่ต้นทาง ↗</a></div>
+<section class="layout"><div class="card"><h2>แผนที่หมู่บ้านดอนแท่น: ขอบเขต · หลังคาอาคาร · ภาพดาวเทียม</h2><div class="controls"><button id="loadRoofs" type="button">โหลดชั้นหลังคา/อาคาร</button><button id="importBuildings" type="button" style="background:#0b667d;color:white">นำเข้า GeoJSON หลังคาอาคาร</button><input id="buildingsFile" type="file" accept=".geojson,.json,application/geo+json" style="display:none"><button id="exportBuildings" type="button" style="background:#6d627e;color:white">ส่งออกชั้นอาคาร</button><button id="drawHouse" type="button" style="background:#256e9a">เพิ่มจุดบ้านจากสำรวจ</button><button id="drawRoof" type="button" style="background:#586582">วาดรูปอาคารจากสำรวจ</button><button id="finishRoof" type="button" style="display:none;background:#136c54">จบรูปอาคาร</button><button id="cancelDraw" type="button" style="display:none;background:#a14d35">ยกเลิกวาด</button><button id="exportSurvey" type="button" style="background:#176945">ส่งออก GeoJSON</button><button id="importSurvey" type="button" style="background:#566a78">นำเข้าไฟล์สำรวจ</button><input id="importSurveyFile" type="file" accept=".geojson,.json,application/geo+json" style="display:none"><button id="zoomVillage" type="button" style="background:#edf6f6;color:#0b677b">ซูมขอบเขตหมู่บ้าน</button></div><p class="note" id="roofStatus">จำนวนอาคาร: ยังไม่โหลดข้อมูล • เปิดชั้นข้อมูลได้ที่มุมขวาบนของแผนที่</p><p class="note" id="surveyStatus">แผนที่เดินดิน: ยังไม่มีรายการสำรวจ • เพิ่มจุดบ้านหรือวาดรูปอาคาร แล้วส่งออกไฟล์เพื่อเก็บรักษา</p><div id="map" aria-label="แผนที่ OpenStreetMap แสดงจุดอ้างอิงบ้านดอนแท่น"></div><p class="note">เส้นสีเขียวคือขอบเขตฉบับที่คุณตรวจและยืนยันแล้ว (ไม่ใช่แนวเขตทางการ) • สีเทาคือรูปอาคารใน OSM อาจไม่ครบ • จุดบ้านและรูปอาคารที่คุณสำรวจจะเป็นสีส้ม • ต้องกดส่งออก GeoJSON เพื่อสำรองข้อมูล • ไม่ควรระบุชื่อผู้ป่วยหรือข้อมูลสุขภาพรายบุคคล</p><a target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=18.58096&mlon=100.74879#map=16/18.58096/100.74879">เปิดแผนที่ต้นทาง ↗</a></div>
 <div class="card"><h2>สรุปโรคตัวอย่าง</h2><div class="controls"><label for="disease">เลือกโรค</label><select id="disease"><option value="all">ทุกโรค</option><option>ไข้เลือดออก</option><option>ไข้หวัดใหญ่</option><option>อุจจาระร่วง</option><option>มือ เท้า ปาก</option></select></div><div id="bars"></div><p class="note">ตัวเลขสมมติสำหรับสาธิตเท่านั้น ไม่ควรใช้เพื่อสื่อสารความเสี่ยงหรือวางแผนควบคุมโรคจริง</p></div></section>
 <section class="card wide"><h2>แนวโน้มรายเดือน (ข้อมูลสมมติ)</h2><div id="monthly"></div></section>
 <section class="card wide"><h2>ตารางรายงานสาธิต</h2><div class="controls"><button id="download">ดาวน์โหลด CSV ตัวอย่าง</button><span class="note">CSV ใช้ฝึกนำข้อมูลไปวิเคราะห์ต่อได้</span></div><div style="overflow:auto"><table><thead><tr><th>เดือน</th><th>โรค</th><th>จำนวนตัวอย่าง (ราย)</th><th>หมายเหตุ</th></tr></thead><tbody id="tbody"></tbody></table></div></section>
@@ -153,6 +153,65 @@ if(window.L){
    features.push({type:"Feature",properties:{type:"building_footprint",source:"field_survey_manual"},geometry:{type:"Polygon",coordinates:[ring]}});
    resetMode();refreshSurvey();
  });
+
+ // Import downloadable building polygons from Overture Maps or other permitted GeoJSON sources.
+ // Keep this independent of Overpass availability and the field-survey layer.
+ let buildingFeatures=[];
+ const buildingsInput=document.querySelector("#buildingsFile");
+ document.querySelector("#importBuildings").addEventListener("click",()=>buildingsInput.click());
+ const savedBuildingsKey="don-thaen-imported-buildings-v1";
+ function setImportedBuildings(incoming,sourceLabel){
+   if(!boundary)throw Error("ยังโหลดขอบเขตหมู่บ้านไม่เสร็จ");
+   const valid=[];
+   for(const feature of incoming){
+     if(!feature?.geometry||!["Polygon","MultiPolygon"].includes(feature.geometry.type))continue;
+     try {
+       // Retain features with at least one representative vertex or its bounding box center inside the village.
+       const rings=feature.geometry.type==="Polygon"?[feature.geometry.coordinates[0]]:feature.geometry.coordinates.map(p=>p[0]);
+       let accept=false;
+       for(const ring of rings){
+         if(!Array.isArray(ring)||ring.length<4)continue;
+         const minX=Math.min(...ring.map(p=>p[0])),maxX=Math.max(...ring.map(p=>p[0]));
+         const minY=Math.min(...ring.map(p=>p[1])),maxY=Math.max(...ring.map(p=>p[1]));
+         if(within((minY+maxY)/2,(minX+maxX)/2)||ring.some(p=>within(p[1],p[0]))){accept=true;break;}
+       }
+       if(accept)valid.push({type:"Feature",properties:{...(feature.properties||{}),map_source:sourceLabel},geometry:feature.geometry});
+     }catch(e){/* skip malformed geometries */}
+   }
+   // OSM and imported polygons display through the same roof layer, but imported data is stable.
+   buildingFeatures=valid;
+   roofs.clearLayers();
+   roofs.addData({type:"FeatureCollection",features:buildingFeatures});
+   if(!map.hasLayer(roofs))roofs.addTo(map);
+   status.textContent="นำเข้ารูปอาคาร "+valid.length.toLocaleString("th-TH")+" รูปจาก "+sourceLabel+" • ยังไม่ใช่จำนวนครัวเรือน";
+   try{localStorage.setItem(savedBuildingsKey,JSON.stringify({source:sourceLabel,features:buildingFeatures}));}
+   catch(e){status.textContent+=" • ไฟล์ใหญ่เกินที่เบราว์เซอร์จะเก็บไว้ โปรดเก็บไฟล์ต้นฉบับ";}
+ }
+ buildingsInput.addEventListener("change",async()=>{
+   const file=buildingsInput.files?.[0];if(!file)return;
+   try{
+     if(file.size>25*1024*1024)throw Error("ไฟล์มีขนาดเกิน 25 MB");
+     const raw=JSON.parse(await file.text());
+     const incoming=raw.type==="FeatureCollection"?raw.features:raw.type==="Feature"?[raw]:null;
+     if(!Array.isArray(incoming))throw Error("ต้องเป็น GeoJSON FeatureCollection หรือ Feature");
+     if(!confirm("นำเข้า "+incoming.length+" รายการจากไฟล์ "+file.name+" เพื่อแสดงเป็นชั้นอาคาร?"))return;
+     setImportedBuildings(incoming,file.name);
+   }catch(e){status.textContent="นำเข้าอาคารไม่สำเร็จ: "+e.message;}
+   finally{buildingsInput.value="";}
+ });
+ document.querySelector("#exportBuildings").addEventListener("click",()=>{
+   if(!buildingFeatures.length){alert("ยังไม่มีอาคารที่นำเข้าจาก GeoJSON");return;}
+   const blob=new Blob([JSON.stringify({type:"FeatureCollection",features:buildingFeatures})],{type:"application/geo+json"});
+   const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="don-thaen-building-footprints.geojson";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ });
+ try{
+  const cached=JSON.parse(localStorage.getItem(savedBuildingsKey)||"null");
+  if(cached?.features?.length){
+    const doRestore=()=>{if(boundary)setImportedBuildings(cached.features,cached.source||"ไฟล์บันทึก");else setTimeout(doRestore,400);};
+    doRestore();
+  }
+ }catch(e){}
+
  document.querySelector("#loadRoofs").addEventListener("click",async()=>{
   if(!boundary){status.textContent="โปรดรอขอบเขตหมู่บ้านโหลดก่อน";return;}
   const btn=document.querySelector("#loadRoofs");btn.disabled=true;
