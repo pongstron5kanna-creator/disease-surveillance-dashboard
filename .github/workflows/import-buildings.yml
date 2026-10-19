@@ -1,0 +1,31 @@
+name: Import Overture building footprints
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/import-buildings.yml
+      - scripts/extract_buildings.py
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install required libraries
+        run: python -m pip install --upgrade overturemaps shapely
+      - name: Download Overture building footprints
+        run: python scripts/extract_buildings.py
+      - name: Commit GeoJSON dataset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/don-thaen-buildings.geojson
+          if ! git diff --cached --quiet; then
+            git commit -m "Add Overture buildings for Don Thaen"
+            git push
+          fi
