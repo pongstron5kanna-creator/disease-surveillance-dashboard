@@ -8,7 +8,7 @@
 h1{font-size:clamp(24px,4vw,36px);margin:0 0 8px}.hero p{margin:0;color:#dbf8f4}.tag{display:inline-block;margin-top:14px;padding:5px 12px;border-radius:20px;background:#ffffff2a;font-size:13px}
 main{max-width:1140px;margin:24px auto;padding:0 18px}.row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:white;border:1px solid #dce8ed;border-radius:16px;padding:20px;box-shadow:0 3px 16px #1234}.label{font-size:13px;color:#547383}.number{font-size:32px;font-weight:750;color:#086e84;margin-top:9px}
 .layout{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;margin-top:16px}.wide{margin-top:16px}
-h2{font-size:19px;margin:0 0 14px}#map{height:350px;border-radius:12px}.note{font-size:13px;color:#587181;line-height:1.65}
+h2{font-size:19px;margin:0 0 14px}#map{height:510px;border-radius:12px}.note{font-size:13px;color:#587181;line-height:1.65}
 table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:12px;border-bottom:1px solid #e4edf0}th{background:#f1f8fa}
 .controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 select,button{border:1px solid #bbd5dc;border-radius:8px;padding:9px 12px;background:white;font:inherit}
@@ -21,12 +21,13 @@ footer{text-align:center;color:#607d89;padding:25px}
 <header class="hero"><h1>ระบบเฝ้าระวังโรค บ้านดอนแท่น</h1><p>ตำบลกลางเวียง อำเภอเวียงสา จังหวัดน่าน</p><span class="tag">ระบบต้นแบบ • ข้อมูลสมมติทั้งหมด ไม่ใช่รายงานสถานการณ์จริง</span></header>
 <main>
 <section class="row" aria-label="สรุปข้อมูล"><div class="card"><div class="label">จำนวนผู้ป่วยตัวอย่าง</div><div id="total" class="number">—</div></div><div class="card"><div class="label">โรคที่ติดตาม</div><div class="number">4</div></div><div class="card"><div class="label">ช่วงเวลาตัวอย่าง</div><div class="number">6 <small style="font-size:15px">เดือน</small></div></div><div class="card"><div class="label">หมู่บ้านเป้าหมาย</div><div class="number">1</div></div></section>
-<section class="layout"><div class="card"><h2>แผนที่อ้างอิงหมู่บ้านดอนแท่น</h2><div id="map" aria-label="แผนที่ OpenStreetMap แสดงจุดอ้างอิงบ้านดอนแท่น"></div><p class="note">พิกัดอ้างอิง 18.58096° N, 100.74879° E เป็นหมุดตำแหน่งหมู่บ้าน ไม่ใช่ขอบเขตการปกครองหรือที่อยู่ผู้ป่วย แผนที่ต้องใช้อินเทอร์เน็ตในการแสดงผล</p><a target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=18.58096&mlon=100.74879#map=16/18.58096/100.74879">เปิดแผนที่ต้นทาง ↗</a></div>
+<section class="layout"><div class="card"><h2>แผนที่หมู่บ้านดอนแท่น: ขอบเขต · หลังคาอาคาร · ภาพดาวเทียม</h2><div class="controls"><button id="loadRoofs" type="button">โหลดชั้นหลังคา/อาคาร</button><button id="zoomVillage" type="button" style="background:#edf6f6;color:#0b677b">ซูมขอบเขตหมู่บ้าน</button></div><p class="note" id="roofStatus">จำนวนอาคาร: ยังไม่โหลดข้อมูล • เปิดชั้นข้อมูลได้ที่มุมขวาบนของแผนที่</p><div id="map" aria-label="แผนที่ OpenStreetMap แสดงจุดอ้างอิงบ้านดอนแท่น"></div><p class="note">เส้นสีเขียวคือขอบเขตฉบับที่คุณตรวจและยืนยันแล้ว ไม่ใช่แนวเขตการปกครองทางการ • พื้นที่สีเทาคืออาคารที่ OpenStreetMap มีข้อมูล ไม่ใช่จำนวนครัวเรือนจริง • ภาพดาวเทียมและข้อมูลอาคารต้องใช้อินเทอร์เน็ต</p><a target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=18.58096&mlon=100.74879#map=16/18.58096/100.74879">เปิดแผนที่ต้นทาง ↗</a></div>
 <div class="card"><h2>สรุปโรคตัวอย่าง</h2><div class="controls"><label for="disease">เลือกโรค</label><select id="disease"><option value="all">ทุกโรค</option><option>ไข้เลือดออก</option><option>ไข้หวัดใหญ่</option><option>อุจจาระร่วง</option><option>มือ เท้า ปาก</option></select></div><div id="bars"></div><p class="note">ตัวเลขสมมติสำหรับสาธิตเท่านั้น ไม่ควรใช้เพื่อสื่อสารความเสี่ยงหรือวางแผนควบคุมโรคจริง</p></div></section>
 <section class="card wide"><h2>แนวโน้มรายเดือน (ข้อมูลสมมติ)</h2><div id="monthly"></div></section>
 <section class="card wide"><h2>ตารางรายงานสาธิต</h2><div class="controls"><button id="download">ดาวน์โหลด CSV ตัวอย่าง</button><span class="note">CSV ใช้ฝึกนำข้อมูลไปวิเคราะห์ต่อได้</span></div><div style="overflow:auto"><table><thead><tr><th>เดือน</th><th>โรค</th><th>จำนวนตัวอย่าง (ราย)</th><th>หมายเหตุ</th></tr></thead><tbody id="tbody"></tbody></table></div></section>
 </main><footer>ระบบต้นแบบสำหรับการเรียนรู้ GitHub และ Dashboard • ห้ามใส่ข้อมูลระบุตัวผู้ป่วยบนเว็บไซต์สาธารณะ</footer>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/osmtogeojson@3.0.0-beta.5/osmtogeojson.js"></script><script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
 <script>
 const diseases=["ไข้เลือดออก","ไข้หวัดใหญ่","อุจจาระร่วง","มือ เท้า ปาก"];
 const months=["พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค."];
@@ -43,6 +44,44 @@ function draw(){const choice=sel.value;const selected=choice==="all"?rows:rows.f
 }
 sel.addEventListener("change",draw);draw();
 document.querySelector("#download").addEventListener("click",()=>{const selected=sel.value==="all"?rows:rows.filter(x=>x.disease===sel.value);const csv="\uFEFFเดือน,โรค,จำนวน,หมายเหตุ\r\n"+selected.map(x=>[x.month,x.disease,x.count,"ข้อมูลสมมติ"].join(",")).join("\r\n");const a=document.createElement("a");const u=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));a.href=u;a.download="don-thaen-demo-data.csv";a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)});
-if(window.L){const map=L.map("map").setView([18.58096,100.74879],15);L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:19}).addTo(map);L.marker([18.58096,100.74879]).addTo(map).bindPopup("<strong>บ้านดอนแท่น</strong><br>ตำบลกลางเวียง อำเภอเวียงสา จังหวัดน่าน<br>ตำแหน่งอ้างอิง ไม่ใช่จุดผู้ป่วย").openPopup();}
-else{document.querySelector("#map").textContent="ไม่สามารถโหลดแผนที่ได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต";}
+
+if(window.L){
+const streets=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:19});
+const satellite=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{attribution:"Tiles &copy; Esri",maxZoom:19});
+const map=L.map("map",{layers:[streets]}).setView([18.58096,100.74879],15);
+const marker=L.marker([18.58096,100.74879]).bindPopup("บ้านดอนแท่น — จุดอ้างอิง ไม่ใช่พิกัดบ้านผู้ป่วย").addTo(map);
+const roofs=L.geoJSON(null,{style:{color:"#777",weight:1,fillColor:"#c8c8c8",fillOpacity:.85}});
+let village=null,boundary=null;
+const layerMenu=L.control.layers({"แผนที่ถนน":streets,"ภาพดาวเทียม (Esri)":satellite},{"หลังคา/อาคาร (OSM)":roofs,"หมุดอ้างอิง":marker},{collapsed:false}).addTo(map);
+const status=document.querySelector("#roofStatus");
+fetch("data/don-thaen-boundary.geojson").then(r=>{if(!r.ok)throw Error("boundary HTTP "+r.status);return r.json();}).then(fc=>{
+ village=fc.features[0];
+ boundary=L.geoJSON(fc,{style:{color:"#16864d",weight:3,fillColor:"#21b76e",fillOpacity:.16}}).addTo(map);
+ layerMenu.addOverlay(boundary,"ขอบเขตหมู่บ้าน (ยืนยันแล้ว)");
+ map.fitBounds(boundary.getBounds(),{padding:[18,18]});
+}).catch(e=>{status.textContent="ไม่สามารถโหลดไฟล์ขอบเขตหมู่บ้านได้: "+e.message;});
+document.querySelector("#zoomVillage").addEventListener("click",()=>{if(boundary)map.fitBounds(boundary.getBounds(),{padding:[18,18]});});
+document.querySelector("#loadRoofs").addEventListener("click",async()=>{
+ if(!village){status.textContent="โปรดรอให้โหลดขอบเขตหมู่บ้านก่อน";return;}
+ const btn=document.querySelector("#loadRoofs");btn.disabled=true;status.textContent="กำลังอ่านข้อมูลอาคารจาก OpenStreetMap...";
+ try{
+  if(typeof osmtogeojson!=="function"||!window.turf)throw Error("ไลบรารีแผนที่ไม่พร้อมใช้งาน");
+  const box=turf.bbox(village),q='[out:json][timeout:60];(way["building"]('+box[1]+','+box[0]+','+box[3]+','+box[2]+');relation["building"]('+box[1]+','+box[0]+','+box[3]+','+box[2]+'););out body;>;out skel qt;';
+  let data=null,lastError=null;
+  for(const endpoint of ["https://overpass.kumi.systems/api/interpreter","https://overpass-api.de/api/interpreter"]){
+   try{const response=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"text/plain; charset=UTF-8"},body:q});
+    if(!response.ok)throw Error("HTTP "+response.status);data=await response.json();break;
+   }catch(e){lastError=e;}
+  }
+  if(!data)throw lastError||Error("Overpass ไม่ตอบสนอง");
+  const raw=osmtogeojson(data);
+  const selected=raw.features.filter(f=>(f.geometry?.type==="Polygon"||f.geometry?.type==="MultiPolygon")&&turf.booleanIntersects(f,village));
+  roofs.clearLayers();roofs.addData({type:"FeatureCollection",features:selected});
+  if(!map.hasLayer(roofs))roofs.addTo(map);
+  status.textContent="พบรูปอาคารในขอบเขต "+selected.length.toLocaleString("th-TH")+" หลัง (ตามข้อมูล OSM ไม่ใช่จำนวนครัวเรือนจริง)";
+ }catch(e){status.textContent="โหลดอาคารไม่สำเร็จ: "+e.message+" — โปรดลองใหม่ภายหลัง";console.error(e);}
+ finally{btn.disabled=false;}
+});
+}else{document.querySelector("#map").textContent="ไม่สามารถโหลดแผนที่ Leaflet ได้ กรุณาตรวจสอบอินเทอร์เน็ต";}
+
 </script></body></html>
