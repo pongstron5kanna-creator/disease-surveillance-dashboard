@@ -41,13 +41,13 @@ footer{text-align:center;color:#607d89;padding:25px}
 <header class="hero"><h1>ระบบเฝ้าระวังโรค บ้านดอนแท่น</h1><p>ตำบลกลางเวียง อำเภอเวียงสา จังหวัดน่าน</p><span class="tag">ระบบต้นแบบ • ข้อมูลสมมติทั้งหมด ไม่ใช่รายงานสถานการณ์จริง</span></header>
 <main>
 <section class="row" aria-label="สรุปข้อมูล"><div class="card"><div class="label">จำนวนผู้ป่วยตัวอย่าง</div><div id="total" class="number">—</div></div><div class="card"><div class="label">โรคที่ติดตาม</div><div class="number">4</div></div><div class="card"><div class="label">ช่วงเวลาตัวอย่าง</div><div class="number">6 <small style="font-size:15px">เดือน</small></div></div><div class="card"><div class="label">หมู่บ้านเป้าหมาย</div><div class="number">1</div></div></section>
-<section class="layout"><div class="card"><h2>แผนที่หมู่บ้านดอนแท่น: ขอบเขต · หลังคาอาคาร · ภาพดาวเทียม</h2><div class="controls"><button id="loadRoofs" type="button">โหลดชั้นหลังคา/อาคาร</button><button id="zoomVillage" type="button" style="background:#edf6f6;color:#0b677b">ซูมขอบเขตหมู่บ้าน</button></div><p class="note" id="roofStatus">จำนวนอาคาร: ยังไม่โหลดข้อมูล • เปิดชั้นข้อมูลได้ที่มุมขวาบนของแผนที่</p><div id="map" aria-label="แผนที่ OpenStreetMap แสดงจุดอ้างอิงบ้านดอนแท่น"></div><p class="note">เส้นสีเขียวคือขอบเขตฉบับที่คุณตรวจและยืนยันแล้ว ไม่ใช่แนวเขตการปกครองทางการ • พื้นที่สีเทาคืออาคารที่ OpenStreetMap มีข้อมูล ไม่ใช่จำนวนครัวเรือนจริง • ภาพดาวเทียมและข้อมูลอาคารต้องใช้อินเทอร์เน็ต</p><a target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=18.58096&mlon=100.74879#map=16/18.58096/100.74879">เปิดแผนที่ต้นทาง ↗</a></div>
+<section class="layout"><div class="card"><h2>แผนที่หมู่บ้านดอนแท่น: ขอบเขต · หลังคาอาคาร · ภาพดาวเทียม</h2><div class="controls"><button id="loadRoofs" type="button">โหลดชั้นหลังคา/อาคาร</button><button id="drawHouse" type="button" style="background:#256e9a">เพิ่มจุดบ้านจากสำรวจ</button><button id="drawRoof" type="button" style="background:#586582">วาดรูปอาคารจากสำรวจ</button><button id="finishRoof" type="button" style="display:none;background:#136c54">จบรูปอาคาร</button><button id="cancelDraw" type="button" style="display:none;background:#a14d35">ยกเลิกวาด</button><button id="exportSurvey" type="button" style="background:#176945">ส่งออก GeoJSON</button><button id="importSurvey" type="button" style="background:#566a78">นำเข้าไฟล์สำรวจ</button><input id="importSurveyFile" type="file" accept=".geojson,.json,application/geo+json" style="display:none"><button id="zoomVillage" type="button" style="background:#edf6f6;color:#0b677b">ซูมขอบเขตหมู่บ้าน</button></div><p class="note" id="roofStatus">จำนวนอาคาร: ยังไม่โหลดข้อมูล • เปิดชั้นข้อมูลได้ที่มุมขวาบนของแผนที่</p><p class="note" id="surveyStatus">แผนที่เดินดิน: ยังไม่มีรายการสำรวจ • เพิ่มจุดบ้านหรือวาดรูปอาคาร แล้วส่งออกไฟล์เพื่อเก็บรักษา</p><div id="map" aria-label="แผนที่ OpenStreetMap แสดงจุดอ้างอิงบ้านดอนแท่น"></div><p class="note">เส้นสีเขียวคือขอบเขตฉบับที่คุณตรวจและยืนยันแล้ว (ไม่ใช่แนวเขตทางการ) • สีเทาคือรูปอาคารใน OSM อาจไม่ครบ • จุดบ้านและรูปอาคารที่คุณสำรวจจะเป็นสีส้ม • ต้องกดส่งออก GeoJSON เพื่อสำรองข้อมูล • ไม่ควรระบุชื่อผู้ป่วยหรือข้อมูลสุขภาพรายบุคคล</p><a target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=18.58096&mlon=100.74879#map=16/18.58096/100.74879">เปิดแผนที่ต้นทาง ↗</a></div>
 <div class="card"><h2>สรุปโรคตัวอย่าง</h2><div class="controls"><label for="disease">เลือกโรค</label><select id="disease"><option value="all">ทุกโรค</option><option>ไข้เลือดออก</option><option>ไข้หวัดใหญ่</option><option>อุจจาระร่วง</option><option>มือ เท้า ปาก</option></select></div><div id="bars"></div><p class="note">ตัวเลขสมมติสำหรับสาธิตเท่านั้น ไม่ควรใช้เพื่อสื่อสารความเสี่ยงหรือวางแผนควบคุมโรคจริง</p></div></section>
 <section class="card wide"><h2>แนวโน้มรายเดือน (ข้อมูลสมมติ)</h2><div id="monthly"></div></section>
 <section class="card wide"><h2>ตารางรายงานสาธิต</h2><div class="controls"><button id="download">ดาวน์โหลด CSV ตัวอย่าง</button><span class="note">CSV ใช้ฝึกนำข้อมูลไปวิเคราะห์ต่อได้</span></div><div style="overflow:auto"><table><thead><tr><th>เดือน</th><th>โรค</th><th>จำนวนตัวอย่าง (ราย)</th><th>หมายเหตุ</th></tr></thead><tbody id="tbody"></tbody></table></div></section>
 </main><footer>ระบบต้นแบบสำหรับการเรียนรู้ GitHub และ Dashboard • ห้ามใส่ข้อมูลระบุตัวผู้ป่วยบนเว็บไซต์สาธารณะ</footer>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="https://unpkg.com/osmtogeojson@3.0.0-beta.5/osmtogeojson.js"></script><script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+
 <script>
 const diseases=["ไข้เลือดออก","ไข้หวัดใหญ่","อุจจาระร่วง","มือ เท้า ปาก"];
 const months=["พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค."];
@@ -65,48 +65,128 @@ function draw(){const choice=sel.value;const selected=choice==="all"?rows:rows.f
 sel.addEventListener("change",draw);draw();
 document.querySelector("#download").addEventListener("click",()=>{const selected=sel.value==="all"?rows:rows.filter(x=>x.disease===sel.value);const csv="\uFEFFเดือน,โรค,จำนวน,หมายเหตุ\r\n"+selected.map(x=>[x.month,x.disease,x.count,"ข้อมูลสมมติ"].join(",")).join("\r\n");const a=document.createElement("a");const u=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));a.href=u;a.download="don-thaen-demo-data.csv";a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)});
 
+
 if(window.L){
-const streets=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:19});
-const satellite=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{attribution:"Tiles &copy; Esri",maxZoom:19});
-const map=L.map("map",{layers:[streets]}).setView([18.58096,100.74879],15);
-const marker=L.marker([18.58096,100.74879]).bindPopup("บ้านดอนแท่น — จุดอ้างอิง ไม่ใช่พิกัดบ้านผู้ป่วย").addTo(map);
-const roofs=L.geoJSON(null,{style:{color:"#777",weight:1,fillColor:"#c8c8c8",fillOpacity:.85}});
-let village=null,boundary=null;
-const layerMenu=L.control.layers({"แผนที่ถนน":streets,"ภาพดาวเทียม (Esri)":satellite},{"หลังคา/อาคาร (OSM)":roofs,"หมุดอ้างอิง":marker},{collapsed:false}).addTo(map);
-const status=document.querySelector("#roofStatus");
-window.addEventListener("load",()=>map.invalidateSize({pan:false}));
-window.addEventListener("resize",()=>map.invalidateSize({pan:false}));
-if(window.ResizeObserver)new ResizeObserver(()=>map.invalidateSize({pan:false})).observe(document.querySelector("#map"));
-fetch("data/don-thaen-boundary.geojson").then(r=>{if(!r.ok)throw Error("boundary HTTP "+r.status);return r.json();}).then(fc=>{
- village=fc.features[0];
- boundary=L.geoJSON(fc,{style:{color:"#16864d",weight:3,fillColor:"#21b76e",fillOpacity:.16}}).addTo(map);
- layerMenu.addOverlay(boundary,"ขอบเขตหมู่บ้าน (ยืนยันแล้ว)");
- map.invalidateSize({pan:false});
- map.fitBounds(boundary.getBounds(),{padding:[18,18]});
- setTimeout(()=>map.invalidateSize({pan:false}),300);
-}).catch(e=>{status.textContent="ไม่สามารถโหลดไฟล์ขอบเขตหมู่บ้านได้: "+e.message;});
-document.querySelector("#zoomVillage").addEventListener("click",()=>{if(boundary)map.fitBounds(boundary.getBounds(),{padding:[18,18]});});
-document.querySelector("#loadRoofs").addEventListener("click",async()=>{
- if(!village){status.textContent="โปรดรอให้โหลดขอบเขตหมู่บ้านก่อน";return;}
- const btn=document.querySelector("#loadRoofs");btn.disabled=true;status.textContent="กำลังอ่านข้อมูลอาคารจาก OpenStreetMap...";
- try{
-  if(typeof osmtogeojson!=="function"||!window.turf)throw Error("ไลบรารีแผนที่ไม่พร้อมใช้งาน");
-  const box=turf.bbox(village),q='[out:json][timeout:60];(way["building"]('+box[1]+','+box[0]+','+box[3]+','+box[2]+');relation["building"]('+box[1]+','+box[0]+','+box[3]+','+box[2]+'););out body;>;out skel qt;';
-  let data=null,lastError=null;
-  for(const endpoint of ["https://overpass.kumi.systems/api/interpreter","https://overpass-api.de/api/interpreter"]){
-   try{const response=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"text/plain; charset=UTF-8"},body:q});
-    if(!response.ok)throw Error("HTTP "+response.status);data=await response.json();break;
-   }catch(e){lastError=e;}
+ const street=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:19});
+ const aerial=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{attribution:'Imagery &copy; Esri and its providers',maxZoom:19});
+ const map=L.map("map",{layers:[aerial]}).setView([18.58096,100.74879],15);
+ const marker=L.circleMarker([18.58096,100.74879],{radius:6,color:"#1172a0",fillOpacity:1}).bindPopup("จุดอ้างอิงบ้านดอนแท่น").addTo(map);
+ const roofs=L.geoJSON(null,{style:{color:"#757575",weight:1,fillColor:"#aeb3b4",fillOpacity:.65}});
+ const survey=L.featureGroup().addTo(map);
+ const boundaryOverlay=L.geoJSON(null,{style:{color:"#198753",weight:3,fillColor:"#23b577",fillOpacity:.08}}).addTo(map);
+ const layers=L.control.layers({"ภาพถ่ายดาวเทียม Esri":aerial,"แผนที่ถนน OSM":street},{"ขอบเขตหมู่บ้าน":boundaryOverlay,"หลังคา OSM":roofs,"แผนที่เดินดิน (สำรวจ)":survey,"จุดอ้างอิง":marker},{collapsed:true}).addTo(map);
+ const status=document.querySelector("#roofStatus"),surveyStatus=document.querySelector("#surveyStatus");
+ let boundary=null,mode=null,vertices=[],tempLine=null,features=[];
+ const storageKey="don-thaen-field-survey-v1";
+ function containsPoint(lon,lat,ring){
+   let inside=false;
+   for(let i=0,j=ring.length-1;i<ring.length;j=i++){
+    const xi=ring[i][0],yi=ring[i][1],xj=ring[j][0],yj=ring[j][1];
+    if(((yi>lat)!==(yj>lat))&&(lon<(xj-xi)*(lat-yi)/(yj-yi)+xi)) inside=!inside;
+   } return inside;
+ }
+ function within(lat,lon){
+   if(!boundary)return false;
+   const rings=boundary.geometry.coordinates;
+   return containsPoint(lon,lat,rings[0])&&!rings.slice(1).some(r=>containsPoint(lon,lat,r));
+ }
+ function refreshSurvey(){
+   survey.clearLayers();
+   features.forEach((f,i)=>{
+     const layer=L.geoJSON(f,{pointToLayer:(_,latlng)=>L.circleMarker(latlng,{radius:5,color:"#e27c21",fillColor:"#f59f28",fillOpacity:1}),
+       style:{color:"#e47c22",weight:2,fillColor:"#ffa631",fillOpacity:.25}}).addTo(survey);
+     layer.bindPopup("รายการสำรวจ "+(i+1)+' <button type="button" class="deleteSurvey" data-idx="'+i+'">ลบรายการนี้</button>');
+   });
+   surveyStatus.textContent="แผนที่เดินดิน: "+features.length+" รายการ (จุดบ้านหรือรูปอาคาร) • บันทึกไว้ในเบราว์เซอร์นี้เท่านั้น";
+   try{localStorage.setItem(storageKey,JSON.stringify(features));}catch(e){surveyStatus.textContent+=" • ไม่สามารถบันทึกอัตโนมัติได้ โปรดส่งออกไฟล์";}
+ }
+ map.on("popupopen",ev=>{
+   const el=ev.popup.getElement(),b=el?.querySelector(".deleteSurvey");
+   if(b)b.addEventListener("click",()=>{features.splice(Number(b.dataset.idx),1);map.closePopup();refreshSurvey();});
+ });
+ try{const cached=JSON.parse(localStorage.getItem(storageKey)||"[]");if(Array.isArray(cached))features=cached;}catch(e){}
+ refreshSurvey();
+ fetch("data/don-thaen-boundary.geojson",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.json();}).then(fc=>{
+   boundary=fc.features[0];boundaryOverlay.addData(fc);map.invalidateSize();map.fitBounds(boundaryOverlay.getBounds(),{padding:[22,22]});
+   setTimeout(()=>map.invalidateSize(),400);
+ }).catch(e=>{status.textContent="โหลดขอบเขตหมู่บ้านไม่สำเร็จ: "+e.message;});
+ window.addEventListener("resize",()=>map.invalidateSize());
+ if(window.ResizeObserver)new ResizeObserver(()=>map.invalidateSize()).observe(document.querySelector("#map"));
+ document.querySelector("#zoomVillage").addEventListener("click",()=>{if(boundary)map.fitBounds(boundaryOverlay.getBounds(),{padding:[22,22]});});
+ const input=document.querySelector("#importSurveyFile");
+ document.querySelector("#importSurvey").addEventListener("click",()=>input.click());
+ input.addEventListener("change",async()=>{
+  const file=input.files?.[0];if(!file)return;
+  try{const fc=JSON.parse(await file.text());if(fc.type!=="FeatureCollection"||!Array.isArray(fc.features))throw Error("ไฟล์ต้องเป็น FeatureCollection");
+    const accepted=fc.features.filter(f=>f.type==="Feature"&&f.geometry&&["Point","Polygon"].includes(f.geometry.type)).slice(0,10000);
+    if(!confirm("นำเข้า "+accepted.length+" รายการ? จะรวมกับรายการเดิมในเบราว์เซอร์"))return;
+    features.push(...accepted);refreshSurvey();if(!map.hasLayer(survey))survey.addTo(map);
+  }catch(e){alert("อ่านไฟล์ไม่สำเร็จ: "+e.message);}finally{input.value="";}
+ });
+ document.querySelector("#exportSurvey").addEventListener("click",()=>{
+  const fc={type:"FeatureCollection",features:features};
+  const blob=new Blob([JSON.stringify(fc,null,2)],{type:"application/geo+json"});
+  const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="don-thaen-field-survey.geojson";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ });
+ function modeButtons(){
+   document.querySelector("#drawHouse").textContent=mode==="point"?"คลิกแผนที่เพื่อเพิ่มจุด":"เพิ่มจุดบ้านจากสำรวจ";
+   document.querySelector("#drawRoof").textContent=mode==="polygon"?"กำลังวาดรูปอาคาร...":"วาดรูปอาคารจากสำรวจ";
+   document.querySelector("#finishRoof").style.display=mode==="polygon"?"inline-block":"none";
+   document.querySelector("#cancelDraw").style.display=mode?"inline-block":"none";
+   map.getContainer().style.cursor=mode?"crosshair":"";
+ }
+ function resetMode(){mode=null;vertices=[];if(tempLine){map.removeLayer(tempLine);tempLine=null;}modeButtons();}
+ document.querySelector("#drawHouse").addEventListener("click",()=>{resetMode();mode="point";modeButtons();surveyStatus.textContent="เลือกตำแหน่งบ้านที่ยืนยันจากการเดินสำรวจ โดยคลิกบนแผนที่";});
+ document.querySelector("#drawRoof").addEventListener("click",()=>{resetMode();mode="polygon";modeButtons();surveyStatus.textContent="คลิกตามมุมอาคารที่สำรวจจริงอย่างน้อย 3 จุด แล้วกด จบรูปอาคาร";});
+ document.querySelector("#cancelDraw").addEventListener("click",resetMode);
+ map.on("click",e=>{
+   if(!mode||!boundary)return;
+   const lat=e.latlng.lat,lon=e.latlng.lng;
+   if(!within(lat,lon)){surveyStatus.textContent="จุดนี้อยู่นอกขอบเขตที่ยืนยันแล้ว";return;}
+   if(mode==="point"){features.push({type:"Feature",properties:{type:"house_point",source:"field_survey_manual"},geometry:{type:"Point",coordinates:[lon,lat]}});refreshSurvey();}
+   else{vertices.push([lat,lon]);if(tempLine)map.removeLayer(tempLine);tempLine=L.polyline(vertices,{color:"#e47c22",weight:3,dashArray:"5 5"}).addTo(map);
+     surveyStatus.textContent="วาดแล้ว "+vertices.length+" จุด • กด จบรูปอาคาร เมื่อครบ";}
+ });
+ document.querySelector("#finishRoof").addEventListener("click",()=>{
+   if(vertices.length<3){alert("ต้องกำหนดอย่างน้อย 3 จุด");return;}
+   const ring=vertices.map(p=>[p[1],p[0]]);ring.push(ring[0]);
+   features.push({type:"Feature",properties:{type:"building_footprint",source:"field_survey_manual"},geometry:{type:"Polygon",coordinates:[ring]}});
+   resetMode();refreshSurvey();
+ });
+ document.querySelector("#loadRoofs").addEventListener("click",async()=>{
+  if(!boundary){status.textContent="โปรดรอขอบเขตหมู่บ้านโหลดก่อน";return;}
+  const btn=document.querySelector("#loadRoofs");btn.disabled=true;
+  status.textContent="กำลังดึงรอยเท้าอาคารจาก OSM (Overpass)...";
+  const ring=boundary.geometry.coordinates[0],xs=ring.map(x=>x[0]),ys=ring.map(x=>x[1]);
+  const bbox=[Math.min(...ys),Math.min(...xs),Math.max(...ys),Math.max(...xs)];
+  const query='[out:json][timeout:40];way["building"]('+bbox.join(",")+');out geom;';
+  const hosts=["https://overpass.nchc.org.tw/api/interpreter","https://overpass.kumi.systems/api/interpreter","https://overpass-api.de/api/interpreter"];
+  let result=null,errors=[];
+  for(const host of hosts){
+    const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),18000);
+    try{
+      const response=await fetch(host+"?data="+encodeURIComponent(query),{signal:controller.signal});
+      if(!response.ok)throw Error("HTTP "+response.status);
+      result=await response.json();clearTimeout(timeout);break;
+    }catch(e){errors.push(e.message);clearTimeout(timeout);}
   }
-  if(!data)throw lastError||Error("Overpass ไม่ตอบสนอง");
-  const raw=osmtogeojson(data);
-  const selected=raw.features.filter(f=>(f.geometry?.type==="Polygon"||f.geometry?.type==="MultiPolygon")&&turf.booleanIntersects(f,village));
-  roofs.clearLayers();roofs.addData({type:"FeatureCollection",features:selected});
-  if(!map.hasLayer(roofs))roofs.addTo(map);
-  status.textContent="พบรูปอาคารในขอบเขต "+selected.length.toLocaleString("th-TH")+" หลัง (ตามข้อมูล OSM ไม่ใช่จำนวนครัวเรือนจริง)";
- }catch(e){status.textContent="โหลดอาคารไม่สำเร็จ: "+e.message+" — โปรดลองใหม่ภายหลัง";console.error(e);}
- finally{btn.disabled=false;}
-});
-}else{document.querySelector("#map").textContent="ไม่สามารถโหลดแผนที่ Leaflet ได้ กรุณาตรวจสอบอินเทอร์เน็ต";}
+  try{
+    if(!result)throw Error("Overpass ทุกแหล่งไม่ตอบสนอง ("+errors.join(", ")+")");
+    const seen=new Set(),featuresOSM=[];
+    for(const w of result.elements||[]){
+      if(w.type!=="way"||!w.geometry||w.geometry.length<4||seen.has(w.id))continue;
+      seen.add(w.id);
+      const crds=w.geometry.map(p=>[p.lon,p.lat]),centroid=crds.reduce((a,c)=>[a[0]+c[0],a[1]+c[1]],[0,0]).map(v=>v/crds.length);
+      if(!within(centroid[1],centroid[0]))continue;
+      if(crds[0][0]!==crds.at(-1)[0]||crds[0][1]!==crds.at(-1)[1])crds.push(crds[0]);
+      featuresOSM.push({type:"Feature",properties:{osm_id:w.id,building:w.tags?.building||"yes"},geometry:{type:"Polygon",coordinates:[crds]}});
+    }
+    roofs.clearLayers();roofs.addData({type:"FeatureCollection",features:featuresOSM});
+    if(!map.hasLayer(roofs))roofs.addTo(map);
+    status.textContent=featuresOSM.length?"ข้อมูล OSM: "+featuresOSM.length+" รูปอาคาร (จุดกึ่งกลางอยู่ในขอบเขต) • อาจไม่ครบทุกหลัง":"ยังไม่พบอาคารที่วาดไว้ใน OSM บริเวณนี้ • ใช้แผนที่เดินดินเพิ่มข้อมูลสำรวจได้";
+  }catch(e){status.textContent="ไม่สามารถโหลด OSM: "+e.message+" • ใช้เครื่องมือแผนที่เดินดินได้ตามปกติ";}
+  finally{btn.disabled=false;}
+ });
+}else{document.querySelector("#map").textContent="ไม่สามารถโหลด Leaflet ได้ กรุณาตรวจสอบอินเทอร์เน็ต";}
 
 </script></body></html>
