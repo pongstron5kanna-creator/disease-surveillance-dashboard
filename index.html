@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ระบบเฝ้าระวังโรค บ้านดอนแท่น</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyo8gJIFU8q3U=" crossorigin="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" crossorigin="anonymous">
 <style>
 :root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:#143348;background:#eef5f8}
 *{box-sizing:border-box}body{margin:0}.hero{background:linear-gradient(110deg,#075678,#088d87);color:white;padding:32px max(20px,calc((100vw - 1140px)/2))}
 h1{font-size:clamp(24px,4vw,36px);margin:0 0 8px}.hero p{margin:0;color:#dbf8f4}.tag{display:inline-block;margin-top:14px;padding:5px 12px;border-radius:20px;background:#ffffff2a;font-size:13px}
 main{max-width:1140px;margin:24px auto;padding:0 18px}.row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:white;border:1px solid #dce8ed;border-radius:16px;padding:20px;box-shadow:0 3px 16px #1234}.label{font-size:13px;color:#547383}.number{font-size:32px;font-weight:750;color:#086e84;margin-top:9px}
-.layout{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;margin-top:16px}.wide{margin-top:16px}
-h2{font-size:19px;margin:0 0 14px}#map{height:510px;border-radius:12px}.note{font-size:13px;color:#587181;line-height:1.65}
+.layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:16px;margin-top:16px}.layout>.card{min-width:0;overflow:hidden}.wide{margin-top:16px}
+h2{font-size:19px;margin:0 0 14px}#map{position:relative;height:510px;width:100%;max-width:100%;min-width:0;overflow:hidden;border-radius:12px;background:#e9eff1;isolation:isolate}.note{font-size:13px;color:#587181;line-height:1.65}
 table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:12px;border-bottom:1px solid #e4edf0}th{background:#f1f8fa}
 .controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 select,button{border:1px solid #bbd5dc;border-radius:8px;padding:9px 12px;background:white;font:inherit}
@@ -16,6 +16,26 @@ button{background:#087e8b;color:white;border:0;cursor:pointer}.bar{height:13px;b
 .statrow{display:grid;grid-template-columns:90px 1fr 33px;gap:10px;align-items:center;margin:12px 0;font-size:13px}
 footer{text-align:center;color:#607d89;padding:25px}
 @media(max-width:800px){.row{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}}@media(max-width:400px){.row{grid-template-columns:1fr 1fr}.card{padding:14px}.number{font-size:25px}}
+
+/* Leaflet structural fallback: keeps map panes, images and controls positioned
+   correctly even if an external Leaflet CSS file is blocked or delayed. */
+.leaflet-container{position:relative;overflow:hidden;outline:0;touch-action:pan-x pan-y;cursor:grab;font:12px/1.5 Arial,sans-serif}
+.leaflet-container *{box-sizing:content-box}
+.leaflet-container img,.leaflet-container svg{max-width:none!important;max-height:none!important}
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,.leaflet-pane>svg,.leaflet-pane>canvas,.leaflet-zoom-box,.leaflet-image-layer,.leaflet-layer{position:absolute;left:0;top:0}
+.leaflet-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-tooltip-pane{z-index:650}.leaflet-popup-pane{z-index:700}
+.leaflet-tile{width:256px;height:256px;user-select:none;pointer-events:none}
+.leaflet-map-pane canvas{z-index:100}.leaflet-map-pane svg{z-index:200}
+.leaflet-control{position:relative;z-index:800;pointer-events:visiblePainted;pointer-events:auto;float:left;clear:both}
+.leaflet-top,.leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}
+.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}
+.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}
+.leaflet-control-layers{background:#fff;border-radius:6px;padding:7px;box-shadow:0 2px 8px #0004;max-width:min(280px,80vw)}
+.leaflet-control-layers label{display:block;white-space:normal}.leaflet-control-layers input{display:inline-block;vertical-align:middle}
+.leaflet-control-layers-separator{height:0;border-top:1px solid #ddd;margin:5px -2px}
+.leaflet-control-zoom a{display:block;width:30px;height:30px;text-align:center;line-height:30px;color:#222;background:#fff;text-decoration:none;font-size:21px;font-weight:bold}
+.leaflet-control-attribution{background:#fffc;padding:0 5px;font-size:10px}
+.leaflet-marker-icon,.leaflet-marker-shadow{display:block}
 </style></head>
 <body>
 <header class="hero"><h1>ระบบเฝ้าระวังโรค บ้านดอนแท่น</h1><p>ตำบลกลางเวียง อำเภอเวียงสา จังหวัดน่าน</p><span class="tag">ระบบต้นแบบ • ข้อมูลสมมติทั้งหมด ไม่ใช่รายงานสถานการณ์จริง</span></header>
@@ -54,11 +74,16 @@ const roofs=L.geoJSON(null,{style:{color:"#777",weight:1,fillColor:"#c8c8c8",fil
 let village=null,boundary=null;
 const layerMenu=L.control.layers({"แผนที่ถนน":streets,"ภาพดาวเทียม (Esri)":satellite},{"หลังคา/อาคาร (OSM)":roofs,"หมุดอ้างอิง":marker},{collapsed:false}).addTo(map);
 const status=document.querySelector("#roofStatus");
+window.addEventListener("load",()=>map.invalidateSize({pan:false}));
+window.addEventListener("resize",()=>map.invalidateSize({pan:false}));
+if(window.ResizeObserver)new ResizeObserver(()=>map.invalidateSize({pan:false})).observe(document.querySelector("#map"));
 fetch("data/don-thaen-boundary.geojson").then(r=>{if(!r.ok)throw Error("boundary HTTP "+r.status);return r.json();}).then(fc=>{
  village=fc.features[0];
  boundary=L.geoJSON(fc,{style:{color:"#16864d",weight:3,fillColor:"#21b76e",fillOpacity:.16}}).addTo(map);
  layerMenu.addOverlay(boundary,"ขอบเขตหมู่บ้าน (ยืนยันแล้ว)");
+ map.invalidateSize({pan:false});
  map.fitBounds(boundary.getBounds(),{padding:[18,18]});
+ setTimeout(()=>map.invalidateSize({pan:false}),300);
 }).catch(e=>{status.textContent="ไม่สามารถโหลดไฟล์ขอบเขตหมู่บ้านได้: "+e.message;});
 document.querySelector("#zoomVillage").addEventListener("click",()=>{if(boundary)map.fitBounds(boundary.getBounds(),{padding:[18,18]});});
 document.querySelector("#loadRoofs").addEventListener("click",async()=>{
