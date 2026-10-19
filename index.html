@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ระบบเฝ้าระวังโรค บ้านดอนแท่น</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyo8gJIFU8q3U=" crossorigin="">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:#143348;background:#eef5f8}
+*{box-sizing:border-box}body{margin:0}.hero{background:linear-gradient(110deg,#075678,#088d87);color:white;padding:32px max(20px,calc((100vw - 1140px)/2))}
+h1{font-size:clamp(24px,4vw,36px);margin:0 0 8px}.hero p{margin:0;color:#dbf8f4}.tag{display:inline-block;margin-top:14px;padding:5px 12px;border-radius:20px;background:#ffffff2a;font-size:13px}
+main{max-width:1140px;margin:24px auto;padding:0 18px}.row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:white;border:1px solid #dce8ed;border-radius:16px;padding:20px;box-shadow:0 3px 16px #1234}.label{font-size:13px;color:#547383}.number{font-size:32px;font-weight:750;color:#086e84;margin-top:9px}
+.layout{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;margin-top:16px}.wide{margin-top:16px}
+h2{font-size:19px;margin:0 0 14px}#map{height:350px;border-radius:12px}.note{font-size:13px;color:#587181;line-height:1.65}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:12px;border-bottom:1px solid #e4edf0}th{background:#f1f8fa}
+.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+select,button{border:1px solid #bbd5dc;border-radius:8px;padding:9px 12px;background:white;font:inherit}
+button{background:#087e8b;color:white;border:0;cursor:pointer}.bar{height:13px;background:#e4f1f2;border-radius:8px;overflow:hidden}.fill{height:100%;background:#12a5a4}
+.statrow{display:grid;grid-template-columns:90px 1fr 33px;gap:10px;align-items:center;margin:12px 0;font-size:13px}
+footer{text-align:center;color:#607d89;padding:25px}
+@media(max-width:800px){.row{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}}@media(max-width:400px){.row{grid-template-columns:1fr 1fr}.card{padding:14px}.number{font-size:25px}}
+</style></head>
+<body>
+<header class="hero"><h1>ระบบเฝ้าระวังโรค บ้านดอนแท่น</h1><p>ตำบลกลางเวียง อำเภอเวียงสา จังหวัดน่าน</p><span class="tag">ระบบต้นแบบ • ข้อมูลสมมติทั้งหมด ไม่ใช่รายงานสถานการณ์จริง</span></header>
+<main>
+<section class="row" aria-label="สรุปข้อมูล"><div class="card"><div class="label">จำนวนผู้ป่วยตัวอย่าง</div><div id="total" class="number">—</div></div><div class="card"><div class="label">โรคที่ติดตาม</div><div class="number">4</div></div><div class="card"><div class="label">ช่วงเวลาตัวอย่าง</div><div class="number">6 <small style="font-size:15px">เดือน</small></div></div><div class="card"><div class="label">หมู่บ้านเป้าหมาย</div><div class="number">1</div></div></section>
+<section class="layout"><div class="card"><h2>แผนที่อ้างอิงหมู่บ้านดอนแท่น</h2><div id="map" aria-label="แผนที่ OpenStreetMap แสดงจุดอ้างอิงบ้านดอนแท่น"></div><p class="note">พิกัดอ้างอิง 18.58096° N, 100.74879° E เป็นหมุดตำแหน่งหมู่บ้าน ไม่ใช่ขอบเขตการปกครองหรือที่อยู่ผู้ป่วย แผนที่ต้องใช้อินเทอร์เน็ตในการแสดงผล</p><a target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=18.58096&mlon=100.74879#map=16/18.58096/100.74879">เปิดแผนที่ต้นทาง ↗</a></div>
+<div class="card"><h2>สรุปโรคตัวอย่าง</h2><div class="controls"><label for="disease">เลือกโรค</label><select id="disease"><option value="all">ทุกโรค</option><option>ไข้เลือดออก</option><option>ไข้หวัดใหญ่</option><option>อุจจาระร่วง</option><option>มือ เท้า ปาก</option></select></div><div id="bars"></div><p class="note">ตัวเลขสมมติสำหรับสาธิตเท่านั้น ไม่ควรใช้เพื่อสื่อสารความเสี่ยงหรือวางแผนควบคุมโรคจริง</p></div></section>
+<section class="card wide"><h2>แนวโน้มรายเดือน (ข้อมูลสมมติ)</h2><div id="monthly"></div></section>
+<section class="card wide"><h2>ตารางรายงานสาธิต</h2><div class="controls"><button id="download">ดาวน์โหลด CSV ตัวอย่าง</button><span class="note">CSV ใช้ฝึกนำข้อมูลไปวิเคราะห์ต่อได้</span></div><div style="overflow:auto"><table><thead><tr><th>เดือน</th><th>โรค</th><th>จำนวนตัวอย่าง (ราย)</th><th>หมายเหตุ</th></tr></thead><tbody id="tbody"></tbody></table></div></section>
+</main><footer>ระบบต้นแบบสำหรับการเรียนรู้ GitHub และ Dashboard • ห้ามใส่ข้อมูลระบุตัวผู้ป่วยบนเว็บไซต์สาธารณะ</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+const diseases=["ไข้เลือดออก","ไข้หวัดใหญ่","อุจจาระร่วง","มือ เท้า ปาก"];
+const months=["พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค."];
+const values=[[1,2,3,1,2,2],[3,4,2,5,4,3],[4,3,5,4,6,5],[1,2,1,2,1,1]];
+const rows=diseases.flatMap((d,i)=>months.map((m,j)=>({month:m,disease:d,count:values[i][j]})));
+const sel=document.querySelector("#disease");
+function draw(){const choice=sel.value;const selected=choice==="all"?rows:rows.filter(r=>r.disease===choice);const sum=selected.reduce((s,r)=>s+r.count,0);document.querySelector("#total").textContent=sum;
+ const byDisease=diseases.map(d=>({label:d,value:rows.filter(r=>r.disease===d).reduce((s,r)=>s+r.count,0)})).filter(x=>choice==="all"||x.label===choice);
+ const max=Math.max(1,...byDisease.map(x=>x.value));
+ document.querySelector("#bars").innerHTML=byDisease.map(x=>'<div class="statrow"><span>'+x.label+'</span><div class="bar"><div class="fill" style="width:'+(x.value/max*100)+'%"></div></div><strong>'+x.value+'</strong></div>').join("");
+ const byMonth=months.map(m=>({label:m,value:selected.filter(r=>r.month===m).reduce((s,r)=>s+r.count,0)}));const peak=Math.max(1,...byMonth.map(x=>x.value));
+ document.querySelector("#monthly").innerHTML=byMonth.map(x=>'<div class="statrow"><span>'+x.label+'</span><div class="bar"><div class="fill" style="width:'+(x.value/peak*100)+'%"></div></div><strong>'+x.value+'</strong></div>').join("");
+ document.querySelector("#tbody").innerHTML=selected.map(r=>'<tr><td>'+r.month+'</td><td>'+r.disease+'</td><td>'+r.count+'</td><td>ข้อมูลสมมติ</td></tr>').join("");
+}
+sel.addEventListener("change",draw);draw();
+document.querySelector("#download").addEventListener("click",()=>{const selected=sel.value==="all"?rows:rows.filter(x=>x.disease===sel.value);const csv="\uFEFFเดือน,โรค,จำนวน,หมายเหตุ\r\n"+selected.map(x=>[x.month,x.disease,x.count,"ข้อมูลสมมติ"].join(",")).join("\r\n");const a=document.createElement("a");const u=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));a.href=u;a.download="don-thaen-demo-data.csv";a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)});
+if(window.L){const map=L.map("map").setView([18.58096,100.74879],15);L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:19}).addTo(map);L.marker([18.58096,100.74879]).addTo(map).bindPopup("<strong>บ้านดอนแท่น</strong><br>ตำบลกลางเวียง อำเภอเวียงสา จังหวัดน่าน<br>ตำแหน่งอ้างอิง ไม่ใช่จุดผู้ป่วย").openPopup();}
+else{document.querySelector("#map").textContent="ไม่สามารถโหลดแผนที่ได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต";}
+</script></body></html>
