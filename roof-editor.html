@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>แก้ไขหลังคาเรือน บ้านดอนแท่น | Leaflet-Geoman</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@2.20.2/dist/leaflet-geoman.css">
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:system-ui,"Segoe UI",Tahoma,sans-serif;color:#15384a;background:#f3f8fa}header{background:#096982;color:white;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}header h1{margin:0;font-size:21px}header p{font-size:13px;margin:4px 0 0;color:#d9f5f2}header a{color:#fff}main{max-width:1450px;margin:auto;padding:12px;display:grid;grid-template-columns:minmax(0,1fr) 305px;gap:12px}.panel{border:1px solid #d9e5ec;border-radius:12px;background:white;padding:12px}#map{height:calc(100vh - 136px);min-height:520px;position:relative;overflow:hidden;isolation:isolate}.sidebar{max-height:calc(100vh - 136px);overflow:auto}.sidebar h2{font-size:16px;margin:8px 0}button,select,input{font:inherit}button{padding:9px 12px;border-radius:8px;border:1px solid #bdd1d9;background:#fff;cursor:pointer;margin:3px 0}button.primary{background:#087b83;color:white;border-color:#087b83}button.warn{background:#b55242;color:white;border-color:#b55242}button:disabled{opacity:.5;cursor:not-allowed}.stack{display:flex;flex-direction:column;gap:7px}.small{font-size:12px;color:#5c7480;line-height:1.55}.state{background:#edf8f7;border-radius:8px;padding:10px;margin:10px 0;line-height:1.5}.metric{font-weight:750;color:#006b79;font-size:27px}.key{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:7px}.leaflet-container img{max-width:none!important;max-height:none!important}.leaflet-control-layers{font-size:13px}.notice{border-left:4px solid #d49228;padding:9px;background:#fff8eb}.two{display:grid;grid-template-columns:1fr 1fr;gap:7px}code{font-size:12px;overflow-wrap:anywhere} @media(max-width:850px){main{grid-template-columns:1fr}#map{height:60vh;min-height:420px}.sidebar{max-height:none}} 
+</style>
+</head>
+<body>
+<header><div><h1>เครื่องมือแก้ไขหลังคาเรือน • บ้านดอนแท่น</h1><p>ตำบลกลางเวียง อำเภอเวียงสา จังหวัดน่าน | Leaflet-Geoman Free</p></div><a href="./index.html">← กลับ Dashboard</a></header>
+<main><section class="panel"><div id="map" role="application" aria-label="แผนที่แก้ไขรอยเท้าอาคาร"></div></section>
+<aside class="panel sidebar">
+<h2>จำนวนรูปอาคารที่กำลังตรวจ</h2>
+<div class="metric" id="total">กำลังโหลด</div><div class="small" id="counts">ข้อมูลตั้งต้นจาก Overture Maps</div>
+<div class="state" id="status" role="status">กำลังอ่านขอบเขตและรูปอาคาร...</div>
+<h2>แก้ไขหลังคาบนแผนที่</h2>
+<div class="small">ใช้แถบเครื่องมือ Geoman ที่ขอบซ้ายของแผนที่: รูปสี่เหลี่ยม, Polygon, แก้มุม, ลากย้าย หรือถังขยะ เมื่อคลิกแก้ไข ให้ปรับเฉพาะอาคารที่คุณตรวจสอบตำแหน่งได้</div>
+<div class="notice small"><strong>สำคัญ:</strong> รูปอาคาร 835 รูปเป็นข้อมูลตั้งต้น ยังไม่ได้ยืนยันว่าเป็นบ้านพักอาศัยจริง ห้ามนำจำนวนนี้ไปเป็นจำนวนครัวเรือนหรือประชากรโดยตรง</div>
+<h2>จัดการข้อมูล</h2>
+<div class="stack">
+<button class="primary" id="export">ส่งออก GeoJSON ที่แก้ไขแล้ว</button>
+<button id="import">นำเข้า GeoJSON ที่แก้ไขไว้</button>
+<input id="file" type="file" accept=".geojson,.json" hidden>
+<button id="reset">เริ่มใหม่จากข้อมูล Overture (ลบการแก้ไขในเครื่อง)</button>
+<button id="zoom">ซูมไปขอบเขตหมู่บ้าน</button>
+</div>
+<hr>
+<h2>ความหมายของเส้น</h2>
+<div class="small"><span class="key" style="background:#23a56a"></span> ขอบเขตหมู่บ้านที่ยืนยันแล้ว</div>
+<div class="small"><span class="key" style="background:#8297a5"></span> รูปอาคารจาก Overture (รอตรวจ)</div>
+<div class="small"><span class="key" style="background:#f9a928"></span> รูปอาคารที่วาดหรือแก้ไขในเครื่อง</div>
+<hr>
+<h2>ชั้นภาพพื้นหลัง</h2><div class="small">สลับภาพดาวเทียม Esri กับแผนที่ถนน OpenStreetMap จากปุ่มมุมขวาบนของแผนที่ การใช้งานภาพต้องเป็นไปตามเงื่อนไขผู้ให้บริการ</div>
+<p class="small">การแก้ไขเก็บชั่วคราวในเบราว์เซอร์ของคุณ ไม่ได้อัปโหลดเข้า GitHub โดยอัตโนมัติ กด <strong>ส่งออก GeoJSON</strong> ก่อนปิดหรือล้างข้อมูลเบราว์เซอร์ และส่งไฟล์ให้ผมเพื่อรวมกับระบบกลาง</p>
+<p class="small">แหล่งข้อมูลอาคาร: Overture Maps (ตรวจเงื่อนไขการใช้งานและการแสดงที่มาก่อนเผยแพร่ข้อมูลต่อ)</p>
+</aside></main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@2.20.2/dist/leaflet-geoman.min.js"></script>
+<script>
+(async function(){
+const $=id=>document.getElementById(id),key="don-thaen-roof-editor-v1";
+const map=L.map("map",{preferCanvas:true,zoomControl:false}).setView([18.58096,100.74879],15);
+L.control.zoom({position:"bottomleft"}).addTo(map);
+const esri=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{attribution:"Imagery © Esri and providers",maxZoom:19}).addTo(map);
+const osm=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"© OpenStreetMap contributors",maxZoom:19});
+const boundary=L.geoJSON(null,{pmIgnore:true,style:{color:"#1d975b",weight:3,fillColor:"#35b977",fillOpacity:.04}}).addTo(map);
+const buildings=L.featureGroup().addTo(map);
+L.control.layers({"ภาพดาวเทียม Esri":esri,"ถนน OpenStreetMap":osm},{"รูปอาคาร":buildings,"ขอบเขตหมู่บ้าน":boundary},{collapsed:true}).addTo(map);
+let savingTimer,ready=false,sourceCount=0,changeCount=0;
+function status(s){$("status").textContent=s;}
+function asFeature(layer){
+ const geo=layer.toGeoJSON();
+ geo.properties={...(layer.feature?.properties||{}),_editor:"Don Thaen Geoman",_review_status:layer.options._reviewStatus||"unverified"};
+ return geo;
+}
+function getCollection(){return {type:"FeatureCollection",metadata:{kind:"building_footprints_review",origin:"Overture Maps; manually edited with Leaflet-Geoman",exported:new Date().toISOString(),note:"Not verified homes or households"},features:buildings.getLayers().filter(l=>typeof l.toGeoJSON==="function").map(asFeature)};}
+function count(){const n=buildings.getLayers().length;$("total").textContent=n.toLocaleString("th-TH")+" รูป";$("counts").textContent="ข้อมูลตั้งต้น "+sourceCount+" รูป • การแก้ไขในเครื่อง "+changeCount+" ครั้ง";}
+function cache(){if(!ready)return;count();clearTimeout(savingTimer);savingTimer=setTimeout(()=>{try{localStorage.setItem(key,JSON.stringify(getCollection()));status("เก็บสำเนาในเบราว์เซอร์แล้ว • กรุณาส่งออก GeoJSON เพื่อสำรอง");}catch(e){status("เก็บอัตโนมัติไม่สำเร็จ (พื้นที่เก็บอาจเต็ม) • กรุณาส่งออก GeoJSON");}},400);}
+function onChanged(l){l.options._reviewStatus="edited";l.setStyle?.({color:"#eca01f",fillColor:"#fbbf45",fillOpacity:.30});changeCount++;cache();}
+function register(layer,feature,edited=false){
+ if(!layer || typeof layer.toGeoJSON!=="function")return;
+ if(feature)layer.feature=feature;
+ layer.options._reviewStatus=edited?"edited":feature?.properties?._review_status||"unverified";
+ layer.options.pmIgnore=false;
+ const isPoly=layer instanceof L.Polygon;
+ if(isPoly)layer.setStyle({color:layer.options._reviewStatus==="edited"?"#eca01f":"#8094a4",weight:1.5,fillColor:layer.options._reviewStatus==="edited"?"#fbbf45":"#8297a5",fillOpacity:.28});
+ if(!isPoly)return;
+ if(L.PM&&L.PM.reInitLayer)L.PM.reInitLayer(layer);
+ layer.on("pm:edit",()=>onChanged(layer));
+ layer.on("pm:dragend",()=>onChanged(layer));
+ layer.on("pm:update",()=>{if(layer.options._reviewStatus!=="edited")onChanged(layer);});
+ buildings.addLayer(layer);
+}
+function loadFeatures(fc,edited=false){
+ buildings.clearLayers();
+ let n=0;
+ for(const f of fc.features||[]){
+  if(!f?.geometry||!["Polygon","MultiPolygon"].includes(f.geometry.type))continue;
+  L.geoJSON(f,{pmIgnore:false,onEachFeature:(feature,layer)=>{register(layer,feature,edited || feature.properties?._review_status==="edited");n++;}}); 
+ }
+ count();return n;
+}
+map.on("pm:create",e=>{const layer=e.layer;layer.feature={type:"Feature",properties:{source:"manual_review",_review_status:"edited"},geometry:layer.toGeoJSON().geometry};register(layer,layer.feature,true);changeCount++;cache();});
+map.on("pm:remove",()=>{changeCount++;cache();});
+try{
+ if(!map.pm)throw Error("โหลด Leaflet-Geoman ไม่สำเร็จ");
+ map.pm.addControls({position:"topleft",drawMarker:false,drawCircleMarker:false,drawPolyline:false,drawCircle:false,drawText:false,drawRectangle:true,drawPolygon:true,editMode:true,dragMode:true,removalMode:true,cutPolygon:false,rotateMode:false});
+ map.pm.setGlobalOptions({snappable:true,snapDistance:15,layerGroup:buildings,continueDrawing:false});
+ const boundaryResponse=await fetch("data/don-thaen-boundary.geojson");
+ if(!boundaryResponse.ok)throw Error("ไฟล์ขอบเขต HTTP "+boundaryResponse.status);
+ boundary.addData(await boundaryResponse.json());
+ map.fitBounds(boundary.getBounds(),{padding:[20,20]});
+ const buildingResponse=await fetch("data/don-thaen-buildings.geojson");
+ if(!buildingResponse.ok)throw Error("ไฟล์อาคาร HTTP "+buildingResponse.status);
+ const initial=await buildingResponse.json();
+ sourceCount=initial.features?.length||0;
+ let use=initial;
+ try{const cached=localStorage.getItem(key);if(cached){const parsed=JSON.parse(cached);if(parsed.type==="FeatureCollection"&&Array.isArray(parsed.features))use=parsed;}}catch(e){}
+ const loaded=loadFeatures(use);ready=true;
+ status("พร้อมแก้ไข • โหลด "+loaded+" รูปอาคาร • การแก้ไขยังไม่ส่งขึ้น GitHub");
+ count();setTimeout(()=>map.invalidateSize(),250);
+}catch(e){status("มีข้อผิดพลาด: "+e.message);console.error(e);}
+$("zoom").addEventListener("click",()=>{if(boundary.getLayers().length)map.fitBounds(boundary.getBounds(),{padding:[20,20]});});
+$("export").addEventListener("click",()=>{
+ const data=JSON.stringify(getCollection(),null,2),blob=new Blob([data],{type:"application/geo+json"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="don-thaen-roofs-reviewed.geojson";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ status("ดาวน์โหลด GeoJSON แล้ว • เก็บไว้สำรองหรือส่งให้ผมอัปเดต GitHub");
+});
+$("import").addEventListener("click",()=>$("file").click());
+$("file").addEventListener("change",async e=>{
+ const file=e.target.files?.[0];if(!file)return;
+ try{const parsed=JSON.parse(await file.text());if(parsed.type!=="FeatureCollection"||!Array.isArray(parsed.features))throw Error("ต้องเป็น GeoJSON FeatureCollection");
+ if(!confirm("การนำเข้าจะแทนที่รูปอาคารที่แสดงทั้งหมด คุณได้ส่งออกไฟล์สำรองแล้วหรือยัง?"))return;
+ loadFeatures(parsed);changeCount++;cache();status("นำเข้าไฟล์ "+file.name+" แล้ว");
+ }catch(err){status("นำเข้าไม่สำเร็จ: "+err.message);}finally{e.target.value="";}
+});
+$("reset").addEventListener("click",async()=>{
+ if(!confirm("จะลบการแก้ไขที่เก็บในเบราว์เซอร์ และโหลดอาคารต้นฉบับกลับมา กรุณาส่งออก GeoJSON ก่อน ยืนยันหรือไม่?"))return;
+ try{localStorage.removeItem(key);const response=await fetch("data/don-thaen-buildings.geojson",{cache:"no-store"});if(!response.ok)throw Error("HTTP "+response.status);
+ loadFeatures(await response.json());changeCount=0;count();status("คืนค่าเริ่มต้นจาก Overture Maps แล้ว");
+ }catch(e){status("คืนค่าไม่สำเร็จ: "+e.message);}
+});
+if(window.ResizeObserver)new ResizeObserver(()=>map.invalidateSize()).observe($("map"));
+})();
+</script>
+</body></html>
