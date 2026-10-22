@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>กำหนดขอบเขตวัดและโรงเรียน • บ้านดอนแท่น</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@2.20.2/dist/leaflet-geoman.css">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f0f6f8;color:#163c4d;font-family:system-ui,Tahoma,sans-serif}
+header{background:linear-gradient(110deg,#0b5c7b,#07867e);color:white;padding:17px 22px}h1{font-size:24px;margin:0 0 4px}header p{font-size:13px;margin:0}header a{color:white}main{display:grid;grid-template-columns:minmax(0,1fr) 315px;gap:12px;max-width:1500px;margin:auto;padding:12px}.panel{background:white;border:1px solid #d8e7eb;border-radius:13px;padding:12px;min-width:0}
+#map{height:calc(100vh - 136px);min-height:510px;width:100%;position:relative;overflow:hidden;isolation:isolate}.side{max-height:calc(100vh - 136px);overflow:auto}
+h2{font-size:17px;margin:12px 0 8px}.muted{font-size:13px;color:#53717e;line-height:1.6}label{font-size:14px;display:block;font-weight:600;margin-bottom:5px}select,button{font:inherit;padding:10px;border-radius:9px;border:1px solid #b9cfd7}select{width:100%;background:white}button{background:white;cursor:pointer}button.primary{background:#0c7d83;color:white;border-color:#0c7d83}.actions{display:grid;gap:8px;margin-top:12px}.stat{padding:10px;border-radius:8px;background:#e8f5f3;margin:8px 0}.warning{padding:10px;border-left:4px solid #d99d2a;background:#fff8e9;margin:10px 0}.tag{display:inline-block;padding:3px 8px;border-radius:12px;color:white;font-size:12px}.temple{background:#e39423}.school{background:#287bc4}.leaflet-container img{max-width:none!important;max-height:none!important}.line{border-top:1px solid #dce8ec;margin:14px 0}.small{font-size:12px;color:#68808b}@media(max-width:900px){main{grid-template-columns:1fr}#map{height:58vh;min-height:420px}.side{max-height:none}}
+</style></head>
+<body>
+<header><h1>วาดขอบเขตวัดและโรงเรียน บ้านดอนแท่น</h1><p>แผนที่เดินดิน • ตำบลกลางเวียง อำเภอเวียงสา จังหวัดน่าน | <a href="./index.html">กลับ Dashboard</a></p></header>
+<main><section class="panel"><div id="map" aria-label="แผนที่สำหรับวาดเขตวัดและโรงเรียน"></div></section>
+<aside class="panel side">
+<h2>1. เลือกสถานที่ที่จะวาด</h2>
+<label for="site">ประเภทพื้นที่</label>
+<select id="site"><option value="temple">วัดศรีดอนแท่น</option><option value="school">โรงเรียนไทยรัฐวิทยา 45 (บ้านดอนแท่น)</option></select>
+<div class="stat" id="status">กำลังโหลดแผนที่...</div>
+<div><span class="tag temple">สีส้ม: วัดศรีดอนแท่น</span> <span class="tag school">สีน้ำเงิน: โรงเรียน</span></div>
+<p class="muted">เลือกสถานที่ก่อนวาด แล้วกดเครื่องมือ Polygon หรือ Rectangle ในแถบซ้ายของแผนที่ คลิกตามแนวรั้ว/ขอบที่ดินที่ตรวจสอบได้</p>
+<h2>2. แก้ไขและตรวจสอบ</h2>
+<p class="muted">ใช้เครื่องมือ <strong>Edit</strong> ขยับมุม, <strong>Drag</strong> ย้ายพื้นที่ หรือ <strong>Remove</strong> ลบพื้นที่ที่วาดผิด คุณสามารถเปลี่ยนสถานที่ในตัวเลือกเพื่อวาดอีกแห่งได้</p>
+<div class="warning muted">ข้อมูลนี้เป็นแนวเขตจากการวาดเพื่อทำแผนที่ชุมชน ไม่ใช่เอกสารสิทธิ์หรือแนวเขตที่ได้รับการรับรองจากหน่วยงานราชการ</div>
+<div class="line"></div>
+<h2>3. ส่งออกเพื่อใช้งานบน Dashboard</h2>
+<div class="actions">
+<button class="primary" id="export">ดาวน์โหลด GeoJSON วัดและโรงเรียน</button>
+<button id="import">นำเข้า GeoJSON ที่เคยวาด</button><input id="file" type="file" accept=".geojson,.json" hidden>
+<button id="zoom">ซูมกลับขอบเขตหมู่บ้าน</button>
+<button id="schoolZoom">ซูมตำแหน่งอ้างอิงโรงเรียน</button>
+<button id="clear">ล้างพื้นที่ที่วาดในเบราว์เซอร์</button>
+</div>
+<p class="muted">ระบบเก็บข้อมูลไว้ในเบราว์เซอร์เครื่องนี้ชั่วคราว กรุณากดดาวน์โหลด GeoJSON เพื่อสำรองและส่งไฟล์กลับมาให้ผมนำขึ้น GitHub อย่างถาวร</p>
+<div class="line"></div>
+<div class="small">ตำแหน่งอ้างอิงโรงเรียน: 18.5855923, 100.7463455 (ยังไม่ใช่ขอบเขตที่ดิน) ส่วนวัดจะให้คุณวาดตามตำแหน่งจริงที่เห็นในภาพ ไม่สมมติจุดอ้างอิง</div>
+</aside></main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@2.20.2/dist/leaflet-geoman.min.js"></script>
+<script>
+(async()=>{
+const $=id=>document.getElementById(id);
+const map=L.map("map",{zoomControl:false}).setView([18.58096,100.74879],16);
+L.control.zoom({position:"bottomleft"}).addTo(map);
+const aerial=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{maxZoom:19,attribution:"Imagery © Esri and providers"}).addTo(map);
+const roads=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap contributors"});
+const village=L.geoJSON(null,{pmIgnore:true,style:{color:"#148b52",weight:3,dashArray:"6 5",fillColor:"#22ad70",fillOpacity:.04}}).addTo(map);
+const sites=L.featureGroup().addTo(map);
+const schoolPin=L.circleMarker([18.5855923,100.7463455],{radius:6,color:"#267bc4",fillColor:"#267bc4",fillOpacity:.95,pmIgnore:true}).bindPopup("ตำแหน่งอ้างอิงโรงเรียนไทยรัฐวิทยา 45 (ไม่ใช่ขอบเขต)").addTo(map);
+L.control.layers({"ภาพดาวเทียม Esri":aerial,"ถนน OSM":roads},{"เขตหมู่บ้าน":village,"พื้นที่วัด/โรงเรียนที่วาด":sites,"จุดอ้างอิงโรงเรียน":schoolPin}).addTo(map);
+let initialized=false,changed=0;
+const storeKey="don-thaen-sites-v1";
+const colors={temple:"#e39423",school:"#287bc4"};
+const names={temple:"วัดศรีดอนแท่น",school:"โรงเรียนไทยรัฐวิทยา 45 (บ้านดอนแท่น)"};
+function updateStatus(message){$("status").textContent=message;}
+function decorate(layer,kind){
+ const color=colors[kind]||colors.temple;
+ layer.setStyle?.({color,weight:3,fillColor:color,fillOpacity:.20});
+ layer.feature={type:"Feature",properties:{...(layer.feature?.properties||{}),site_type:kind,name:names[kind],source:"community_digitization",verification:"pending"},geometry:layer.toGeoJSON().geometry};
+ layer.options.pmIgnore=false;
+ if(L.PM&&L.PM.reInitLayer)L.PM.reInitLayer(layer);
+ layer.off("pm:edit");layer.off("pm:dragend");layer.off("pm:update");
+ layer.on("pm:edit",()=>sync(layer));layer.on("pm:dragend",()=>sync(layer));layer.on("pm:update",()=>sync(layer));
+}
+function sync(layer){layer.feature.geometry=layer.toGeoJSON().geometry;changed++;save();}
+function collection(){return {type:"FeatureCollection",metadata:{description:"Community-drawn temple and school boundaries; pending local verification",exported:new Date().toISOString()},features:sites.getLayers().map(layer=>{const f=layer.toGeoJSON();return {type:"Feature",properties:layer.feature?.properties||{},geometry:f.geometry};})};}
+function save(){if(!initialized)return;const fc=collection();try{localStorage.setItem(storeKey,JSON.stringify(fc));}catch(e){updateStatus("หน่วยความจำเบราว์เซอร์เต็ม โปรดดาวน์โหลด GeoJSON");return;}const counts={temple:0,school:0};fc.features.forEach(f=>{if(f.properties?.site_type in counts)counts[f.properties.site_type]++;});updateStatus("วัด "+counts.temple+" รูปพื้นที่ | โรงเรียน "+counts.school+" รูปพื้นที่ • บันทึกในเบราว์เซอร์แล้ว");}
+function restore(fc){sites.clearLayers();for(const f of fc.features||[]){if(!f.geometry||!["Polygon","MultiPolygon"].includes(f.geometry.type))continue;const kind=f.properties?.site_type;if(!colors[kind])continue;L.geoJSON(f,{onEachFeature:(feature,layer)=>{decorate(layer,kind);layer.feature=feature;sites.addLayer(layer);}});}save();}
+if(!map.pm){updateStatus("ไม่สามารถโหลด Geoman ได้ กรุณาตรวจสอบอินเทอร์เน็ต");return;}
+map.pm.addControls({position:"topleft",drawMarker:false,drawCircle:false,drawCircleMarker:false,drawPolyline:false,drawText:false,drawRectangle:true,drawPolygon:true,editMode:true,dragMode:true,removalMode:true,cutPolygon:false,rotateMode:false});
+map.pm.setGlobalOptions({layerGroup:sites,snappable:true,snapDistance:15,continueDrawing:false});
+map.on("pm:create",e=>{const kind=$("site").value;decorate(e.layer,kind);sites.addLayer(e.layer);changed++;save();});
+map.on("pm:remove",()=>{changed++;save();});
+$("site").addEventListener("change",()=>updateStatus("เลือก "+names[$("site").value]+" แล้ว • เริ่มวาด Polygon/Rectangle ได้"));
+try{
+ const r=await fetch("data/don-thaen-boundary.geojson",{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);
+ village.addData(await r.json());map.fitBounds(village.getBounds(),{padding:[15,15]});
+}catch(e){updateStatus("โหลดเขตหมู่บ้านไม่สำเร็จ: "+e.message);}
+initialized=true;
+try{const previous=JSON.parse(localStorage.getItem(storeKey)||"null");if(previous?.type==="FeatureCollection")restore(previous);}catch(e){}
+save();
+$("export").addEventListener("click",()=>{
+ const blob=new Blob([JSON.stringify(collection(),null,2)],{type:"application/geo+json"}),url=URL.createObjectURL(blob);
+ const a=document.createElement("a");a.href=url;a.download="don-thaen-temple-school-boundaries.geojson";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+$("import").addEventListener("click",()=>$("file").click());
+$("file").addEventListener("change",async()=>{
+ const file=$("file").files?.[0];if(!file)return;
+ try{const fc=JSON.parse(await file.text());if(fc.type!=="FeatureCollection"||!Array.isArray(fc.features))throw Error("ต้องเป็น GeoJSON FeatureCollection");
+ if(confirm("การนำเข้าจะแทนข้อมูลที่วาดไว้ในเบราว์เซอร์ กรุณาสำรองก่อน ยืนยัน?"))restore(fc);
+ }catch(e){updateStatus("นำเข้าไม่ได้: "+e.message);}finally{$("file").value="";}
+});
+$("zoom").addEventListener("click",()=>{if(village.getLayers().length)map.fitBounds(village.getBounds(),{padding:[15,15]});});
+$("schoolZoom").addEventListener("click",()=>map.setView([18.5855923,100.7463455],19));
+$("clear").addEventListener("click",()=>{if(confirm("ลบขอบเขตที่วาดไว้ทั้งหมดในเบราว์เซอร์นี้? กรุณาดาวน์โหลดไฟล์สำรองก่อน")){sites.clearLayers();save();}});
+if(window.ResizeObserver)new ResizeObserver(()=>map.invalidateSize()).observe($("map"));
+})();
+</script></body></html>
