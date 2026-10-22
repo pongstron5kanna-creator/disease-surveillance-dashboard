@@ -1,0 +1,89 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "Community-drawn temple and school boundaries; pending local verification",
+    "exported": "2026-10-22T04:13:25.503Z"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site_type": "temple",
+        "name": "วัดศรีดอนแท่น",
+        "source": "community_digitization",
+        "verification": "pending"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              100.748091,
+              18.581404
+            ],
+            [
+              100.74786,
+              18.581491
+            ],
+            [
+              100.747474,
+              18.580896
+            ],
+            [
+              100.748075,
+              18.580514
+            ],
+            [
+              100.748091,
+              18.581404
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "site_type": "school",
+        "name": "โรงเรียนไทยรัฐวิทยา 45 (บ้านดอนแท่น)",
+        "source": "community_digitization",
+        "verification": "pending"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              100.745527,
+              18.586153
+            ],
+            [
+              100.745194,
+              18.585284
+            ],
+            [
+              100.746938,
+              18.584526
+            ],
+            [
+              100.747211,
+              18.586199
+            ],
+            [
+              100.746492,
+              18.586123
+            ],
+            [
+              100.74594,
+              18.586163
+            ],
+            [
+              100.745527,
+              18.586153
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
