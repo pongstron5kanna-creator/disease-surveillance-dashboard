@@ -36,7 +36,7 @@ footer{text-align:center;color:#607d89;padding:25px}
 .leaflet-control-zoom a{display:block;width:30px;height:30px;text-align:center;line-height:30px;color:#222;background:#fff;text-decoration:none;font-size:21px;font-weight:bold}
 .leaflet-control-attribution{background:#fffc;padding:0 5px;font-size:10px}
 .leaflet-marker-icon,.leaflet-marker-shadow{display:block}
-.building-code-tooltip{font-size:10px!important;font-weight:700!important;color:#07566b!important;background:#fffef4!important;border:1px solid #b6d5dd!important;padding:1px 4px!important;box-shadow:none!important}.legend{display:flex;flex-wrap:wrap;gap:9px 17px;margin:12px 0 5px;font-size:12px;color:#506b77}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{display:inline-block;width:11px;height:11px;border-radius:2px}
+.house-ref-center-label{background:#fffff5ee!important;border:1px solid #b6d5dd!important;border-radius:5px!important;box-shadow:0 1px 3px #0003!important;text-align:center!important;line-height:18px!important;font-size:10px!important;font-weight:700!important;color:#07566b!important;white-space:nowrap!important}.building-code-tooltip{font-size:10px!important;font-weight:700!important;color:#07566b!important;background:#fffef4!important;border:1px solid #b6d5dd!important;padding:1px 4px!important;box-shadow:none!important}.legend{display:flex;flex-wrap:wrap;gap:9px 17px;margin:12px 0 5px;font-size:12px;color:#506b77}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{display:inline-block;width:11px;height:11px;border-radius:2px}
 </style></head>
 <body>
 <header class="hero"><h1>ระบบเฝ้าระวังโรค บ้านดอนแท่น</h1><p>ตำบลกลางเวียง อำเภอเวียงสา จังหวัดน่าน</p><span class="tag">ระบบต้นแบบ • ข้อมูลโรคและประชากรจำลอง • ข้อมูลอาคารและขอบเขตจากแผนที่ชุมชน</span></header>
@@ -83,12 +83,24 @@ if(window.L){
  const map=L.map("map",{layers:[satellite],zoomControl:true}).setView([18.58096,100.74879],15);
  const roofLayer=L.geoJSON(null,{style:{color:"#566e78",weight:1,fillColor:"#8697a0",fillOpacity:.58}}).addTo(map);
  const villageLayer=L.geoJSON(null,{style:{color:"#168851",weight:3,fillColor:"#21b76e",fillOpacity:.05}}).addTo(map);
- const houseRefs=L.geoJSON(null,{pointToLayer:(feature,latlng)=>L.circleMarker(latlng,{radius:5,color:"#fff",weight:1.5,fillColor:"#087c96",fillOpacity:.98}),onEachFeature:(feature,layer)=>{
-  const code=feature.properties?.house_ref||"ไม่มีรหัส";
-  layer.bindPopup("<strong>รหัสอาคาร: "+code+"</strong><br>รหัสสมมติสำหรับอ้างอิงอาคาร ไม่ใช่บ้านเลขที่จริง");
-  layer.bindTooltip(code,{direction:"top",offset:[0,-5],opacity:.95,permanent:map.getZoom()>=18,className:"building-code-tooltip"});
- }});
-
+ const houseDots=L.geoJSON(null,{pointToLayer:(f,ll)=>L.circleMarker(ll,{radius:4,color:"#fff",weight:1,fillColor:"#087c96",fillOpacity:.96}),onEachFeature:(f,layer)=>layer.bindPopup("<b>"+f.properties.house_ref+"</b><br>รหัสอาคารสมมติ ไม่ใช่บ้านเลขที่จริง")});
+ const houseLabels=L.layerGroup();
+ const houseRefs=L.layerGroup([houseDots,houseLabels]);
+ const houseIndex=new Map();
+ function refreshHouseLabels(){
+  if(map.getZoom()>=19){houseRefs.removeLayer(houseDots);houseRefs.addLayer(houseLabels);}
+  else{houseRefs.removeLayer(houseLabels);houseRefs.addLayer(houseDots);}
+ }
+ map.on("zoomend",refreshHouseLabels);
+ function importHouseRefs(fc){
+  houseDots.clearLayers();houseLabels.clearLayers();houseIndex.clear();houseDots.addData(fc);
+  for(const f of fc.features){
+   const code=f.properties.house_ref,p=f.geometry.coordinates,ll=L.latLng(p[1],p[0]);
+   const label=L.marker(ll,{icon:L.divIcon({className:"house-ref-center-label",html:code,iconSize:[50,20],iconAnchor:[25,10]})}).bindPopup("<b>"+code+"</b><br>รหัสอาคารสมมติ ไม่ใช่บ้านเลขที่จริง");
+   houseLabels.addLayer(label);houseIndex.set(code,{ll,label});
+  }
+  refreshHouseLabels();
+ }
  const templeLayer=L.geoJSON(null,{style:{color:"#dc891e",weight:3,fillColor:"#e39423",fillOpacity:.28},onEachFeature:(f,l)=>l.bindPopup(f.properties?.name||"วัดศรีดอนแท่น")}).addTo(map);
  const schoolLayer=L.geoJSON(null,{style:{color:"#277db8",weight:3,fillColor:"#287bc4",fillOpacity:.27},onEachFeature:(f,l)=>l.bindPopup(f.properties?.name||"โรงเรียนไทยรัฐวิทยา 45")}).addTo(map);
  document.querySelector("#zoomVillage").addEventListener("click",()=>{if(villageLayer.getLayers().length){map.invalidateSize();map.fitBounds(villageLayer.getBounds(),{padding:[18,18]});}else{status.textContent="กำลังโหลดขอบเขตหมู่บ้าน กรุณาลองอีกครั้ง";}});
@@ -98,19 +110,18 @@ if(window.L){
  function syncRefButton(){const visible=map.hasLayer(houseRefs);toggleRefButton.textContent=visible?"ซ่อนรหัสอาคาร":"แสดงรหัสอาคาร";toggleRefButton.setAttribute("aria-pressed",String(visible));}
  toggleRefButton.addEventListener("click",()=>{if(map.hasLayer(houseRefs))map.removeLayer(houseRefs);else houseRefs.addTo(map);syncRefButton();});
  map.on("overlayadd overlayremove",syncRefButton);
- map.on("zoomend",()=>{const showLabels=map.getZoom()>=18;houseRefs.eachLayer(layer=>{const tip=layer.getTooltip();if(tip&&tip.options.permanent!==showLabels){layer.unbindTooltip();layer.bindTooltip(layer.feature?.properties?.house_ref||"รหัสอาคาร",{direction:"top",offset:[0,-5],opacity:.95,permanent:showLabels,className:"building-code-tooltip"});}});});
  const status=document.querySelector("#mapStatus");
- const houseIndex=new Map();
- houseRefs.on("layeradd",e=>{const code=e.layer.feature?.properties?.house_ref;if(code)houseIndex.set(code,e.layer);});
  const findHouse=()=>{
-  const entered=document.querySelector("#houseSearch").value.trim().toUpperCase().replace(/\s+/g,"");
-  const query=/^DT-?\d{1,3}$/.test(entered)?"DT-"+String(Number(entered.replace(/^DT-?/,""))).padStart(3,"0"):entered;
-  const layer=houseIndex.get(query);
-  if(!layer){document.querySelector("#houseRefStatus").textContent="ไม่พบรหัส "+(query||"ที่ระบุ")+" • โปรดลอง DT-001 ถึง DT-338";return;}
+  const entered=document.querySelector("#houseSearch").value.trim().toUpperCase();
+  const number=Number(entered.replace("DT-","").replace("DT",""));
+  const key=Number.isInteger(number)&&number>=1&&number<=338?"DT-"+String(number).padStart(3,"0"):entered;
+  const item=houseIndex.get(key);
+  if(!item){document.querySelector("#houseRefStatus").textContent="ไม่พบรหัส "+key+" • โปรดลอง DT-001 ถึง DT-338";return;}
   if(!map.hasLayer(houseRefs))houseRefs.addTo(map);
-  map.setView(layer.getLatLng(),19);
-  layer.openPopup();
-  document.querySelector("#houseRefStatus").textContent="กำลังแสดงรหัส "+query+" • เป็นรหัสอาคารสมมติ ไม่ใช่บ้านเลขที่จริง";
+  map.setView(item.ll,19);
+  refreshHouseLabels();
+  item.label.openPopup();
+  document.querySelector("#houseRefStatus").textContent="รหัส "+key+" ตรงกลางรูปอาคาร • เป็นรหัสสมมติ ไม่ใช่บ้านเลขที่จริง";
  };
  document.querySelector("#findHouse").addEventListener("click",findHouse);
  document.querySelector("#houseSearch").addEventListener("keydown",e=>{if(e.key==="Enter")findHouse();});
@@ -118,7 +129,7 @@ if(window.L){
  const fetchJson=async path=>{const response=await fetch(path,{cache:"no-store"});if(!response.ok)throw Error(path+" HTTP "+response.status);return response.json();};
  Promise.allSettled([
   fetchJson("data/don-thaen-boundary.geojson").then(fc=>{villageLayer.addData(fc);map.invalidateSize();map.fitBounds(villageLayer.getBounds(),{padding:[16,16]});}),
-  fetchJson("data/don-thaen-house-references.geojson").then(fc=>{if(!Array.isArray(fc.features))throw Error("ไฟล์รหัสอาคารผิดรูปแบบ");houseRefs.addData(fc);document.querySelector("#houseRefStatus").textContent="รหัสอาคารอ้างอิง "+fc.features.length.toLocaleString("th-TH")+" รายการ (DT-001–DT-338) • เปิดชั้นรหัสอาคารอยู่แล้ว และแสดงชื่อรหัสเมื่อซูมใกล้ระดับ 18 ขึ้นไป • เป็นรหัสสมมติ ไม่ใช่เลขที่บ้านจริง";return fc.features.length;}),
+  fetchJson("data/don-thaen-house-references.geojson").then(fc=>{if(!Array.isArray(fc.features))throw Error("ไฟล์รหัสอาคารผิดรูปแบบ");importHouseRefs(fc);document.querySelector("#houseRefStatus").textContent="รหัสอาคารอ้างอิง "+fc.features.length.toLocaleString("th-TH")+" รายการ (DT-001–DT-338) • เปิดชั้นรหัสอาคารอยู่แล้ว และแสดงป้ายรหัสกึ่งกลางอาคารเมื่อซูมระดับ 19 • เป็นรหัสสมมติ ไม่ใช่เลขที่บ้านจริง";return fc.features.length;}),
   fetchJson("data/don-thaen-roofs-reviewed.geojson").then(fc=>{if(!Array.isArray(fc.features))throw Error("GeoJSON อาคารไม่ถูกต้อง");roofLayer.addData(fc);document.querySelector("#buildingCount").textContent=fc.features.length.toLocaleString("th-TH");return fc.features.length;}),
   fetchJson("data/don-thaen-temple-school-boundaries.geojson").then(fc=>{const feats=fc.features||[];templeLayer.addData({type:"FeatureCollection",features:feats.filter(f=>f.properties?.site_type==="temple")});schoolLayer.addData({type:"FeatureCollection",features:feats.filter(f=>f.properties?.site_type==="school")});return feats.length;})
  ]).then(results=>{
