@@ -1,170 +1,170 @@
 <!doctype html>
-<html lang="th">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NCDs Risk Mapping | บ้านดอนแท่น</title>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NCDs Heat Map | บ้านดอนแท่น</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
 <style>
-:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:#163847;background:#eff6f7}*{box-sizing:border-box}
-body{margin:0}header{background:linear-gradient(110deg,#084f6f,#078c84);color:white;padding:24px max(18px,calc((100vw - 1260px)/2))}header h1{font-size:clamp(23px,3vw,32px);margin:0 0 5px}header p{margin:0;color:#e1f5f2;font-size:14px}header a{color:white}
-main{max-width:1300px;margin:auto;padding:17px}h2{font-size:18px;margin:0 0 13px}h3{font-size:15px;margin:0 0 9px}
-.notice{background:#fff5df;border-left:4px solid #d79425;padding:10px 13px;border-radius:7px;font-size:13px;color:#805719;line-height:1.6;margin-bottom:14px}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:14px}
-.card{background:white;border:1px solid #dce9ed;border-radius:14px;padding:17px;min-width:0;box-shadow:0 3px 14px #143a4910}
-.statlabel{color:#557480;font-size:13px}.statnumber{font-size:30px;font-weight:750;color:#087b88;margin-top:6px}.statfoot{font-size:12px;color:#66818b}
-.layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);gap:14px}
-.controlbox{display:flex;flex-wrap:wrap;gap:13px;align-items:center;margin:12px 0}.field{display:flex;flex-direction:column;gap:5px;flex:1;min-width:125px}.field label{font-size:12px;color:#5f7885;font-weight:600}
-select,button{font:inherit;border-radius:8px;padding:9px 11px}select{border:1px solid #bed6dc;background:white;width:100%}button{border:0;color:white;background:#0b7d88;cursor:pointer}button.ghost{background:#e5f2f3;color:#0b6574}
-#map{width:100%;height:530px;min-width:0;position:relative;overflow:hidden;isolation:isolate;border-radius:11px;background:#e3eae8}
-.note{color:#68808a;font-size:12px;line-height:1.6}.status{margin-top:9px;font-size:12px;color:#426c79}.legend{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}.legend span{display:flex;align-items:center;gap:5px;font-size:12px;color:#546e79}.swatch{width:13px;height:13px;border-radius:3px;display:inline-block}
-.progress{height:11px;border-radius:6px;background:#e7f0f1;overflow:hidden}.progress div{height:100%;border-radius:6px;background:#159a9a}
-.track{margin-bottom:13px}.trackhead{display:flex;align-items:center;justify-content:space-between;gap:5px;margin-bottom:6px;font-size:13px}
-.regionlist{display:grid;gap:8px}.region{width:100%;display:flex;justify-content:space-between;align-items:center;background:#f6fafb;border:1px solid #dce8ec;border-radius:9px;padding:11px 12px;text-align:left;color:#1c4756;font-size:13px}
-.region.active{outline:2px solid #0a8d8e}.region small{color:#597883}.bartrack{height:9px;background:#eef2f3;border-radius:6px;overflow:hidden;display:flex;margin-top:5px}.bartrack i{display:block;height:100%}
-.tablewrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid #e4edf0;text-align:left;padding:10px 8px;white-space:nowrap}th{background:#f6fafa;color:#486e79}
-.lower{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-top:14px}
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:#143b4b;background:#eef5f7}*{box-sizing:border-box}body{margin:0}
+header{padding:24px max(18px,calc((100vw - 1280px)/2));background:linear-gradient(115deg,#084d73,#078f86);color:white}header h1{margin:0;font-size:clamp(24px,3vw,33px)}header p{font-size:14px;margin:6px 0;color:#dbf5f3}header a{color:#fff}
+main{max-width:1300px;margin:auto;padding:16px}h2{font-size:18px;margin:0 0 12px}h3{font-size:15px;margin:0 0 9px}.note{font-size:12px;color:#637c86;line-height:1.65}.warning{background:#fff6e4;border:1px solid #ead4a3;border-left:4px solid #d69a37;border-radius:10px;padding:12px 14px;color:#79571d;font-size:13px;line-height:1.6;margin-bottom:14px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.card{background:white;border:1px solid #d7e5ea;border-radius:14px;box-shadow:0 3px 15px #102c4010;padding:17px;min-width:0}.metric{font-size:31px;color:#076d86;font-weight:750;margin:5px 0}.label{color:#5d7a86;font-size:13px}.layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr);gap:14px;margin-top:14px}
+.controls{display:flex;flex-wrap:wrap;align-items:end;gap:10px;margin-bottom:13px}.field{display:flex;flex-direction:column;gap:5px;flex:1;min-width:125px}.field label{font-size:12px;color:#54717e;font-weight:600}select,input,button{font:inherit;padding:9px 11px;border-radius:8px}select,input{background:white;border:1px solid #bed4db;width:100%}button{border:0;background:#0b7889;color:white;cursor:pointer}button.secondary{background:#e7f3f4;color:#0b6776}button:disabled{opacity:.45;cursor:not-allowed}
+#map{height:540px;width:100%;min-width:0;position:relative;overflow:hidden;isolation:isolate;background:#e4eceb;border-radius:10px}.legend{display:flex;gap:10px;flex-wrap:wrap;margin:11px 0}.legend span{display:flex;gap:5px;align-items:center;color:#536e78;font-size:12px}.dot{height:12px;width:12px;border-radius:3px;display:inline-block}
+.barline{margin:16px 0}.barhead{display:flex;justify-content:space-between;font-size:13px;gap:8px;margin-bottom:6px}.barbg{background:#e8f1f2;height:13px;border-radius:7px;overflow:hidden}.barfill{height:100%;border-radius:7px}
+.panel{padding:13px;background:#f5fafa;border:1px solid #deeaee;border-radius:9px;margin-top:16px}.tablewrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px}td,th{text-align:left;border-bottom:1px solid #e4ecef;padding:10px 7px}th{background:#f2f8fa}.foot{margin:14px 0}.house-label{background:#fffefaee!important;border:1px solid #adcbd2!important;border-radius:4px!important;line-height:18px!important;font-size:10px!important;font-weight:700!important;text-align:center!important;color:#0d6079!important}
 .leaflet-container img{max-width:none!important;max-height:none!important}
-@media(max-width:900px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.layout,.lower{grid-template-columns:1fr}#map{height:440px}}
-@media(max-width:460px){main{padding:10px}.card{padding:12px}.statnumber{font-size:25px}#map{height:370px}}
-</style>
-</head><body>
-<header><h1>NCDs Risk Mapping — บ้านดอนแท่น</h1><p>แผนที่ระดับความเสี่ยงเบาหวานและความดันโลหิตสูง | <a href="./index.html">กลับ Dashboard หลัก</a></p></header>
+@media(max-width:950px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}#map{height:440px}}
+@media(max-width:480px){main{padding:10px}.card{padding:12px}.metric{font-size:26px}#map{height:390px}}
+</style></head><body>
+<header><h1>NCDs Heat Map — บ้านดอนแท่น</h1><p>แผนที่ความหนาแน่นกลุ่มเสี่ยงเบาหวานและความดันโลหิตสูงจากข้อมูลจำลอง • <a href="./index.html">กลับ Dashboard หลัก</a></p></header>
 <main>
-<div class="notice"><strong>ข้อมูลสาธิตทั้งหมด:</strong> ตัวเลขประชากร ผู้ได้รับการคัดกรอง และระดับความเสี่ยงเป็นข้อมูลจำลองเพื่อทดลองระบบ ไม่ใช่ผลสำรวจสุขภาพหรือข้อมูลผู้ป่วยจริง สีพื้นที่สะท้อนสัดส่วนกลุ่มเสี่ยงในกลุ่มตัวอย่างที่คัดกรอง ไม่ใช่ความเสี่ยงของทุกคนในพื้นที่</div>
+<div class="warning"><strong>สถานการณ์จำลองเท่านั้น:</strong> ข้อมูลการคัดกรองและระดับความเสี่ยงทั้งหมดสร้างขึ้นเพื่อทดลองระบบ โดยสุ่มแบบทำซ้ำได้และเชื่อมกับรหัสอาคารสมมติ DT-001 ถึง DT-336 ไม่ใช่ข้อมูลสุขภาพจริง และหนึ่งรูปอาคารไม่จำเป็นต้องเป็นหนึ่งครัวเรือนหรือมีผู้ได้รับการคัดกรองหนึ่งคน</div>
 <section class="stats">
-<div class="card"><div class="statlabel">ประชากรจำลองทั้งหมู่บ้าน</div><div class="statnumber">1,014</div><div class="statfoot">คน • สมมติฐานเพื่อสาธิต</div></div>
-<div class="card"><div class="statlabel">กลุ่มเป้าหมายคัดกรองจำลอง</div><div class="statnumber">620</div><div class="statfoot">คน อายุ 35 ปีขึ้นไป • ตัวเลขจำลอง</div></div>
-<div class="card"><div class="statlabel">ผู้ได้รับการคัดกรองในตัวกรอง</div><div class="statnumber" id="screened">—</div><div class="statfoot" id="coverage">กำลังคำนวณ...</div></div>
-<div class="card"><div class="statlabel">กลุ่มเสี่ยงสูงในผู้คัดกรอง</div><div class="statnumber" id="highrisk">—</div><div class="statfoot" id="highPct">กำลังคำนวณ...</div></div>
+<div class="card"><div class="label">อาคารดิจิไทซ์</div><div id="kBuildings" class="metric">—</div><div class="note">รูปอาคารจากแผนที่หมู่บ้าน</div></div>
+<div class="card"><div class="label">รายการตัวอย่างในตัวกรอง</div><div id="kSamples" class="metric">—</div><div class="note">ข้อมูลสังเคราะห์ ไม่ใช่ผู้ป่วยจริง</div></div>
+<div class="card"><div class="label">ได้รับการคัดกรอง (สมมติ)</div><div id="kScreened" class="metric">—</div><div id="kCoverage" class="note">—</div></div>
+<div class="card"><div class="label">กลุ่มเสี่ยงสูง (สมมติ)</div><div id="kHigh" class="metric">—</div><div id="kHighPct" class="note">—</div></div>
 </section>
 <section class="layout">
 <div class="card">
-<h2>แผนที่ระดับความเสี่ยง NCDs รายโซน</h2>
-<div class="controlbox">
-<div class="field"><label for="disease">โรคที่ต้องการวิเคราะห์</label><select id="disease"><option value="dm">เบาหวาน (DM)</option><option value="ht">ความดันโลหิตสูง (HT)</option></select></div>
-<div class="field"><label for="age">กลุ่มอายุ</label><select id="age"><option value="all">ทุกกลุ่ม (35 ปีขึ้นไป)</option><option value="35-44">35–44 ปี</option><option value="45-59">45–59 ปี</option><option value="60+">60 ปีขึ้นไป</option></select></div>
-<button id="fit" class="ghost" type="button">ซูมขอบเขตหมู่บ้าน</button>
+<h2>แผนที่ความหนาแน่นความเสี่ยง NCDs</h2>
+<div class="controls">
+<div class="field"><label for="disease">ประเภทโรค</label><select id="disease"><option value="dm">เบาหวาน (DM)</option><option value="ht">ความดันโลหิตสูง (HT)</option></select></div>
+<div class="field"><label for="age">กลุ่มอายุ</label><select id="age"><option value="all">ทุกกลุ่มอายุ (35 ปีขึ้นไป)</option><option value="35-44">35–44 ปี</option><option value="45-59">45–59 ปี</option><option value="60+">60 ปีขึ้นไป</option></select></div>
+<div class="field"><label for="risk">ระดับความเสี่ยง</label><select id="risk"><option value="all">ทุกระดับ (ถ่วงน้ำหนัก)</option><option value="high">เฉพาะเสี่ยงสูง</option><option value="moderate">เฉพาะเสี่ยงปานกลาง</option><option value="low">เฉพาะเสี่ยงต่ำ</option></select></div>
+<div class="field"><label for="view">รูปแบบแผนที่</label><select id="view"><option value="heat">Heat map</option><option value="points">จุดตัวอย่าง</option><option value="roofs">รูปอาคาร + รหัส</option></select></div>
 </div>
-<div id="map" role="application" aria-label="แผนที่สีแสดงสัดส่วนความเสี่ยงสูงในกลุ่มคัดกรองตามโซน"></div>
-<div class="legend"><span><i class="swatch" style="background:#329b75"></i>สัดส่วนสูงน้อยกว่า 15%</span><span><i class="swatch" style="background:#e1ad43"></i>15–24.9%</span><span><i class="swatch" style="background:#d56d55"></i>25% ขึ้นไป</span><span><i class="swatch" style="background:#b6c2c7"></i>ไม่มีข้อมูลคัดกรอง</span></div>
-<div class="status" id="status">กำลังโหลดแผนที่บ้านดอนแท่น...</div>
-<p class="note">โซนเหนือ–ใต้และตะวันตก–ตะวันออกเป็นพื้นที่วิเคราะห์ที่แบ่งจากขอบเขตหมู่บ้านโดยอัตโนมัติ ไม่ใช่เขตปกครองหรือเขต อสม. อย่างเป็นทางการ การจัดระดับสีเป็นเกณฑ์เพื่อแสดงผลในตัวอย่างนี้ ไม่ใช่เกณฑ์คัดกรองทางคลินิก</p>
+<div class="controls"><button id="fitVillage" class="secondary">ซูมขอบเขตหมู่บ้าน</button><input id="findCode" style="width:125px" maxlength="6" placeholder="DT-057" aria-label="ค้นหารหัสอาคาร"><button id="searchCode">ค้นหารหัส</button></div>
+<div id="map" aria-label="แผนที่ความหนาแน่นผู้มีความเสี่ยง NCDs จำลอง"></div>
+<div class="legend"><span><i class="dot" style="background:#3763e6"></i>ความเข้มต่ำ</span><span><i class="dot" style="background:#19baa9"></i>ความเข้มปานกลาง</span><span><i class="dot" style="background:#f6b03e"></i>ความเข้มสูง</span><span><i class="dot" style="background:#df4e43"></i>ความเข้มสูงมาก</span></div>
+<div id="mapStatus" class="note">กำลังโหลดข้อมูลแผนที่...</div>
+<p class="note">Heat map นี้แสดง <strong>ความหนาแน่นของข้อมูลความเสี่ยงจำลอง</strong> จากตำแหน่งอ้างอิงอาคาร ไม่ใช่อัตราป่วยหรืออัตราเสี่ยงต่อประชากรในพื้นที่ สีร้อนอาจเกิดจากอาคารอยู่หนาแน่นมาก ไม่ควรตีความว่าเป็นพื้นที่เสี่ยงจริง</p>
 </div>
 <div class="card">
-<h2>สถานการณ์ความเสี่ยงจากการคัดกรอง</h2>
-<div class="track"><div class="trackhead"><span>เสี่ยงต่ำ (ตัวอย่าง)</span><strong id="lowCount">—</strong></div><div class="progress"><div id="lowBar" style="background:#329b75;width:0"></div></div></div>
-<div class="track"><div class="trackhead"><span>เสี่ยงปานกลาง (ตัวอย่าง)</span><strong id="moderateCount">—</strong></div><div class="progress"><div id="moderateBar" style="background:#e1ad43;width:0"></div></div></div>
-<div class="track"><div class="trackhead"><span>เสี่ยงสูง (ตัวอย่าง)</span><strong id="highCount">—</strong></div><div class="progress"><div id="highBar" style="background:#d56d55;width:0"></div></div></div>
-<h3 style="margin-top:22px">เลือกโซนเพื่อเจาะดูข้อมูล</h3><div id="regions" class="regionlist"></div>
-<div class="card" style="box-shadow:none;background:#f6fafb;margin-top:14px;padding:13px"><h3 id="selectedTitle">ภาพรวมทั้งหมู่บ้าน</h3><div id="selectedSummary" class="note">เลือกโซนจากแผนที่หรือรายการด้านบนเพื่อดูผลเฉพาะพื้นที่</div><button id="allZones" type="button" class="ghost" style="margin-top:9px">ดูภาพรวมทุกโซน</button></div>
+<h2>สรุประดับความเสี่ยงจากรายการคัดกรองจำลอง</h2>
+<div class="barline"><div class="barhead"><span>เสี่ยงต่ำ</span><strong id="sLow">—</strong></div><div class="barbg"><div id="bLow" class="barfill" style="width:0;background:#2ca67e"></div></div></div>
+<div class="barline"><div class="barhead"><span>เสี่ยงปานกลาง</span><strong id="sMod">—</strong></div><div class="barbg"><div id="bMod" class="barfill" style="width:0;background:#e2af46"></div></div></div>
+<div class="barline"><div class="barhead"><span>เสี่ยงสูง</span><strong id="sHigh" >—</strong></div><div class="barbg"><div id="bHigh" class="barfill" style="width:0;background:#d95c4c"></div></div></div>
+<div class="panel"><h3>ข้อมูลรหัสอาคารที่เลือก</h3><div id="selectedInfo" class="note">คลิกจุดบนแผนที่ หรือพิมพ์รหัสอาคาร เช่น DT-057 เพื่อดูข้อมูลตัวอย่างที่ผูกกับรูปอาคาร</div></div>
+<div class="panel"><h3>คำอธิบายสีและตัวกรอง</h3><p class="note">เลือก DM หรือ HT แล้วเปลี่ยนกลุ่มอายุ/ระดับความเสี่ยง ระบบจะสร้าง Heat map ใหม่ทันที ข้อมูลเดิมไม่เปลี่ยนทุกครั้งที่เปิดหน้า เพื่อให้ทดสอบซ้ำได้</p><p class="note">เสี่ยงต่ำ ปานกลาง และสูงในระบบนี้เป็นหมวดหมู่ที่สร้างจากข้อมูลสุ่มสำหรับการสาธิตเท่านั้น ไม่ใช่ผลจากเกณฑ์ทางคลินิกหรือผลตรวจจริง</p></div>
 </div>
 </section>
-<section class="lower">
-<div class="card">
-<h2>ความครอบคลุมการคัดกรองรายโซน (ข้อมูลจำลอง)</h2>
-<div id="coverageBars"></div>
-<p class="note">ตัวหารแต่ละโซนเป็นประชากรเป้าหมายจำลอง อายุ 35 ปีขึ้นไป; ตัวเศษคือผู้ที่มีข้อมูลคัดกรองจำลอง การกรองอายุจะเปลี่ยนเฉพาะผลความเสี่ยง ไม่เปลี่ยนตัวชี้วัดความครอบคลุมรวม</p>
-</div>
-<div class="card"><h2>ตารางสรุปสำหรับวางแผนบริการ</h2><div class="tablewrap"><table><thead><tr><th>โซน</th><th>คัดกรอง</th><th>เสี่ยงสูง</th><th>ร้อยละเสี่ยงสูง</th></tr></thead><tbody id="zoneRows"></tbody></table></div><p class="note">ค่าร้อยละเสี่ยงสูง = จำนวนผู้เสี่ยงสูง / จำนวนผู้ที่คัดกรองในกลุ่มที่เลือก × 100; การจัดลำดับโซนต้องพิจารณาความครอบคลุมการคัดกรองด้วย</p></div>
-</section>
-<p class="note" style="padding:13px 3px">แผนที่ฐานและขอบเขตมาจากไฟล์ GeoJSON ที่เผยแพร่บน GitHub ของบ้านดอนแท่น รวมถึงชั้นอาคารดิจิไทซ์ 336 รูป วัดศรีดอนแท่น และโรงเรียนไทยรัฐวิทยา 45 ข้อมูลสุขภาพทั้งหมดสร้างในหน้าเว็บเพื่อสาธิตเท่านั้น ห้ามนำข้อมูลสุขภาพรายบุคคลจริงมาเก็บใน GitHub Pages สาธารณะ</p>
+<section class="card" style="margin-top:14px"><h2>ตารางสถานการณ์จำลองแยกตามกลุ่มอายุ</h2><div class="tablewrap"><table><thead><tr><th>กลุ่มอายุ</th><th>รายการตัวอย่าง</th><th>คัดกรอง</th><th>เสี่ยงต่ำ</th><th>เสี่ยงปานกลาง</th><th>เสี่ยงสูง</th></tr></thead><tbody id="ageRows"></tbody></table></div><p class="note">จำนวนแต่ละกลุ่มเปลี่ยนตามโรคและตัวกรองระดับความเสี่ยง โดยค่าระดับความเสี่ยงคิดเฉพาะรายการที่จำลองว่าได้รับการคัดกรอง</p></section>
+<p class="note foot">แผนที่ใช้ข้อมูล GeoJSON ขอบเขตหมู่บ้าน รูปอาคาร วัดศรีดอนแท่น และโรงเรียนไทยรัฐวิทยา 45 จากโครงการเดิม รหัส DT-xxx เป็นรหัสอาคารอ้างอิง ไม่ใช่บ้านเลขที่ทางทะเบียน ห้ามนำข้อมูลสุขภาพรายบุคคลจริงมาวางไว้บน GitHub Pages สาธารณะ</p>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script>
 <script>
-(async function(){
+(async()=>{
 const $=id=>document.getElementById(id);
-const zones=[{id:"NW",name:"โซนตะวันตกเฉียงเหนือ",eligible:150,screened:105,modifier:.06},
-{id:"NE",name:"โซนตะวันออกเฉียงเหนือ",eligible:145,screened:100,modifier:-.05},
-{id:"SW",name:"โซนตะวันตกเฉียงใต้",eligible:160,screened:110,modifier:.12},
-{id:"SE",name:"โซนตะวันออกเฉียงใต้",eligible:165,screened:105,modifier:.01}];
-let disease="dm",age="all",selectedZone=null,records=[],zoneLayers={};
-function rand(seed){return function(){seed=(Math.imul(1664525,seed)+1013904223)>>>0;return seed/4294967296;};}
-const rng=rand(20261022);
-for(const z of zones)for(let i=0;i<z.screened;i++){
- const ageIndex=i%10<3?0:i%10<7?1:2,group=["35-44","45-59","60+"][ageIndex];
- const levelFor=d=>{const r=rng(),high=(d==="dm"?.15:.19)+z.modifier+ageIndex*.05,moderate=(d==="dm"?.32:.30)+ageIndex*.018;return r<high?"high":r<high+moderate?"moderate":"low";};
- records.push({zone:z.id,age:group,dm:levelFor("dm"),ht:levelFor("ht")});
-}
-const filtered=()=>records.filter(r=>(age==="all"||r.age===age)&&(selectedZone===null||r.zone===selectedZone));
-const zoneData=id=>records.filter(r=>r.zone===id&&(age==="all"||r.age===age));
-const counts=rows=>({total:rows.length,low:rows.filter(r=>r[disease]==="low").length,moderate:rows.filter(r=>r[disease]==="moderate").length,high:rows.filter(r=>r[disease]==="high").length});
-const percent=(a,b)=>b?100*a/b:0;
-const color=r=>r===null?"#b6c2c7":r>=25?"#d56d55":r>=15?"#e1ad43":"#329b75";
-const fmt=n=>n.toLocaleString("th-TH"),pct=(a,b)=>percent(a,b).toFixed(1)+"%";
 const map=L.map("map",{preferCanvas:true}).setView([18.58096,100.74879],15);
 const satellite=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{attribution:"Imagery © Esri and providers",maxZoom:19}).addTo(map);
-const streets=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"© OpenStreetMap contributors",maxZoom:19});
-const buildings=L.geoJSON(null,{style:{color:"#748997",weight:1,fillColor:"#9eafb7",fillOpacity:.28}}); // optional overlay
-const village=L.geoJSON(null,{style:{color:"#168b56",weight:3,fillColor:"#1fba79",fillOpacity:0},interactive:false}).addTo(map);
-const zoneGroup=L.featureGroup().addTo(map);
-const temple=L.geoJSON(null,{style:{color:"#e39423",weight:3,fillOpacity:.08}}).addTo(map);
-const school=L.geoJSON(null,{style:{color:"#287bc4",weight:3,fillOpacity:.08}}).addTo(map);
-L.control.layers({"ดาวเทียม Esri":satellite,"ถนน OpenStreetMap":streets},{"โซนความเสี่ยงจำลอง":zoneGroup,"อาคารดิจิไทซ์":buildings,"ขอบเขตหมู่บ้าน":village,"วัดศรีดอนแท่น":temple,"โรงเรียนไทยรัฐวิทยา 45":school},{collapsed:true}).addTo(map);
-function clipEdge(coords,axis,limit,keepGreater){
- const inside=p=>keepGreater?p[axis]>=limit:p[axis]<=limit,result=[];
- for(let i=0;i<coords.length;i++){
-  const a=coords[i],b=coords[(i+1)%coords.length],ai=inside(a),bi=inside(b);
-  if(ai)result.push(a);
-  if(ai!==bi){const t=(limit-a[axis])/(b[axis]-a[axis]);result.push([a[0]+t*(b[0]-a[0]),a[1]+t*(b[1]-a[1])]);}
- }
- return result;
+const roads=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"© OpenStreetMap contributors",maxZoom:19});
+const boundary=L.geoJSON(null,{style:{color:"#139958",weight:3,fillColor:"#17a963",fillOpacity:0},interactive:false}).addTo(map);
+const roofs=L.geoJSON(null,{style:{color:"#6c8793",weight:1,fillColor:"#8aa0a7",fillOpacity:.42}});
+const temple=L.geoJSON(null,{style:{color:"#e39423",weight:3,fillOpacity:.12}}).addTo(map);
+const school=L.geoJSON(null,{style:{color:"#287bc4",weight:3,fillOpacity:.12}}).addTo(map);
+const heatLayer=L.heatLayer?L.heatLayer([],{radius:27,blur:22,maxZoom:18,minOpacity:.28,gradient:{.2:"#3763e6",.4:"#19baa9",.65:"#f6b03e",.9:"#df4e43",1:"#bf2935"}}):null;
+const heatFallback=L.layerGroup(),pointLayer=L.layerGroup(),labels=L.layerGroup(),locationLayer=L.layerGroup().addTo(map);
+if(heatLayer)heatLayer.addTo(map);
+else heatFallback.addTo(map);
+const refsLayer=L.layerGroup().addTo(map);
+L.control.layers({"ภาพดาวเทียม Esri":satellite,"ถนน OpenStreetMap":roads},{"Heat map ความหนาแน่น":heatLayer||heatFallback,"จุดรายการจำลอง":pointLayer,"อาคารดิจิไทซ์":roofs,"รหัสอาคาร":labels,"ขอบเขตหมู่บ้าน":boundary,"วัดศรีดอนแท่น":temple,"โรงเรียนไทยรัฐวิทยา 45":school},{collapsed:true}).addTo(map);
+let referenceRows=[],demo=[],currentView="heat",lastPopup=null;
+const lookup=new Map();
+const get=async p=>{const r=await fetch(p+"?revision=20261022-ncd-heat336-v1",{cache:"no-store"});if(!r.ok)throw Error(p+" HTTP "+r.status);return r.json();};
+function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+function unit(code,salt){return hash("ncd-demo-2026-"+code+"-"+salt)/4294967296;}
+const categories=["35-44","45-59","60+"];
+function makeDemo(refs){
+ // Single fictional adult screening record per digitized building, NOT a household or personal record.
+ return refs.map(f=>{
+  const code=f.properties.house_ref;
+  const age=categories[Math.floor(unit(code,"age")*3)];
+  const screened=unit(code,"screened")<.78;
+  const riskFor=d=>{const t=unit(code,d),ageAdjustment=age==="60+"?.10:age==="45-59"?.045:0;
+    const high=(d==="dm"?.12:.16)+ageAdjustment,moderate=.31;
+    return t<high?"high":t<high+moderate?"moderate":"low";};
+  return {code,point:f.geometry.coordinates,age,screened,dm:riskFor("dm"),ht:riskFor("ht")};
+ });
 }
-function clippedZone(coords,bounds){
- let result=coords.slice(0,-1);
- result=clipEdge(result,0,bounds[0],true);if(result.length<3)return null;
- result=clipEdge(result,0,bounds[2],false);if(result.length<3)return null;
- result=clipEdge(result,1,bounds[1],true);if(result.length<3)return null;
- result=clipEdge(result,1,bounds[3],false);if(result.length<3)return null;
- return result.map(p=>[p[1],p[0]]);
+function samples(){const age=$("age").value,risk=$("risk").value,disease=$("disease").value;
+ return demo.filter(d=>(age==="all"||d.age===age)&&(risk==="all"||(d.screened&&d[disease]===risk))); }
+function weight(d){if(!d.screened)return 0;const cat=d[$("disease").value];return {low:.24,moderate:.60,high:1}[cat]||0;}
+function tooltipFor(d){if(!d)return "ไม่มีข้อมูลสาธิต";const names={low:"ต่ำ",moderate:"ปานกลาง",high:"สูง"};return "<strong>"+d.code+"</strong><br>รหัสอาคารสมมติ (ไม่ใช่เลขที่บ้านจริง)<br>กลุ่มอายุสมมติ "+d.age+" ปี<br>การคัดกรอง: "+(d.screened?"คัดกรองแล้ว":"ยังไม่คัดกรอง")+"<br>DM: "+(d.screened?names[d.dm]:"ไม่มีข้อมูล")+"<br>HT: "+(d.screened?names[d.ht]:"ไม่มีข้อมูล");}
+function setSelected(d){$("selectedInfo").innerHTML=tooltipFor(d);}
+function showCode(d){
+ if(!d)return;
+ map.setView([d.point[1],d.point[0]],19);
+ locationLayer.clearLayers();
+ const p=L.circleMarker([d.point[1],d.point[0]],{radius:9,weight:3,color:"#fff",fillColor:"#ff9132",fillOpacity:1}).addTo(locationLayer);
+ p.bindPopup(tooltipFor(d)).openPopup();lastPopup=p;setSelected(d);
+}
+function drawLabels(){
+ labels.clearLayers();if($("view").value!=="roofs"||map.getZoom()<18)return;
+ for(const d of demo){const ll=[d.point[1],d.point[0]];
+  labels.addLayer(L.marker(ll,{interactive:true,icon:L.divIcon({className:"house-label",html:d.code,iconSize:[50,20],iconAnchor:[25,10]})}).on("click",()=>showCode(d)));
+ }
 }
 function render(){
- const all=filtered(),c=counts(all),allTarget=zones.reduce((sum,z)=>sum+z.eligible,0),allScreened=zones.reduce((sum,z)=>sum+z.screened,0);
- $("screened").textContent=fmt(c.total);
- $("coverage").textContent=selectedZone===null?"ความครอบคลุมรวม "+pct(allScreened,allTarget)+(age==="all"?"":" • กรองตามอายุ"):"เฉพาะโซนที่เลือก • "+(age==="all"?"ทุกอายุ":"กลุ่ม "+age);
- $("highrisk").textContent=fmt(c.high);
- $("highPct").textContent=c.total?pct(c.high,c.total)+" ของผู้คัดกรองในตัวกรอง":"ไม่มีผู้คัดกรองในตัวกรอง";
- for(const level of ["low","moderate","high"]){$(level+"Count").textContent=fmt(c[level])+" คน ("+pct(c[level],c.total)+")";$(level+"Bar").style.width=percent(c[level],c.total)+"%";}
- $("selectedTitle").textContent=selectedZone===null?"ภาพรวมทั้งหมู่บ้าน":zones.find(z=>z.id===selectedZone).name;
- $("selectedSummary").textContent=selectedZone===null?"แสดงข้อมูล 4 โซน รวมผู้คัดกรองในกลุ่มที่เลือก "+c.total+" คน":("ผู้คัดกรองในโซนนี้ "+c.total+" คน • เสี่ยงสูง "+c.high+" คน ("+pct(c.high,c.total)+") • เป็นข้อมูลจำลอง");
- const list=$("regions");list.innerHTML="";
- for(const z of zones){
-  const v=counts(zoneData(z.id)),rate=percent(v.high,v.total),layer=zoneLayers[z.id];
-  if(layer){layer.setStyle({color:selectedZone===z.id?"#075c7a":"#ffffff",weight:selectedZone===z.id?4:2,fillColor:color(v.total?rate:null),fillOpacity:selectedZone===z.id?.67:.48});layer.bindTooltip(z.name+" • เสี่ยงสูง "+pct(v.high,v.total)+" (ข้อมูลจำลอง)");}
-  const btn=document.createElement("button");btn.type="button";btn.className="region"+(selectedZone===z.id?" active":"");
-  btn.innerHTML="<span>"+z.name+"<br><small>คัดกรอง "+v.total+" คน</small></span><strong>"+pct(v.high,v.total)+"</strong>";
-  btn.addEventListener("click",()=>{selectedZone=selectedZone===z.id?null:z.id;render();if(zoneLayers[z.id]&&selectedZone)map.fitBounds(zoneLayers[z.id].getBounds(),{padding:[35,35],maxZoom:17});});
-  list.appendChild(btn);
+ if(!demo.length)return;
+ const disease=$("disease").value,age=$("age").value,risk=$("risk").value,rows=samples();
+ const allAge=demo.filter(d=>age==="all"||d.age===age);
+ const screened=rows.filter(d=>d.screened),high=screened.filter(d=>d[disease]==="high").length;
+ $("kBuildings").textContent=demo.length.toLocaleString("th-TH");
+ $("kSamples").textContent=rows.length.toLocaleString("th-TH");
+ $("kScreened").textContent=screened.length.toLocaleString("th-TH");
+ $("kCoverage").textContent=risk==="all"?"จาก "+allAge.length+" รายการจำลองในกลุ่มอายุที่เลือก":"จำนวนในระดับความเสี่ยงที่เลือก";
+ $("kHigh").textContent=high.toLocaleString("th-TH");
+ $("kHighPct").textContent=screened.length?(100*high/screened.length).toFixed(1)+"% ของรายการที่คัดกรองในตัวกรอง":"ไม่มีรายการที่คัดกรอง";
+ const c={low:0,moderate:0,high:0};for(const d of screened)c[d[disease]]++;
+ for(const [key,display,bar] of [["low","sLow","bLow"],["moderate","sMod","bMod"],["high","sHigh","bHigh"]]){
+  $(display).textContent=c[key].toLocaleString("th-TH")+" รายการ";$(bar).style.width=screened.length?(100*c[key]/screened.length)+"%":"0%";
  }
- const rows=$("zoneRows");rows.innerHTML="";
- for(const z of zones){const c=counts(zoneData(z.id));const tr=document.createElement("tr");tr.innerHTML="<td>"+z.name+"</td><td>"+c.total+"</td><td>"+c.high+"</td><td>"+pct(c.high,c.total)+"</td>";rows.appendChild(tr);}
- const coverage=$("coverageBars");coverage.innerHTML="";
- for(const z of zones){
-  const div=document.createElement("div");div.className="track";
-  div.innerHTML='<div class="trackhead"><span>'+z.name+'</span><strong>'+z.screened+'/'+z.eligible+' ('+pct(z.screened,z.eligible)+')</strong></div><div class="progress"><div style="width:'+percent(z.screened,z.eligible)+'%"></div></div>';
-  coverage.appendChild(div);
+ const use=rows.filter(d=>d.screened);
+ const coords=use.map(d=>[d.point[1],d.point[0],risk==="all"?weight(d):1]);
+ if(heatLayer)heatLayer.setLatLngs(coords);else{
+  heatFallback.clearLayers();
+  for(const p of coords)heatFallback.addLayer(L.circle([p[0],p[1]],{radius:48,color:"#df633e",stroke:false,fillColor:"#f7aa37",fillOpacity:.08+(.18*p[2]),interactive:false}));
  }
+ pointLayer.clearLayers();
+ for(const d of use){const colors={low:"#31a47d",moderate:"#e2a43e",high:"#d95c4c"};
+  L.circleMarker([d.point[1],d.point[0]],{radius:5,color:"#fff",weight:1,fillColor:colors[d[disease]],fillOpacity:.92}).on("click",()=>showCode(d)).addTo(pointLayer);
+ }
+ $("ageRows").innerHTML=categories.map(group=>{
+  const ageRecords=demo.filter(d=>d.age===group);
+  const selected=ageRecords.filter(d=>risk==="all"||(d.screened&&d[disease]===risk));
+  const s=selected.filter(d=>d.screened);
+  const count=k=>s.filter(d=>d[disease]===k).length;
+  return "<tr><td>"+group+" ปี</td><td>"+selected.length+"</td><td>"+s.length+"</td><td>"+count("low")+"</td><td>"+count("moderate")+"</td><td>"+count("high")+"</td></tr>";
+ }).join("");
+ const view=$("view").value;currentView=view;
+ for(const l of [heatLayer,heatFallback,pointLayer,roofs,labels])if(l&&map.hasLayer(l))map.removeLayer(l);
+ if(view==="heat"){map.addLayer(heatLayer||heatFallback);}
+ if(view==="points"){map.addLayer(pointLayer);}
+ if(view==="roofs"){map.addLayer(roofs);map.addLayer(labels);}
+ drawLabels();
+ $("mapStatus").textContent="ข้อมูลจำลอง "+rows.length+" รายการ • แสดงตำแหน่งจากรหัสอาคารที่ดิจิไทซ์ "+demo.length+" รูป • ไม่ใช่ผลการคัดกรองจริง";
 }
-$("disease").addEventListener("change",e=>{disease=e.target.value;render();});
-$("age").addEventListener("change",e=>{age=e.target.value;render();});
-$("allZones").addEventListener("click",()=>{selectedZone=null;render();map.fitBounds(village.getBounds(),{padding:[17,17]});});
-$("fit").addEventListener("click",()=>{if(village.getLayers().length)map.fitBounds(village.getBounds(),{padding:[17,17]});});
-const get=async file=>{const r=await fetch(file,{cache:"no-store"});if(!r.ok)throw Error(file+" HTTP "+r.status);return r.json();};
+function search(){const typed=$("findCode").value.trim().toUpperCase(),n=Number(typed.replace("DT-","").replace("DT",""));const code=Number.isInteger(n)&&n>=1&&n<=336?"DT-"+String(n).padStart(3,"0"):typed;
+ const row=lookup.get(code);if(!row){$("selectedInfo").textContent="ไม่พบรหัส "+code+" ในชุด DT-001 ถึง DT-336";return;}showCode(row);}
+$("searchCode").addEventListener("click",search);$("findCode").addEventListener("keydown",e=>{if(e.key==="Enter")search();});
+for(const id of ["disease","age","risk","view"])$(id).addEventListener("change",render);
+$("fitVillage").addEventListener("click",()=>{if(boundary.getLayers().length)map.fitBounds(boundary.getBounds(),{padding:[17,17]});});
+map.on("zoomend",drawLabels);
 try{
- const [bf,rf,sf]=await Promise.all([get("data/don-thaen-boundary.geojson"),get("data/don-thaen-roofs-reviewed.geojson"),get("data/don-thaen-temple-school-boundaries.geojson")]);
- village.addData(bf);buildings.addData(rf);
- const siteList=sf.features||[];temple.addData({type:"FeatureCollection",features:siteList.filter(f=>f.properties?.site_type==="temple")});school.addData({type:"FeatureCollection",features:siteList.filter(f=>f.properties?.site_type==="school")});
- const ring=bf.features[0].geometry.coordinates[0],bounds=village.getBounds(),midX=(bounds.getWest()+bounds.getEast())/2,midY=(bounds.getSouth()+bounds.getNorth())/2;
- const limits={NW:[bounds.getWest(),midY,midX,bounds.getNorth()],NE:[midX,midY,bounds.getEast(),bounds.getNorth()],SW:[bounds.getWest(),bounds.getSouth(),midX,midY],SE:[midX,bounds.getSouth(),bounds.getEast(),midY]};
- for(const z of zones){
-  const shape=clippedZone(ring,limits[z.id]);
-  if(shape&&shape.length>2){const layer=L.polygon(shape,{color:"#ffffff",weight:2,fillColor:"#329b75",fillOpacity:.48}).addTo(zoneGroup);zoneLayers[z.id]=layer;layer.on("click",()=>{selectedZone=selectedZone===z.id?null:z.id;render();});}
- }
- map.fitBounds(bounds,{padding:[17,17]});
- $("status").textContent="แสดงโซนความเสี่ยงจำลอง 4 โซน • เชื่อมขอบเขตหมู่บ้าน อาคาร "+(rf.features?.length||0)+" รูป วัดและโรงเรียนแล้ว";
+ const [v,r,s,refs]=await Promise.all([get("data/don-thaen-boundary.geojson"),get("data/don-thaen-roofs-reviewed.geojson"),get("data/don-thaen-temple-school-boundaries.geojson"),get("data/don-thaen-house-references.geojson")]);
+ if(!Array.isArray(refs.features)||refs.features.length!==r.features.length)throw Error("จำนวนรหัสอาคารไม่ตรงกับรูปอาคาร");
+ boundary.addData(v);roofs.addData(r);
+ const sites=s.features||[];
+ temple.addData({type:"FeatureCollection",features:sites.filter(x=>x.properties?.site_type==="temple")});
+ school.addData({type:"FeatureCollection",features:sites.filter(x=>x.properties?.site_type==="school")});
+ const ids=new Set(refs.features.map(x=>x.properties.house_ref));
+ if(ids.size!==refs.features.length)throw Error("รหัสอาคารซ้ำกัน");
+ demo=makeDemo(refs.features);for(const d of demo)lookup.set(d.code,d);
+ map.fitBounds(boundary.getBounds(),{padding:[18,18]});
  render();setTimeout(()=>map.invalidateSize(),300);
-}catch(e){$("status").textContent="ไม่สามารถโหลดข้อมูลแผนที่: "+e.message;console.error(e);render();}
+}catch(e){$("mapStatus").textContent="ไม่สามารถโหลดข้อมูลแผนที่: "+e.message;console.error(e);}
 window.addEventListener("resize",()=>map.invalidateSize());
 if(window.ResizeObserver)new ResizeObserver(()=>map.invalidateSize()).observe($("map"));
 })();
-</script>
-</body></html>
+</script></body></html>
