@@ -77,7 +77,19 @@ try{
  village.addData(await r.json());map.fitBounds(village.getBounds(),{padding:[15,15]});
 }catch(e){updateStatus("โหลดเขตหมู่บ้านไม่สำเร็จ: "+e.message);}
 initialized=true;
-try{const previous=JSON.parse(localStorage.getItem(storeKey)||"null");if(previous?.type==="FeatureCollection")restore(previous);}catch(e){}
+let hasLocalDraft=false;
+try{
+ const previous=JSON.parse(localStorage.getItem(storeKey)||"null");
+ if(previous?.type==="FeatureCollection"&&Array.isArray(previous.features)&&previous.features.length){restore(previous);hasLocalDraft=true;}
+}catch(e){console.warn("Local site draft cannot be read",e);}
+if(!hasLocalDraft){
+ try{
+  const response=await fetch("data/don-thaen-temple-school-boundaries.geojson",{cache:"no-store"});
+  if(!response.ok)throw Error("HTTP "+response.status);
+  const published=await response.json();
+  if(published.type==="FeatureCollection"&&Array.isArray(published.features))restore(published);
+ }catch(e){updateStatus("ยังไม่สามารถโหลดขอบเขตวัดและโรงเรียนที่เผยแพร่ได้: "+e.message);}
+}
 save();
 $("export").addEventListener("click",()=>{
  const blob=new Blob([JSON.stringify(collection(),null,2)],{type:"application/geo+json"}),url=URL.createObjectURL(blob);
