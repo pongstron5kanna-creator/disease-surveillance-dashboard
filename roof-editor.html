@@ -14,17 +14,17 @@
 <main><section class="panel"><div id="map" role="application" aria-label="แผนที่แก้ไขรอยเท้าอาคาร"></div></section>
 <aside class="panel sidebar">
 <h2>จำนวนรูปอาคารที่กำลังตรวจ</h2>
-<div class="metric" id="total">กำลังโหลด</div><div class="small" id="counts">ข้อมูลตั้งต้นจาก Overture Maps</div>
+<div class="metric" id="total">กำลังโหลด</div><div class="small" id="counts">ข้อมูลตั้งต้นจากไฟล์ดิจิไทซ์ล่าสุด</div>
 <div class="state" id="status" role="status">กำลังอ่านขอบเขตและรูปอาคาร...</div>
 <h2>แก้ไขหลังคาบนแผนที่</h2>
 <div class="small">ใช้แถบเครื่องมือ Geoman ที่ขอบซ้ายของแผนที่: รูปสี่เหลี่ยม, Polygon, แก้มุม, ลากย้าย หรือถังขยะ เมื่อคลิกแก้ไข ให้ปรับเฉพาะอาคารที่คุณตรวจสอบตำแหน่งได้</div>
-<div class="notice small"><strong>สำคัญ:</strong> รูปอาคาร 835 รูปเป็นข้อมูลตั้งต้น ยังไม่ได้ยืนยันว่าเป็นบ้านพักอาศัยจริง ห้ามนำจำนวนนี้ไปเป็นจำนวนครัวเรือนหรือประชากรโดยตรง</div>
+<div class="notice small"><strong>สำคัญ:</strong> รูปอาคารที่เผยแพร่เป็นข้อมูลตั้งต้น บางรูปยังไม่ได้รับการยืนยันว่าเป็นบ้านพักอาศัยจริง ห้ามนำจำนวนนี้ไปเป็นจำนวนครัวเรือนหรือประชากรโดยตรง</div>
 <h2>จัดการข้อมูล</h2>
 <div class="stack">
 <button class="primary" id="export">ส่งออก GeoJSON ที่แก้ไขแล้ว</button>
 <button id="import">นำเข้า GeoJSON ที่แก้ไขไว้</button>
 <input id="file" type="file" accept=".geojson,.json" hidden>
-<button id="reset">เริ่มใหม่จากข้อมูล Overture (ลบการแก้ไขในเครื่อง)</button>
+<button id="reset">เริ่มใหม่จากชุดดิจิไทซ์ที่เผยแพร่ (ลบการแก้ไขในเครื่อง)</button>
 <button id="zoom">ซูมไปขอบเขตหมู่บ้าน</button>
 </div>
 <hr>
@@ -93,7 +93,7 @@ try{
  if(!boundaryResponse.ok)throw Error("ไฟล์ขอบเขต HTTP "+boundaryResponse.status);
  boundary.addData(await boundaryResponse.json());
  map.fitBounds(boundary.getBounds(),{padding:[20,20]});
- const buildingResponse=await fetch("data/don-thaen-buildings.geojson");
+ const buildingResponse=await fetch("data/don-thaen-roofs-reviewed.geojson");
  if(!buildingResponse.ok)throw Error("ไฟล์อาคาร HTTP "+buildingResponse.status);
  const initial=await buildingResponse.json();
  sourceCount=initial.features?.length||0;
@@ -119,8 +119,8 @@ $("file").addEventListener("change",async e=>{
 });
 $("reset").addEventListener("click",async()=>{
  if(!confirm("จะลบการแก้ไขที่เก็บในเบราว์เซอร์ และโหลดอาคารต้นฉบับกลับมา กรุณาส่งออก GeoJSON ก่อน ยืนยันหรือไม่?"))return;
- try{localStorage.removeItem(key);const response=await fetch("data/don-thaen-buildings.geojson",{cache:"no-store"});if(!response.ok)throw Error("HTTP "+response.status);
- loadFeatures(await response.json());changeCount=0;count();status("คืนค่าเริ่มต้นจาก Overture Maps แล้ว");
+ try{localStorage.removeItem(key);const response=await fetch("data/don-thaen-roofs-reviewed.geojson",{cache:"no-store"});if(!response.ok)throw Error("HTTP "+response.status);
+ loadFeatures(await response.json());changeCount=0;count();status("คืนค่าเป็นชุดดิจิไทซ์ที่เผยแพร่แล้ว");
  }catch(e){status("คืนค่าไม่สำเร็จ: "+e.message);}
 });
 if(window.ResizeObserver)new ResizeObserver(()=>map.invalidateSize()).observe($("map"));
