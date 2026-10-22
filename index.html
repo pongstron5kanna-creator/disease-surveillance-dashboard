@@ -45,7 +45,7 @@ footer{text-align:center;color:#607d89;padding:25px}
 <section class="card wide" style="margin-top:16px;padding:16px 20px"><div style="display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap"><div><h2 style="margin-bottom:4px">ทดลองจำลองการระบาดไข้เลือดออก</h2><p class="note" style="margin:0">ผู้ป่วยสมมติ 20 ราย • Epi Curve • แผนที่จุดผู้ป่วย • รัศมีปฏิบัติงาน 100 เมตร</p></div><a href="./outbreak-simulation.html" style="display:inline-block;background:#087e8b;border-radius:9px;padding:11px 17px;color:#fff;text-decoration:none;font-weight:600">เปิดสถานการณ์จำลอง ↗</a></div></section>
 <section class="card wide" style="margin-top:16px;padding:16px 20px"><div style="display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap"><div><h2 style="margin-bottom:4px">แผนที่กลุ่มเสี่ยงโรคไม่ติดต่อเรื้อรัง (NCDs)</h2><p class="note" style="margin:0">จำลองการคัดกรอง DM/HT • แผนที่ความเสี่ยง 4 โซน • ตัวกรองโรคและอายุ • สรุปความครอบคลุมบริการ</p></div><a href="./ncd-risk-mapping.html" style="display:inline-block;background:#0f7a87;border-radius:9px;padding:11px 17px;color:#fff;text-decoration:none;font-weight:600">เปิด NCDs Risk Mapping ↗</a></div></section>
 <section class="layout"><div class="card"><h2>แผนที่พื้นที่และอาคาร บ้านดอนแท่น</h2>
-<div class="controls"><button id="zoomVillage" type="button" style="background:#edf6f6;color:#0b677b">ซูมขอบเขตหมู่บ้าน</button></div>
+<div class="controls"><button id="zoomVillage" type="button" style="background:#edf6f6;color:#0b677b">ซูมขอบเขตหมู่บ้าน</button><label for="houseSearch" style="font-size:13px;color:#587181">ค้นหารหัสอาคาร</label><input id="houseSearch" type="text" placeholder="เช่น DT-057" maxlength="6" aria-label="ค้นหารหัสอาคาร" style="max-width:126px;border:1px solid #bbd5dc;border-radius:8px;padding:9px 11px"><button id="findHouse" type="button" style="background:#0c7887">ค้นหา</button></div>
 <p class="note" id="houseRefStatus">รหัสอาคารอ้างอิง: กำลังโหลดข้อมูล...</p>
 <p class="note" id="mapStatus">กำลังโหลดขอบเขตหมู่บ้าน หลังคาอาคาร และพื้นที่สำคัญ...</p>
 <div id="map" aria-label="แผนที่บ้านดอนแท่นพร้อมอาคาร วัด และโรงเรียน"></div>
@@ -94,6 +94,21 @@ if(window.L){
  document.querySelector("#zoomVillage").addEventListener("click",()=>{if(villageLayer.getLayers().length){map.invalidateSize();map.fitBounds(villageLayer.getBounds(),{padding:[18,18]});}else{status.textContent="กำลังโหลดขอบเขตหมู่บ้าน กรุณาลองอีกครั้ง";}});
  L.control.layers({"ภาพดาวเทียม Esri":satellite,"แผนที่ถนน OpenStreetMap":osm},{"อาคารดิจิไทซ์":roofLayer,"รหัสอาคาร DT-001–DT-338":houseRefs,"ขอบเขตหมู่บ้าน":villageLayer,"วัดศรีดอนแท่น":templeLayer,"โรงเรียนไทยรัฐวิทยา 45":schoolLayer},{collapsed:true}).addTo(map);
  const status=document.querySelector("#mapStatus");
+ const houseIndex=new Map();
+ houseRefs.on("layeradd",e=>{const code=e.layer.feature?.properties?.house_ref;if(code)houseIndex.set(code,e.layer);});
+ const findHouse=()=>{
+  const entered=document.querySelector("#houseSearch").value.trim().toUpperCase().replace(/\s+/g,"");
+  const query=/^DT-?\d{1,3}$/.test(entered)?"DT-"+String(Number(entered.replace(/^DT-?/,""))).padStart(3,"0"):entered;
+  const layer=houseIndex.get(query);
+  if(!layer){document.querySelector("#houseRefStatus").textContent="ไม่พบรหัส "+(query||"ที่ระบุ")+" • โปรดลอง DT-001 ถึง DT-338";return;}
+  if(!map.hasLayer(houseRefs))houseRefs.addTo(map);
+  map.setView(layer.getLatLng(),19);
+  layer.openPopup();
+  document.querySelector("#houseRefStatus").textContent="กำลังแสดงรหัส "+query+" • เป็นรหัสอาคารสมมติ ไม่ใช่บ้านเลขที่จริง";
+ };
+ document.querySelector("#findHouse").addEventListener("click",findHouse);
+ document.querySelector("#houseSearch").addEventListener("keydown",e=>{if(e.key==="Enter")findHouse();});
+
  const fetchJson=async path=>{const response=await fetch(path,{cache:"no-store"});if(!response.ok)throw Error(path+" HTTP "+response.status);return response.json();};
  Promise.allSettled([
   fetchJson("data/don-thaen-boundary.geojson").then(fc=>{villageLayer.addData(fc);map.invalidateSize();map.fitBounds(villageLayer.getBounds(),{padding:[16,16]});}),
