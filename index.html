@@ -74,10 +74,16 @@ if(window.L){
  const roofs=L.geoJSON(null,{style:{color:"#757575",weight:1,fillColor:"#aeb3b4",fillOpacity:.65}});
  const survey=L.featureGroup().addTo(map);
  const boundaryOverlay=L.geoJSON(null,{style:{color:"#198753",weight:3,fillColor:"#23b577",fillOpacity:.08}}).addTo(map);
- const layers=L.control.layers({"ภาพถ่ายดาวเทียม Esri":aerial,"แผนที่ถนน OSM":street},{"ขอบเขตหมู่บ้าน":boundaryOverlay,"หลังคา OSM":roofs,"แผนที่เดินดิน (สำรวจ)":survey,"จุดอ้างอิง":marker},{collapsed:true}).addTo(map);
+ const templeSites=L.geoJSON(null,{style:{color:"#e39423",weight:3,fillColor:"#e39423",fillOpacity:.19},onEachFeature:(feature,layer)=>layer.bindPopup(feature.properties?.name||"วัดศรีดอนแท่น")}).addTo(map);
+ const schoolSites=L.geoJSON(null,{style:{color:"#287bc4",weight:3,fillColor:"#287bc4",fillOpacity:.19},onEachFeature:(feature,layer)=>layer.bindPopup(feature.properties?.name||"โรงเรียนไทยรัฐวิทยา 45")}).addTo(map);
+ const layers=L.control.layers({"ภาพถ่ายดาวเทียม Esri":aerial,"แผนที่ถนน OSM":street},{"ขอบเขตหมู่บ้าน":boundaryOverlay,"ขอบเขตวัดศรีดอนแท่น":templeSites,"ขอบเขตโรงเรียนไทยรัฐวิทยา 45":schoolSites,"หลังคา OSM":roofs,"แผนที่เดินดิน (สำรวจ)":survey,"จุดอ้างอิง":marker},{collapsed:true}).addTo(map);
  const status=document.querySelector("#roofStatus"),surveyStatus=document.querySelector("#surveyStatus");
  let boundary=null,mode=null,vertices=[],tempLine=null,features=[];
  const storageKey="don-thaen-field-survey-v1";
+ fetch("data/don-thaen-temple-school-boundaries.geojson",{cache:"no-store"})
+  .then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.json();})
+  .then(fc=>{for(const feature of fc.features||[]){if(feature.properties?.site_type==="temple")templeSites.addData(feature);if(feature.properties?.site_type==="school")schoolSites.addData(feature);}})
+  .catch(e=>console.warn("Cannot load temple/school boundaries:",e));
  function containsPoint(lon,lat,ring){
    let inside=false;
    for(let i=0,j=ring.length-1;i<ring.length;j=i++){
