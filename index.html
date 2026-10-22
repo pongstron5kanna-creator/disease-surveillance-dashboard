@@ -43,6 +43,7 @@ footer{text-align:center;color:#607d89;padding:25px}
 <main>
 <section class="row" aria-label="สรุปข้อมูล"><div class="card"><div class="label">จำนวนผู้ป่วยตัวอย่าง</div><div id="total" class="number">—</div></div><div class="card"><div class="label">โรคที่ติดตาม</div><div class="number">4</div></div><div class="card"><div class="label">ช่วงเวลาตัวอย่าง</div><div class="number">6 <small style="font-size:15px">เดือน</small></div></div><div class="card"><div class="label">หมู่บ้านเป้าหมาย</div><div class="number">1</div></div></section>
 <section class="layout"><div class="card"><h2>แผนที่พื้นที่และอาคาร บ้านดอนแท่น</h2>
+<div class="controls"><button id="zoomVillage" type="button" style="background:#edf6f6;color:#0b677b">ซูมขอบเขตหมู่บ้าน</button></div>
 <p class="note" id="mapStatus">กำลังโหลดขอบเขตหมู่บ้าน หลังคาอาคาร และพื้นที่สำคัญ...</p>
 <div id="map" aria-label="แผนที่บ้านดอนแท่นพร้อมอาคาร วัด และโรงเรียน"></div>
 <div class="legend"><span><i style="background:#81939b"></i> รูปอาคารที่ดิจิไทซ์</span><span><i style="background:#1a9960"></i> ขอบเขตหมู่บ้าน</span><span><i style="background:#e39423"></i> วัดศรีดอนแท่น</span><span><i style="background:#287bc4"></i> โรงเรียนไทยรัฐวิทยา 45</span></div>
@@ -81,6 +82,7 @@ if(window.L){
  const villageLayer=L.geoJSON(null,{style:{color:"#168851",weight:3,fillColor:"#21b76e",fillOpacity:.05}}).addTo(map);
  const templeLayer=L.geoJSON(null,{style:{color:"#dc891e",weight:3,fillColor:"#e39423",fillOpacity:.28},onEachFeature:(f,l)=>l.bindPopup(f.properties?.name||"วัดศรีดอนแท่น")}).addTo(map);
  const schoolLayer=L.geoJSON(null,{style:{color:"#277db8",weight:3,fillColor:"#287bc4",fillOpacity:.27},onEachFeature:(f,l)=>l.bindPopup(f.properties?.name||"โรงเรียนไทยรัฐวิทยา 45")}).addTo(map);
+ document.querySelector("#zoomVillage").addEventListener("click",()=>{if(villageLayer.getLayers().length){map.invalidateSize();map.fitBounds(villageLayer.getBounds(),{padding:[18,18]});}else{status.textContent="กำลังโหลดขอบเขตหมู่บ้าน กรุณาลองอีกครั้ง";}});
  L.control.layers({"ภาพดาวเทียม Esri":satellite,"แผนที่ถนน OpenStreetMap":osm},{"อาคารดิจิไทซ์":roofLayer,"ขอบเขตหมู่บ้าน":villageLayer,"วัดศรีดอนแท่น":templeLayer,"โรงเรียนไทยรัฐวิทยา 45":schoolLayer},{collapsed:true}).addTo(map);
  const status=document.querySelector("#mapStatus");
  const fetchJson=async path=>{const response=await fetch(path,{cache:"no-store"});if(!response.ok)throw Error(path+" HTTP "+response.status);return response.json();};
