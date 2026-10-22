@@ -49,7 +49,7 @@ footer{text-align:center;color:#607d89;padding:25px}
 <p class="note" id="houseRefStatus">รหัสอาคารอ้างอิง: กำลังโหลดข้อมูล...</p>
 <p class="note" id="mapStatus">กำลังโหลดขอบเขตหมู่บ้าน หลังคาอาคาร และพื้นที่สำคัญ...</p>
 <div id="map" aria-label="แผนที่บ้านดอนแท่นพร้อมอาคาร วัด และโรงเรียน"></div>
-<div class="legend"><span><i style="background:#0e738c"></i> รหัสอาคาร DT-001–DT-338</span><span><i style="background:#81939b"></i> รูปอาคารที่ดิจิไทซ์</span><span><i style="background:#1a9960"></i> ขอบเขตหมู่บ้าน</span><span><i style="background:#e39423"></i> วัดศรีดอนแท่น</span><span><i style="background:#287bc4"></i> โรงเรียนไทยรัฐวิทยา 45</span></div>
+<div class="legend"><span><i style="background:#0e738c"></i> รหัสอาคารอ้างอิง (336 รายการ)</span><span><i style="background:#81939b"></i> รูปอาคารที่ดิจิไทซ์</span><span><i style="background:#1a9960"></i> ขอบเขตหมู่บ้าน</span><span><i style="background:#e39423"></i> วัดศรีดอนแท่น</span><span><i style="background:#287bc4"></i> โรงเรียนไทยรัฐวิทยา 45</span></div>
 <p class="note">แผนที่เพื่อการสำรวจชุมชน • ชั้นรหัสอาคารเป็นรหัสอ้างอิงสมมติ ไม่ใช่บ้านเลขที่จริง และรูปอาคารไม่เท่ากับจำนวนครัวเรือน • ขอบเขตวัดและโรงเรียนเป็นแนวที่ชุมชนวาด ยังไม่ใช่แนวเขตที่ดินทางราชการ • เปิด–ปิดชั้นข้อมูลได้ที่มุมขวาบนของแผนที่</p>
 </div>
 <div class="card"><h2>สรุปโรคตัวอย่าง</h2><div class="controls"><label for="disease">เลือกโรค</label><select id="disease"><option value="all">ทุกโรค</option><option>ไข้เลือดออก</option><option>ไข้หวัดใหญ่</option><option>อุจจาระร่วง</option><option>มือ เท้า ปาก</option></select></div><div id="bars"></div><p class="note">ตัวเลขสมมติสำหรับสาธิตเท่านั้น ไม่ควรใช้เพื่อสื่อสารความเสี่ยงหรือวางแผนควบคุมโรคจริง</p></div></section>
@@ -104,7 +104,7 @@ if(window.L){
  const templeLayer=L.geoJSON(null,{style:{color:"#dc891e",weight:3,fillColor:"#e39423",fillOpacity:.28},onEachFeature:(f,l)=>l.bindPopup(f.properties?.name||"วัดศรีดอนแท่น")}).addTo(map);
  const schoolLayer=L.geoJSON(null,{style:{color:"#277db8",weight:3,fillColor:"#287bc4",fillOpacity:.27},onEachFeature:(f,l)=>l.bindPopup(f.properties?.name||"โรงเรียนไทยรัฐวิทยา 45")}).addTo(map);
  document.querySelector("#zoomVillage").addEventListener("click",()=>{if(villageLayer.getLayers().length){map.invalidateSize();map.fitBounds(villageLayer.getBounds(),{padding:[18,18]});}else{status.textContent="กำลังโหลดขอบเขตหมู่บ้าน กรุณาลองอีกครั้ง";}});
- L.control.layers({"ภาพดาวเทียม Esri":satellite,"แผนที่ถนน OpenStreetMap":osm},{"อาคารดิจิไทซ์":roofLayer,"รหัสอาคาร DT-001–DT-338":houseRefs,"ขอบเขตหมู่บ้าน":villageLayer,"วัดศรีดอนแท่น":templeLayer,"โรงเรียนไทยรัฐวิทยา 45":schoolLayer},{collapsed:true}).addTo(map);
+ L.control.layers({"ภาพดาวเทียม Esri":satellite,"แผนที่ถนน OpenStreetMap":osm},{"อาคารดิจิไทซ์":roofLayer,"รหัสอาคารอ้างอิง (336 รายการ)":houseRefs,"ขอบเขตหมู่บ้าน":villageLayer,"วัดศรีดอนแท่น":templeLayer,"โรงเรียนไทยรัฐวิทยา 45":schoolLayer},{collapsed:true}).addTo(map);
  houseRefs.addTo(map);
  const toggleRefButton=document.querySelector("#toggleHouseRefs");
  function syncRefButton(){const visible=map.hasLayer(houseRefs);toggleRefButton.textContent=visible?"ซ่อนรหัสอาคาร":"แสดงรหัสอาคาร";toggleRefButton.setAttribute("aria-pressed",String(visible));}
@@ -116,7 +116,7 @@ if(window.L){
   const number=Number(entered.replace("DT-","").replace("DT",""));
   const key=Number.isInteger(number)&&number>=1&&number<=338?"DT-"+String(number).padStart(3,"0"):entered;
   const item=houseIndex.get(key);
-  if(!item){document.querySelector("#houseRefStatus").textContent="ไม่พบรหัส "+key+" • โปรดลอง DT-001 ถึง DT-338";return;}
+  if(!item){document.querySelector("#houseRefStatus").textContent="ไม่พบรหัส "+key+" • โปรดลอง รหัส DT-001 ถึง DT-338 ยกเว้น DT-076 และ DT-155";return;}
   if(!map.hasLayer(houseRefs))houseRefs.addTo(map);
   map.setView(item.ll,19);
   refreshHouseLabels();
@@ -129,7 +129,7 @@ if(window.L){
  const fetchJson=async path=>{const response=await fetch(path,{cache:"no-store"});if(!response.ok)throw Error(path+" HTTP "+response.status);return response.json();};
  Promise.allSettled([
   fetchJson("data/don-thaen-boundary.geojson").then(fc=>{villageLayer.addData(fc);map.invalidateSize();map.fitBounds(villageLayer.getBounds(),{padding:[16,16]});}),
-  fetchJson("data/don-thaen-house-references.geojson").then(fc=>{if(!Array.isArray(fc.features))throw Error("ไฟล์รหัสอาคารผิดรูปแบบ");importHouseRefs(fc);document.querySelector("#houseRefStatus").textContent="รหัสอาคารอ้างอิง "+fc.features.length.toLocaleString("th-TH")+" รายการ (DT-001–DT-338) • เปิดชั้นรหัสอาคารอยู่แล้ว และแสดงป้ายรหัสกึ่งกลางอาคารเมื่อซูมระดับ 19 • เป็นรหัสสมมติ ไม่ใช่เลขที่บ้านจริง";return fc.features.length;}),
+  fetchJson("data/don-thaen-house-references.geojson").then(fc=>{if(!Array.isArray(fc.features))throw Error("ไฟล์รหัสอาคารผิดรูปแบบ");importHouseRefs(fc);document.querySelector("#houseRefStatus").textContent="รหัสอาคารอ้างอิง "+fc.features.length.toLocaleString("th-TH")+" รายการ (336 รหัส โดยคงหมายเลขเดิม) • เปิดชั้นรหัสอาคารอยู่แล้ว และแสดงป้ายรหัสกึ่งกลางอาคารเมื่อซูมระดับ 19 • เป็นรหัสสมมติ ไม่ใช่เลขที่บ้านจริง";return fc.features.length;}),
   fetchJson("data/don-thaen-roofs-reviewed.geojson").then(fc=>{if(!Array.isArray(fc.features))throw Error("GeoJSON อาคารไม่ถูกต้อง");roofLayer.addData(fc);document.querySelector("#buildingCount").textContent=fc.features.length.toLocaleString("th-TH");return fc.features.length;}),
   fetchJson("data/don-thaen-temple-school-boundaries.geojson").then(fc=>{const feats=fc.features||[];templeLayer.addData({type:"FeatureCollection",features:feats.filter(f=>f.properties?.site_type==="temple")});schoolLayer.addData({type:"FeatureCollection",features:feats.filter(f=>f.properties?.site_type==="school")});return feats.length;})
  ]).then(results=>{
