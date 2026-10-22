@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>จำลองการระบาดไข้เลือดออก | บ้านดอนแท่น</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef5f8;color:#14384d;font-family:system-ui,Tahoma,Arial,sans-serif}.hero{padding:22px max(18px,calc((100vw - 1260px)/2));background:linear-gradient(110deg,#075678,#078c84);color:#fff}h1{margin:0;font-size:clamp(23px,3vw,32px)}.hero p{margin:7px 0;color:#e2f9f7}.warning{font-size:13px;background:#fff5dc;color:#764b0b;border:1px solid #e8c779;padding:11px 14px;border-radius:10px}.wrap{max-width:1280px;margin:auto;padding:16px}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:14px 0}.card{background:#fff;border:1px solid #dce9ee;border-radius:14px;padding:17px;min-width:0;box-shadow:0 3px 16px #102b4010}.kpiLabel{font-size:13px;color:#607c89}.kpiValue{font-size:30px;font-weight:750;color:#086d83;margin-top:4px}.grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(295px,1fr);gap:14px}.card h2{font-size:18px;margin:0 0 12px}.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:10px 0}.controls input[type=range]{flex:1;min-width:130px}button{font:inherit;background:#087d87;border:0;color:#fff;border-radius:8px;padding:9px 12px;cursor:pointer}button.secondary{background:#e5f1f3;color:#0b6073}#map{height:525px;width:100%;position:relative;overflow:hidden;isolation:isolate;background:#dfe9e8;border-radius:10px}.note{font-size:12px;color:#5e7a88;line-height:1.6}.epi{display:flex;align-items:end;gap:5px;height:210px;border-bottom:1px solid #c4d6dc;padding:10px 0 0}.day{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:5px;cursor:pointer}.day .bar{width:min(100%,24px);min-height:0;background:#14a6a1;border-radius:4px 4px 0 0;transition:height .2s}.day .bar.future{background:#c5d7d8}.day small{font-size:10px;color:#5d7884}.day.active .bar{background:#ea7d38}.tag{font-size:12px;border-radius:6px;padding:4px 8px;background:#eaf5f5;display:inline-block}.explain{margin-top:12px}.legend{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0}.legend span{display:flex;gap:5px;align-items:center}.dot{width:11px;height:11px;border-radius:50%}.leaflet-container img{max-width:none!important;max-height:none!important}a{color:#087e8c}.hero a{color:white}.status{font-size:13px;color:#506a77;margin:8px 0}.actions{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}.box{padding:11px;border:1px solid #d7e6eb;border-radius:9px;margin-top:12px;background:#f7fbfb}@media(max-width:860px){.grid{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}#map{height:430px}.wrap{padding:10px}}@media(max-width:420px){.kpiValue{font-size:25px}.card{padding:12px}}
+</style></head><body>
+<header class="hero"><h1>จำลองการระบาดไข้เลือดออก • บ้านดอนแท่น</h1><p>ระยะที่ 1: จุดผู้ป่วย • Epi Curve • พื้นที่ปฏิบัติงาน 100 เมตร</p><p><a href="./index.html">← กลับหน้า Dashboard หมู่บ้าน</a></p></header>
+<main class="wrap">
+<div class="warning"><strong>สถานการณ์จำลองเพื่อฝึกวิเคราะห์เท่านั้น</strong> ผู้ป่วย 20 ราย วันที่เริ่มป่วย และจุดที่แสดงบนแผนที่เป็นข้อมูลสมมติทั้งหมด ไม่ใช่ตำแหน่งบ้านผู้ป่วยหรือข้อมูลการระบาดจริง</div>
+<section class="kpis">
+<div class="card"><div class="kpiLabel">ผู้ป่วยสะสมในสถานการณ์จำลอง</div><div class="kpiValue" id="caseTotal">—</div></div>
+<div class="card"><div class="kpiLabel">ผู้ป่วยรายใหม่ ณ วันที่เลือก</div><div class="kpiValue" id="caseNew">—</div></div>
+<div class="card"><div class="kpiLabel">อาคารในรัศมี 100 เมตรจากจุดที่เลือก</div><div class="kpiValue" id="inBuffer">—</div></div>
+<div class="card"><div class="kpiLabel">อาคารดิจิไทซ์ในชุดข้อมูล</div><div class="kpiValue" id="roofCount">—</div></div>
+</section>
+<section class="grid">
+<div class="card">
+<h2>แผนที่จำลองการระบาด</h2>
+<div class="actions"><div class="controls"><button id="fitVillage" class="secondary">ซูมขอบเขตหมู่บ้าน</button><button id="fitCases" class="secondary">ดูจุดผู้ป่วยทั้งหมด</button></div><span class="tag">รัศมี 100 เมตร</span></div>
+<div id="map" aria-label="แผนที่สถานการณ์สมมติไข้เลือดออกบ้านดอนแท่น"></div>
+<div class="legend note"><span><i class="dot" style="background:#d34e45"></i> จุดผู้ป่วยสมมติถึงวันที่เลือก</span><span><i class="dot" style="background:#e39b2f"></i> จุดที่เลือก</span><span><i class="dot" style="background:#687e8b"></i> รูปอาคาร</span><span><i class="dot" style="background:#26985b"></i> ขอบเขตหมู่บ้าน</span></div>
+<div class="status" id="mapStatus">กำลังโหลดข้อมูลแผนที่...</div>
+<div class="note">วงกลม 100 เมตรเป็นระยะเชิงแผนที่สำหรับสาธิตการกำหนดพื้นที่ปฏิบัติงาน ไม่ใช่แบบจำลองการแพร่เชื้อหรือหลักฐานว่าบ้านที่อยู่ในวงมีผู้ป่วย ตัวเลขอาคารนับจากจุดกึ่งกลางรูปอาคารในชุดข้อมูลดิจิไทซ์</div>
+</div>
+<div class="card">
+<h2>การเปลี่ยนแปลงตามวันเริ่มป่วย</h2>
+<div class="controls"><label for="daySlider">วันที่จำลอง</label><strong id="dateLabel">—</strong></div>
+<div class="controls"><button id="previous" class="secondary">◀ วันก่อน</button><input id="daySlider" type="range" min="0" max="13" step="1" value="13" aria-label="เลือกวันในการจำลอง"><button id="next" class="secondary">วันถัดไป ▶</button></div>
+<div class="controls"><button id="play">▶ เล่นเหตุการณ์</button><button id="reset" class="secondary">เริ่มใหม่</button></div>
+<h2 style="margin-top:18px">Epidemic Curve (ข้อมูลสมมติ)</h2>
+<div id="epi" class="epi" role="img" aria-label="กราฟจำนวนผู้ป่วยสมมติรายวันตามวันเริ่มป่วย"></div>
+<div class="note">คลิกที่แท่งกราฟหรือเลื่อนตัวเลือกวันที่ เพื่อดูจุดผู้ป่วยที่ปรากฏสะสมถึงวันนั้น</div>
+<div class="box"><strong>คำอธิบายการใช้งาน</strong><p class="note">คลิกจุดผู้ป่วยสีแดงบนแผนที่ เพื่อเลือกจุดศูนย์กลางพื้นที่ปฏิบัติงาน 100 เมตร จากนั้นดูจำนวนอาคารที่อยู่ในรัศมีตามชุดข้อมูลอาคารที่ดิจิไทซ์ไว้</p><div id="selectedCase" class="note">กำลังเตรียมผู้ป่วยจำลอง...</div></div>
+<div class="box"><strong>สรุปภาพรวม</strong><p id="summary" class="note">กำลังคำนวณ...</p></div>
+</div></section>
+<p class="note explain">แผนที่ใช้ขอบเขตหมู่บ้านและรูปอาคารที่เผยแพร่แล้วบน GitHub ส่วนการระบาดถูกสร้างเป็นสถานการณ์สมมติด้วยกระบวนการกำหนดข้อมูลคงที่เพื่อให้ผลทดลองซ้ำได้ ข้อมูลสุขภาพรายบุคคลจริงไม่ควรเผยแพร่บนเว็บไซต์สาธารณะ</p>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+(async function(){
+const $=id=>document.getElementById(id),dailyCounts=[1,0,1,2,1,3,2,3,2,1,2,1,0,1],totalExpected=dailyCounts.reduce((a,b)=>a+b,0);
+const day0=Date.UTC(2026,9,1),nDays=dailyCounts.length;
+const dates=dailyCounts.map((_,i)=>new Date(day0+i*86400000).toISOString().slice(0,10));
+let day=nDays-1,playing=null,selected=null,cases=[],roofCenters=[],roofFeatures=[],caseMarkers=[];
+const map=L.map("map",{preferCanvas:true}).setView([18.58096,100.74879],15);
+const sat=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{maxZoom:19,attribution:"Imagery © Esri and providers"}).addTo(map);
+const osm=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap contributors"});
+const village=L.geoJSON(null,{style:{color:"#138451",weight:3,fillColor:"#12aa68",fillOpacity:.04}}).addTo(map);
+const roofs=L.geoJSON(null,{style:{color:"#607c85",weight:1,fillColor:"#879ba4",fillOpacity:.48}}).addTo(map);
+const temple=L.geoJSON(null,{style:{color:"#e39423",weight:2,fillColor:"#e39423",fillOpacity:.12}}).addTo(map);
+const school=L.geoJSON(null,{style:{color:"#287bc4",weight:2,fillColor:"#287bc4",fillOpacity:.12}}).addTo(map);
+const markers=L.layerGroup().addTo(map);const circleLayer=L.layerGroup().addTo(map);
+L.control.layers({"ภาพดาวเทียม Esri":sat,"แผนที่ถนน OSM":osm},{"ขอบเขตหมู่บ้าน":village,"หลังคาดิจิไทซ์":roofs,"ขอบเขตวัด":temple,"ขอบเขตโรงเรียน":school,"จุดผู้ป่วยสมมติ":markers,"วงพื้นที่ 100 เมตร":circleLayer},{collapsed:true}).addTo(map);
+async function get(path){const r=await fetch(path,{cache:"no-store"});if(!r.ok)throw Error(path+" HTTP "+r.status);return r.json();}
+function flattenCoords(geometry){let g=geometry.coordinates;while(Array.isArray(g)&&g.length&&Array.isArray(g[0])&&Array.isArray(g[0][0]))g=g[0];return g;}
+function center(feature){const ring=flattenCoords(feature.geometry);if(!ring||!ring.length)return null;const points=ring.slice(0,-1);if(!points.length)return null;return points.reduce((a,p)=>[a[0]+p[0]/points.length,a[1]+p[1]/points.length],[0,0]);}
+function distMeters(a,b){const rad=Math.PI/180,lat1=a[1]*rad,lat2=b[1]*rad,dl=(b[0]-a[0])*rad,dp=(b[1]-a[1])*rad;const x=Math.sin(dp/2)**2+Math.cos(lat1)*Math.cos(lat2)*Math.sin(dl/2)**2;return 12742000*Math.asin(Math.min(1,Math.sqrt(x)));}
+function makeCases(){
+ const valid=roofFeatures.map((f,i)=>({index:i,center:center(f)})).filter(x=>x.center);
+ if(!valid.length)return [];
+ // Reproducible demo: select a cluster around a fixed building, then some dispersed cases.
+ const pivot=valid[Math.floor(valid.length*0.45)].center;
+ const sorted=[...valid].sort((a,b)=>distMeters(a.center,pivot)-distMeters(b.center,pivot));
+ const positions=[0,4,10,15,20,28,38,50,65,85,105,125,145,165,185,205,225,245,265,285];
+ const selectedIndices=new Set();const picks=[];
+ for(let i=0;i<totalExpected;i++){
+  let pos=positions[i]%sorted.length;
+  while(selectedIndices.has(sorted[pos].index))pos=(pos+1)%sorted.length;
+  const b=sorted[pos];selectedIndices.add(b.index);picks.push(b);
+ }
+ let k=0,out=[];
+ dailyCounts.forEach((n,d)=>{for(let j=0;j<n;j++){const b=picks[k];out.push({id:"SIM-"+String(k+1).padStart(3,"0"),date:dates[d],day:d,building:b.index,point:b.center,age:["5–9","10–14","15–24","25–44","45–59","60+"][k%6]});k++;}});
+ return out;
+}
+function updateCircle(){
+ circleLayer.clearLayers();
+ if(!selected||selected.day>day){selected=null;const now=cases.filter(c=>c.day<=day);selected=now.length?now[0]:null;}
+ if(!selected){$("inBuffer").textContent="0";$("selectedCase").textContent="ยังไม่มีผู้ป่วยจำลอง";return;}
+ const latlon=[selected.point[1],selected.point[0]];
+ L.circle(latlon,{radius:100,color:"#e49322",weight:2,fillColor:"#e49322",fillOpacity:.15,dashArray:"6 5",interactive:false}).addTo(circleLayer);
+ L.circleMarker(latlon,{radius:9,color:"#9d5506",weight:3,fillColor:"#f5ae3c",fillOpacity:.95,interactive:false}).addTo(circleLayer);
+ const total=roofCenters.filter(p=>distMeters(p,selected.point)<=100).length;
+ $("inBuffer").textContent=total.toLocaleString("th-TH");
+ $("selectedCase").textContent=selected.id+" • เริ่มป่วย "+selected.date+" • กลุ่มอายุ "+selected.age+" ปี • อาคารภายใน 100 ม. (นับจุดกึ่งกลางรูปอาคาร): "+total+" รูป";
+}
+function redraw(){
+ if(!cases.length)return;
+ $("daySlider").value=String(day);$("dateLabel").textContent=dates[day];
+ const active=cases.filter(c=>c.day<=day),newCases=cases.filter(c=>c.day===day);
+ $("caseTotal").textContent=active.length.toLocaleString("th-TH");
+ $("caseNew").textContent=newCases.length.toLocaleString("th-TH");
+ markers.clearLayers();caseMarkers=[];
+ active.forEach(c=>{
+  const marker=L.circleMarker([c.point[1],c.point[0]],{radius:6,color:"#fff",weight:1.5,fillColor:"#d94f49",fillOpacity:.96}).addTo(markers);
+  marker.bindPopup("<strong>"+c.id+" (สมมติ)</strong><br>วันที่เริ่มป่วย "+c.date+"<br>กลุ่มอายุ "+c.age+" ปี");
+  marker.on("click",()=>{selected=c;updateCircle();});
+  caseMarkers.push(marker);
+ });
+ updateCircle();
+ $("epi").innerHTML=dailyCounts.map((n,i)=>'<div class="day'+(i===day?' active':'')+'" data-day="'+i+'" title="'+dates[i]+' '+n+' ราย"><div class="bar'+(i>day?' future':'')+'" style="height:'+(n?Math.max(12,n/3*160):0)+'px"></div><small>'+(i+1)+'</small></div>').join("");
+ $("epi").querySelectorAll(".day").forEach(el=>el.addEventListener("click",()=>{stop();day=Number(el.dataset.day);redraw();}));
+ $("summary").textContent="ถึงวันที่ "+dates[day]+" มีผู้ป่วยสะสม "+active.length+" ราย จากทั้งหมด "+cases.length+" รายในสถานการณ์จำลอง แสดงจุดผู้ป่วยตามตำแหน่งอาคารเพื่อฝึกอ่านการกระจายเชิงพื้นที่ (ไม่มีผู้ป่วยจริง)";
+}
+function stop(){if(playing){clearInterval(playing);playing=null;}$("play").textContent="▶ เล่นเหตุการณ์";}
+$("daySlider").addEventListener("input",e=>{stop();day=Number(e.target.value);redraw();});
+$("previous").addEventListener("click",()=>{stop();day=Math.max(0,day-1);redraw();});
+$("next").addEventListener("click",()=>{stop();day=Math.min(nDays-1,day+1);redraw();});
+$("reset").addEventListener("click",()=>{stop();day=0;selected=null;redraw();});
+$("play").addEventListener("click",()=>{if(playing){stop();return;}if(day>=nDays-1)day=0;redraw();$("play").textContent="⏸ หยุด";playing=setInterval(()=>{if(day>=nDays-1){stop();return;}day++;redraw();},950);});
+$("fitVillage").addEventListener("click",()=>{if(village.getLayers().length)map.fitBounds(village.getBounds(),{padding:[15,15]});});
+$("fitCases").addEventListener("click",()=>{if(caseMarkers.length)map.fitBounds(L.featureGroup(caseMarkers).getBounds(),{padding:[40,40],maxZoom:17});});
+try{
+ const results=await Promise.all([get("data/don-thaen-boundary.geojson"),get("data/don-thaen-roofs-reviewed.geojson"),get("data/don-thaen-temple-school-boundaries.geojson")]);
+ village.addData(results[0]);map.fitBounds(village.getBounds(),{padding:[18,18]});
+ roofFeatures=results[1].features.filter(f=>["Polygon","MultiPolygon"].includes(f?.geometry?.type));roofs.addData({type:"FeatureCollection",features:roofFeatures});
+ roofCenters=roofFeatures.map(center).filter(Boolean);
+ $("roofCount").textContent=roofFeatures.length.toLocaleString("th-TH");
+ const sites=results[2].features||[];temple.addData({type:"FeatureCollection",features:sites.filter(f=>f.properties?.site_type==="temple")});school.addData({type:"FeatureCollection",features:sites.filter(f=>f.properties?.site_type==="school")});
+ cases=makeCases();if(cases.length!==20)throw Error("สร้างผู้ป่วยจำลองไม่ครบ 20 ราย");
+ $("mapStatus").textContent="โหลดขอบเขตหมู่บ้าน หลังคา "+roofFeatures.length+" รูป และพื้นที่วัด/โรงเรียนแล้ว • จุดผู้ป่วยทั้งหมดเป็นข้อมูลสมมติ";
+ redraw();setTimeout(()=>map.invalidateSize(),250);
+}catch(e){$("mapStatus").textContent="เกิดข้อผิดพลาดในการโหลดสถานการณ์จำลอง: "+e.message;console.error(e);}
+window.addEventListener("resize",()=>map.invalidateSize());
+if(window.ResizeObserver)new ResizeObserver(()=>map.invalidateSize()).observe($("map"));
+})();
+</script></body></html>
