@@ -5,7 +5,8 @@
     "origin": "Overture Maps; manually edited with Leaflet-Geoman",
     "exported": "2026-10-22T03:43:34.920Z",
     "note": "Digitized building footprints (not confirmed households). DT-076 and DT-155 removed as false-positive buildings. Preserve remaining house_ref codes.",
-    "last_review": "2026-10-22"
+    "last_review": "2026-10-22",
+    "numbering": "Aligned to DT-001 through DT-336"
   },
   "features": [
     {
@@ -1353,7 +1354,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-234"
+        "house_ref": "DT-232"
       },
       "geometry": {
         "type": "Polygon",
@@ -1431,7 +1432,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-163"
+        "house_ref": "DT-161"
       },
       "geometry": {
         "type": "Polygon",
@@ -1517,7 +1518,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-182"
+        "house_ref": "DT-180"
       },
       "geometry": {
         "type": "Polygon",
@@ -1564,7 +1565,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-195"
+        "house_ref": "DT-193"
       },
       "geometry": {
         "type": "Polygon",
@@ -1603,7 +1604,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-211"
+        "house_ref": "DT-209"
       },
       "geometry": {
         "type": "Polygon",
@@ -1666,7 +1667,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-235"
+        "house_ref": "DT-233"
       },
       "geometry": {
         "type": "Polygon",
@@ -1713,7 +1714,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-243"
+        "house_ref": "DT-241"
       },
       "geometry": {
         "type": "Polygon",
@@ -1752,7 +1753,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-230"
+        "house_ref": "DT-228"
       },
       "geometry": {
         "type": "Polygon",
@@ -1791,7 +1792,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-254"
+        "house_ref": "DT-252"
       },
       "geometry": {
         "type": "Polygon",
@@ -1830,7 +1831,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-228"
+        "house_ref": "DT-226"
       },
       "geometry": {
         "type": "Polygon",
@@ -1869,7 +1870,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-198"
+        "house_ref": "DT-196"
       },
       "geometry": {
         "type": "Polygon",
@@ -1908,7 +1909,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-218"
+        "house_ref": "DT-216"
       },
       "geometry": {
         "type": "Polygon",
@@ -1947,7 +1948,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-247"
+        "house_ref": "DT-245"
       },
       "geometry": {
         "type": "Polygon",
@@ -1986,7 +1987,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-221"
+        "house_ref": "DT-219"
       },
       "geometry": {
         "type": "Polygon",
@@ -2025,7 +2026,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-215"
+        "house_ref": "DT-213"
       },
       "geometry": {
         "type": "Polygon",
@@ -2064,7 +2065,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-242"
+        "house_ref": "DT-240"
       },
       "geometry": {
         "type": "Polygon",
@@ -2103,7 +2104,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-216"
+        "house_ref": "DT-214"
       },
       "geometry": {
         "type": "Polygon",
@@ -2142,7 +2143,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-178"
+        "house_ref": "DT-176"
       },
       "geometry": {
         "type": "Polygon",
@@ -2181,7 +2182,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-079"
+        "house_ref": "DT-078"
       },
       "geometry": {
         "type": "Polygon",
@@ -2337,7 +2338,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-081"
+        "house_ref": "DT-080"
       },
       "geometry": {
         "type": "Polygon",
@@ -2376,7 +2377,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-180"
+        "house_ref": "DT-178"
       },
       "geometry": {
         "type": "Polygon",
@@ -2454,7 +2455,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-172"
+        "house_ref": "DT-170"
       },
       "geometry": {
         "type": "Polygon",
@@ -2493,7 +2494,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-078"
+        "house_ref": "DT-077"
       },
       "geometry": {
         "type": "Polygon",
@@ -2532,7 +2533,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-175"
+        "house_ref": "DT-173"
       },
       "geometry": {
         "type": "Polygon",
@@ -2579,7 +2580,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-179"
+        "house_ref": "DT-177"
       },
       "geometry": {
         "type": "Polygon",
@@ -2661,7 +2662,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-077"
+        "house_ref": "DT-076"
       },
       "geometry": {
         "type": "Polygon",
@@ -2747,7 +2748,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-229"
+        "house_ref": "DT-227"
       },
       "geometry": {
         "type": "Polygon",
@@ -2786,7 +2787,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-261"
+        "house_ref": "DT-259"
       },
       "geometry": {
         "type": "Polygon",
@@ -2825,7 +2826,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-249"
+        "house_ref": "DT-247"
       },
       "geometry": {
         "type": "Polygon",
@@ -2864,7 +2865,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-239"
+        "house_ref": "DT-237"
       },
       "geometry": {
         "type": "Polygon",
@@ -2903,7 +2904,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-259"
+        "house_ref": "DT-257"
       },
       "geometry": {
         "type": "Polygon",
@@ -2942,7 +2943,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-241"
+        "house_ref": "DT-239"
       },
       "geometry": {
         "type": "Polygon",
@@ -2989,7 +2990,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-264"
+        "house_ref": "DT-262"
       },
       "geometry": {
         "type": "Polygon",
@@ -3028,7 +3029,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-222"
+        "house_ref": "DT-220"
       },
       "geometry": {
         "type": "Polygon",
@@ -3067,7 +3068,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-203"
+        "house_ref": "DT-201"
       },
       "geometry": {
         "type": "Polygon",
@@ -3106,7 +3107,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-271"
+        "house_ref": "DT-269"
       },
       "geometry": {
         "type": "Polygon",
@@ -3153,7 +3154,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-285"
+        "house_ref": "DT-283"
       },
       "geometry": {
         "type": "Polygon",
@@ -3192,7 +3193,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-266"
+        "house_ref": "DT-264"
       },
       "geometry": {
         "type": "Polygon",
@@ -3231,7 +3232,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-279"
+        "house_ref": "DT-277"
       },
       "geometry": {
         "type": "Polygon",
@@ -3270,7 +3271,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-276"
+        "house_ref": "DT-274"
       },
       "geometry": {
         "type": "Polygon",
@@ -3309,7 +3310,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-202"
+        "house_ref": "DT-200"
       },
       "geometry": {
         "type": "Polygon",
@@ -3348,7 +3349,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-186"
+        "house_ref": "DT-184"
       },
       "geometry": {
         "type": "Polygon",
@@ -3387,7 +3388,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-164"
+        "house_ref": "DT-162"
       },
       "geometry": {
         "type": "Polygon",
@@ -3598,7 +3599,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-169"
+        "house_ref": "DT-167"
       },
       "geometry": {
         "type": "Polygon",
@@ -3684,7 +3685,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-166"
+        "house_ref": "DT-164"
       },
       "geometry": {
         "type": "Polygon",
@@ -3723,7 +3724,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-177"
+        "house_ref": "DT-175"
       },
       "geometry": {
         "type": "Polygon",
@@ -3957,7 +3958,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-136"
+        "house_ref": "DT-135"
       },
       "geometry": {
         "type": "Polygon",
@@ -4004,7 +4005,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-184"
+        "house_ref": "DT-182"
       },
       "geometry": {
         "type": "Polygon",
@@ -4051,7 +4052,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-121"
+        "house_ref": "DT-120"
       },
       "geometry": {
         "type": "Polygon",
@@ -4098,7 +4099,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-110"
+        "house_ref": "DT-109"
       },
       "geometry": {
         "type": "Polygon",
@@ -4161,7 +4162,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-080"
+        "house_ref": "DT-079"
       },
       "geometry": {
         "type": "Polygon",
@@ -4200,7 +4201,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-082"
+        "house_ref": "DT-081"
       },
       "geometry": {
         "type": "Polygon",
@@ -4239,7 +4240,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-086"
+        "house_ref": "DT-085"
       },
       "geometry": {
         "type": "Polygon",
@@ -4286,7 +4287,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-085"
+        "house_ref": "DT-084"
       },
       "geometry": {
         "type": "Polygon",
@@ -4692,7 +4693,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-097"
+        "house_ref": "DT-096"
       },
       "geometry": {
         "type": "Polygon",
@@ -4731,7 +4732,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-107"
+        "house_ref": "DT-106"
       },
       "geometry": {
         "type": "Polygon",
@@ -4778,7 +4779,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-114"
+        "house_ref": "DT-113"
       },
       "geometry": {
         "type": "Polygon",
@@ -4817,7 +4818,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-151"
+        "house_ref": "DT-150"
       },
       "geometry": {
         "type": "Polygon",
@@ -4864,7 +4865,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-174"
+        "house_ref": "DT-172"
       },
       "geometry": {
         "type": "Polygon",
@@ -4927,7 +4928,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-201"
+        "house_ref": "DT-199"
       },
       "geometry": {
         "type": "Polygon",
@@ -4982,7 +4983,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-089"
+        "house_ref": "DT-088"
       },
       "geometry": {
         "type": "Polygon",
@@ -5021,7 +5022,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-188"
+        "house_ref": "DT-186"
       },
       "geometry": {
         "type": "Polygon",
@@ -5060,7 +5061,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-204"
+        "house_ref": "DT-202"
       },
       "geometry": {
         "type": "Polygon",
@@ -5099,7 +5100,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-297"
+        "house_ref": "DT-295"
       },
       "geometry": {
         "type": "Polygon",
@@ -5154,7 +5155,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-196"
+        "house_ref": "DT-194"
       },
       "geometry": {
         "type": "Polygon",
@@ -5193,7 +5194,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-208"
+        "house_ref": "DT-206"
       },
       "geometry": {
         "type": "Polygon",
@@ -5232,7 +5233,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-212"
+        "house_ref": "DT-210"
       },
       "geometry": {
         "type": "Polygon",
@@ -5271,7 +5272,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-231"
+        "house_ref": "DT-229"
       },
       "geometry": {
         "type": "Polygon",
@@ -5310,7 +5311,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-301"
+        "house_ref": "DT-299"
       },
       "geometry": {
         "type": "Polygon",
@@ -5349,7 +5350,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-207"
+        "house_ref": "DT-205"
       },
       "geometry": {
         "type": "Polygon",
@@ -5388,7 +5389,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-304"
+        "house_ref": "DT-302"
       },
       "geometry": {
         "type": "Polygon",
@@ -5427,7 +5428,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-141"
+        "house_ref": "DT-140"
       },
       "geometry": {
         "type": "Polygon",
@@ -5513,7 +5514,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-120"
+        "house_ref": "DT-119"
       },
       "geometry": {
         "type": "Polygon",
@@ -5552,7 +5553,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-140"
+        "house_ref": "DT-139"
       },
       "geometry": {
         "type": "Polygon",
@@ -5591,7 +5592,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-117"
+        "house_ref": "DT-116"
       },
       "geometry": {
         "type": "Polygon",
@@ -5630,7 +5631,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-093"
+        "house_ref": "DT-092"
       },
       "geometry": {
         "type": "Polygon",
@@ -5833,7 +5834,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-090"
+        "house_ref": "DT-089"
       },
       "geometry": {
         "type": "Polygon",
@@ -5888,7 +5889,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-142"
+        "house_ref": "DT-141"
       },
       "geometry": {
         "type": "Polygon",
@@ -5943,7 +5944,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-185"
+        "house_ref": "DT-183"
       },
       "geometry": {
         "type": "Polygon",
@@ -5982,7 +5983,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-173"
+        "house_ref": "DT-171"
       },
       "geometry": {
         "type": "Polygon",
@@ -6158,7 +6159,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-100"
+        "house_ref": "DT-099"
       },
       "geometry": {
         "type": "Polygon",
@@ -6197,7 +6198,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-118"
+        "house_ref": "DT-117"
       },
       "geometry": {
         "type": "Polygon",
@@ -6236,7 +6237,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-197"
+        "house_ref": "DT-195"
       },
       "geometry": {
         "type": "Polygon",
@@ -6275,7 +6276,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-122"
+        "house_ref": "DT-121"
       },
       "geometry": {
         "type": "Polygon",
@@ -6322,7 +6323,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-101"
+        "house_ref": "DT-100"
       },
       "geometry": {
         "type": "Polygon",
@@ -6361,7 +6362,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-145"
+        "house_ref": "DT-144"
       },
       "geometry": {
         "type": "Polygon",
@@ -6408,7 +6409,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-193"
+        "house_ref": "DT-191"
       },
       "geometry": {
         "type": "Polygon",
@@ -6447,7 +6448,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-088"
+        "house_ref": "DT-087"
       },
       "geometry": {
         "type": "Polygon",
@@ -6494,7 +6495,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-194"
+        "house_ref": "DT-192"
       },
       "geometry": {
         "type": "Polygon",
@@ -6533,7 +6534,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-126"
+        "house_ref": "DT-125"
       },
       "geometry": {
         "type": "Polygon",
@@ -6580,7 +6581,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-106"
+        "house_ref": "DT-105"
       },
       "geometry": {
         "type": "Polygon",
@@ -6635,7 +6636,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-310"
+        "house_ref": "DT-308"
       },
       "geometry": {
         "type": "Polygon",
@@ -6674,7 +6675,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-267"
+        "house_ref": "DT-265"
       },
       "geometry": {
         "type": "Polygon",
@@ -6721,7 +6722,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-282"
+        "house_ref": "DT-280"
       },
       "geometry": {
         "type": "Polygon",
@@ -6768,7 +6769,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-217"
+        "house_ref": "DT-215"
       },
       "geometry": {
         "type": "Polygon",
@@ -6807,7 +6808,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-225"
+        "house_ref": "DT-223"
       },
       "geometry": {
         "type": "Polygon",
@@ -6854,7 +6855,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-270"
+        "house_ref": "DT-268"
       },
       "geometry": {
         "type": "Polygon",
@@ -6893,7 +6894,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-250"
+        "house_ref": "DT-248"
       },
       "geometry": {
         "type": "Polygon",
@@ -6932,7 +6933,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-268"
+        "house_ref": "DT-266"
       },
       "geometry": {
         "type": "Polygon",
@@ -6971,7 +6972,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-284"
+        "house_ref": "DT-282"
       },
       "geometry": {
         "type": "Polygon",
@@ -7010,7 +7011,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-219"
+        "house_ref": "DT-217"
       },
       "geometry": {
         "type": "Polygon",
@@ -7065,7 +7066,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-316"
+        "house_ref": "DT-314"
       },
       "geometry": {
         "type": "Polygon",
@@ -7104,7 +7105,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-288"
+        "house_ref": "DT-286"
       },
       "geometry": {
         "type": "Polygon",
@@ -7151,7 +7152,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-306"
+        "house_ref": "DT-304"
       },
       "geometry": {
         "type": "Polygon",
@@ -7190,7 +7191,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-272"
+        "house_ref": "DT-270"
       },
       "geometry": {
         "type": "Polygon",
@@ -7245,7 +7246,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-289"
+        "house_ref": "DT-287"
       },
       "geometry": {
         "type": "Polygon",
@@ -7284,7 +7285,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-206"
+        "house_ref": "DT-204"
       },
       "geometry": {
         "type": "Polygon",
@@ -7323,7 +7324,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-248"
+        "house_ref": "DT-246"
       },
       "geometry": {
         "type": "Polygon",
@@ -7362,7 +7363,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-319"
+        "house_ref": "DT-317"
       },
       "geometry": {
         "type": "Polygon",
@@ -7409,7 +7410,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-258"
+        "house_ref": "DT-256"
       },
       "geometry": {
         "type": "Polygon",
@@ -7452,7 +7453,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-214"
+        "house_ref": "DT-212"
       },
       "geometry": {
         "type": "Polygon",
@@ -7491,7 +7492,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-098"
+        "house_ref": "DT-097"
       },
       "geometry": {
         "type": "Polygon",
@@ -7530,7 +7531,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-113"
+        "house_ref": "DT-112"
       },
       "geometry": {
         "type": "Polygon",
@@ -7569,7 +7570,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-157"
+        "house_ref": "DT-155"
       },
       "geometry": {
         "type": "Polygon",
@@ -7608,7 +7609,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-103"
+        "house_ref": "DT-102"
       },
       "geometry": {
         "type": "Polygon",
@@ -7647,7 +7648,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-170"
+        "house_ref": "DT-168"
       },
       "geometry": {
         "type": "Polygon",
@@ -7686,7 +7687,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-124"
+        "house_ref": "DT-123"
       },
       "geometry": {
         "type": "Polygon",
@@ -7725,7 +7726,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-096"
+        "house_ref": "DT-095"
       },
       "geometry": {
         "type": "Polygon",
@@ -7764,7 +7765,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-192"
+        "house_ref": "DT-190"
       },
       "geometry": {
         "type": "Polygon",
@@ -7803,7 +7804,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-116"
+        "house_ref": "DT-115"
       },
       "geometry": {
         "type": "Polygon",
@@ -7850,7 +7851,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-095"
+        "house_ref": "DT-094"
       },
       "geometry": {
         "type": "Polygon",
@@ -7889,7 +7890,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-143"
+        "house_ref": "DT-142"
       },
       "geometry": {
         "type": "Polygon",
@@ -7928,7 +7929,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-119"
+        "house_ref": "DT-118"
       },
       "geometry": {
         "type": "Polygon",
@@ -7967,7 +7968,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-176"
+        "house_ref": "DT-174"
       },
       "geometry": {
         "type": "Polygon",
@@ -8006,7 +8007,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-135"
+        "house_ref": "DT-134"
       },
       "geometry": {
         "type": "Polygon",
@@ -8045,7 +8046,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-146"
+        "house_ref": "DT-145"
       },
       "geometry": {
         "type": "Polygon",
@@ -8084,7 +8085,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-133"
+        "house_ref": "DT-132"
       },
       "geometry": {
         "type": "Polygon",
@@ -8123,7 +8124,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-168"
+        "house_ref": "DT-166"
       },
       "geometry": {
         "type": "Polygon",
@@ -8162,7 +8163,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-129"
+        "house_ref": "DT-128"
       },
       "geometry": {
         "type": "Polygon",
@@ -8201,7 +8202,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-104"
+        "house_ref": "DT-103"
       },
       "geometry": {
         "type": "Polygon",
@@ -8248,7 +8249,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-165"
+        "house_ref": "DT-163"
       },
       "geometry": {
         "type": "Polygon",
@@ -8287,7 +8288,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-150"
+        "house_ref": "DT-149"
       },
       "geometry": {
         "type": "Polygon",
@@ -8326,7 +8327,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-159"
+        "house_ref": "DT-157"
       },
       "geometry": {
         "type": "Polygon",
@@ -8373,7 +8374,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-102"
+        "house_ref": "DT-101"
       },
       "geometry": {
         "type": "Polygon",
@@ -8412,7 +8413,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-213"
+        "house_ref": "DT-211"
       },
       "geometry": {
         "type": "Polygon",
@@ -8459,7 +8460,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-322"
+        "house_ref": "DT-320"
       },
       "geometry": {
         "type": "Polygon",
@@ -8498,7 +8499,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-312"
+        "house_ref": "DT-310"
       },
       "geometry": {
         "type": "Polygon",
@@ -8545,7 +8546,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-317"
+        "house_ref": "DT-315"
       },
       "geometry": {
         "type": "Polygon",
@@ -8584,7 +8585,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-290"
+        "house_ref": "DT-288"
       },
       "geometry": {
         "type": "Polygon",
@@ -8623,7 +8624,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-303"
+        "house_ref": "DT-301"
       },
       "geometry": {
         "type": "Polygon",
@@ -8662,7 +8663,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-299"
+        "house_ref": "DT-297"
       },
       "geometry": {
         "type": "Polygon",
@@ -8701,7 +8702,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-294"
+        "house_ref": "DT-292"
       },
       "geometry": {
         "type": "Polygon",
@@ -8740,7 +8741,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-277"
+        "house_ref": "DT-275"
       },
       "geometry": {
         "type": "Polygon",
@@ -8787,7 +8788,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-246"
+        "house_ref": "DT-244"
       },
       "geometry": {
         "type": "Polygon",
@@ -8826,7 +8827,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-220"
+        "house_ref": "DT-218"
       },
       "geometry": {
         "type": "Polygon",
@@ -8865,7 +8866,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-253"
+        "house_ref": "DT-251"
       },
       "geometry": {
         "type": "Polygon",
@@ -8904,7 +8905,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-295"
+        "house_ref": "DT-293"
       },
       "geometry": {
         "type": "Polygon",
@@ -8943,7 +8944,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-226"
+        "house_ref": "DT-224"
       },
       "geometry": {
         "type": "Polygon",
@@ -8998,7 +8999,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-326"
+        "house_ref": "DT-324"
       },
       "geometry": {
         "type": "Polygon",
@@ -9053,7 +9054,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-307"
+        "house_ref": "DT-305"
       },
       "geometry": {
         "type": "Polygon",
@@ -9092,7 +9093,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-323"
+        "house_ref": "DT-321"
       },
       "geometry": {
         "type": "Polygon",
@@ -9131,7 +9132,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-334"
+        "house_ref": "DT-332"
       },
       "geometry": {
         "type": "Polygon",
@@ -9170,7 +9171,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-330"
+        "house_ref": "DT-328"
       },
       "geometry": {
         "type": "Polygon",
@@ -9209,7 +9210,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-309"
+        "house_ref": "DT-307"
       },
       "geometry": {
         "type": "Polygon",
@@ -9248,7 +9249,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-245"
+        "house_ref": "DT-243"
       },
       "geometry": {
         "type": "Polygon",
@@ -9287,7 +9288,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-252"
+        "house_ref": "DT-250"
       },
       "geometry": {
         "type": "Polygon",
@@ -9326,7 +9327,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-273"
+        "house_ref": "DT-271"
       },
       "geometry": {
         "type": "Polygon",
@@ -9365,7 +9366,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-335"
+        "house_ref": "DT-333"
       },
       "geometry": {
         "type": "Polygon",
@@ -9420,7 +9421,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-227"
+        "house_ref": "DT-225"
       },
       "geometry": {
         "type": "Polygon",
@@ -9467,7 +9468,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-293"
+        "house_ref": "DT-291"
       },
       "geometry": {
         "type": "Polygon",
@@ -9514,7 +9515,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-314"
+        "house_ref": "DT-312"
       },
       "geometry": {
         "type": "Polygon",
@@ -9561,7 +9562,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-336"
+        "house_ref": "DT-334"
       },
       "geometry": {
         "type": "Polygon",
@@ -9616,7 +9617,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-325"
+        "house_ref": "DT-323"
       },
       "geometry": {
         "type": "Polygon",
@@ -9655,7 +9656,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-332"
+        "house_ref": "DT-330"
       },
       "geometry": {
         "type": "Polygon",
@@ -9718,7 +9719,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-328"
+        "house_ref": "DT-326"
       },
       "geometry": {
         "type": "Polygon",
@@ -9765,7 +9766,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-292"
+        "house_ref": "DT-290"
       },
       "geometry": {
         "type": "Polygon",
@@ -9812,7 +9813,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-223"
+        "house_ref": "DT-221"
       },
       "geometry": {
         "type": "Polygon",
@@ -9851,7 +9852,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-337"
+        "house_ref": "DT-335"
       },
       "geometry": {
         "type": "Polygon",
@@ -9890,7 +9891,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-091"
+        "house_ref": "DT-090"
       },
       "geometry": {
         "type": "Polygon",
@@ -9929,7 +9930,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-108"
+        "house_ref": "DT-107"
       },
       "geometry": {
         "type": "Polygon",
@@ -9968,7 +9969,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-189"
+        "house_ref": "DT-187"
       },
       "geometry": {
         "type": "Polygon",
@@ -10007,7 +10008,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-131"
+        "house_ref": "DT-130"
       },
       "geometry": {
         "type": "Polygon",
@@ -10046,7 +10047,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-130"
+        "house_ref": "DT-129"
       },
       "geometry": {
         "type": "Polygon",
@@ -10085,7 +10086,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-092"
+        "house_ref": "DT-091"
       },
       "geometry": {
         "type": "Polygon",
@@ -10132,7 +10133,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-158"
+        "house_ref": "DT-156"
       },
       "geometry": {
         "type": "Polygon",
@@ -10195,7 +10196,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-128"
+        "house_ref": "DT-127"
       },
       "geometry": {
         "type": "Polygon",
@@ -10234,7 +10235,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-183"
+        "house_ref": "DT-181"
       },
       "geometry": {
         "type": "Polygon",
@@ -10273,7 +10274,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-134"
+        "house_ref": "DT-133"
       },
       "geometry": {
         "type": "Polygon",
@@ -10320,7 +10321,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-167"
+        "house_ref": "DT-165"
       },
       "geometry": {
         "type": "Polygon",
@@ -10359,7 +10360,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-132"
+        "house_ref": "DT-131"
       },
       "geometry": {
         "type": "Polygon",
@@ -10406,7 +10407,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-153"
+        "house_ref": "DT-152"
       },
       "geometry": {
         "type": "Polygon",
@@ -10445,7 +10446,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-115"
+        "house_ref": "DT-114"
       },
       "geometry": {
         "type": "Polygon",
@@ -10484,7 +10485,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-147"
+        "house_ref": "DT-146"
       },
       "geometry": {
         "type": "Polygon",
@@ -10531,7 +10532,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-209"
+        "house_ref": "DT-207"
       },
       "geometry": {
         "type": "Polygon",
@@ -10570,7 +10571,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-094"
+        "house_ref": "DT-093"
       },
       "geometry": {
         "type": "Polygon",
@@ -10609,7 +10610,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-138"
+        "house_ref": "DT-137"
       },
       "geometry": {
         "type": "Polygon",
@@ -10648,7 +10649,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-127"
+        "house_ref": "DT-126"
       },
       "geometry": {
         "type": "Polygon",
@@ -10687,7 +10688,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-251"
+        "house_ref": "DT-249"
       },
       "geometry": {
         "type": "Polygon",
@@ -10726,7 +10727,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-265"
+        "house_ref": "DT-263"
       },
       "geometry": {
         "type": "Polygon",
@@ -10765,7 +10766,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-199"
+        "house_ref": "DT-197"
       },
       "geometry": {
         "type": "Polygon",
@@ -10804,7 +10805,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-274"
+        "house_ref": "DT-272"
       },
       "geometry": {
         "type": "Polygon",
@@ -10843,7 +10844,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-236"
+        "house_ref": "DT-234"
       },
       "geometry": {
         "type": "Polygon",
@@ -10882,7 +10883,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-311"
+        "house_ref": "DT-309"
       },
       "geometry": {
         "type": "Polygon",
@@ -10921,7 +10922,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-324"
+        "house_ref": "DT-322"
       },
       "geometry": {
         "type": "Polygon",
@@ -10968,7 +10969,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-333"
+        "house_ref": "DT-331"
       },
       "geometry": {
         "type": "Polygon",
@@ -11007,7 +11008,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-237"
+        "house_ref": "DT-235"
       },
       "geometry": {
         "type": "Polygon",
@@ -11054,7 +11055,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-298"
+        "house_ref": "DT-296"
       },
       "geometry": {
         "type": "Polygon",
@@ -11117,7 +11118,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-291"
+        "house_ref": "DT-289"
       },
       "geometry": {
         "type": "Polygon",
@@ -11156,7 +11157,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-313"
+        "house_ref": "DT-311"
       },
       "geometry": {
         "type": "Polygon",
@@ -11211,7 +11212,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-331"
+        "house_ref": "DT-329"
       },
       "geometry": {
         "type": "Polygon",
@@ -11258,7 +11259,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-329"
+        "house_ref": "DT-327"
       },
       "geometry": {
         "type": "Polygon",
@@ -11313,7 +11314,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-320"
+        "house_ref": "DT-318"
       },
       "geometry": {
         "type": "Polygon",
@@ -11352,7 +11353,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-302"
+        "house_ref": "DT-300"
       },
       "geometry": {
         "type": "Polygon",
@@ -11391,7 +11392,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-205"
+        "house_ref": "DT-203"
       },
       "geometry": {
         "type": "Polygon",
@@ -11430,7 +11431,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-286"
+        "house_ref": "DT-284"
       },
       "geometry": {
         "type": "Polygon",
@@ -11469,7 +11470,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-210"
+        "house_ref": "DT-208"
       },
       "geometry": {
         "type": "Polygon",
@@ -11508,7 +11509,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-269"
+        "house_ref": "DT-267"
       },
       "geometry": {
         "type": "Polygon",
@@ -11555,7 +11556,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-240"
+        "house_ref": "DT-238"
       },
       "geometry": {
         "type": "Polygon",
@@ -11602,7 +11603,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-200"
+        "house_ref": "DT-198"
       },
       "geometry": {
         "type": "Polygon",
@@ -11641,7 +11642,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-244"
+        "house_ref": "DT-242"
       },
       "geometry": {
         "type": "Polygon",
@@ -11680,7 +11681,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-156"
+        "house_ref": "DT-154"
       },
       "geometry": {
         "type": "Polygon",
@@ -11719,7 +11720,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-139"
+        "house_ref": "DT-138"
       },
       "geometry": {
         "type": "Polygon",
@@ -11758,7 +11759,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-160"
+        "house_ref": "DT-158"
       },
       "geometry": {
         "type": "Polygon",
@@ -11797,7 +11798,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-112"
+        "house_ref": "DT-111"
       },
       "geometry": {
         "type": "Polygon",
@@ -11836,7 +11837,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-137"
+        "house_ref": "DT-136"
       },
       "geometry": {
         "type": "Polygon",
@@ -11875,7 +11876,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-152"
+        "house_ref": "DT-151"
       },
       "geometry": {
         "type": "Polygon",
@@ -11914,7 +11915,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-190"
+        "house_ref": "DT-188"
       },
       "geometry": {
         "type": "Polygon",
@@ -11961,7 +11962,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-109"
+        "house_ref": "DT-108"
       },
       "geometry": {
         "type": "Polygon",
@@ -12008,7 +12009,7 @@
         "needs_field_verification": true,
         "_editor": "Don Thaen Geoman",
         "_review_status": "edited",
-        "house_ref": "DT-123"
+        "house_ref": "DT-122"
       },
       "geometry": {
         "type": "Polygon",
@@ -12044,7 +12045,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-338"
+        "house_ref": "DT-336"
       },
       "geometry": {
         "type": "Polygon",
@@ -12088,7 +12089,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-327"
+        "house_ref": "DT-325"
       },
       "geometry": {
         "type": "Polygon",
@@ -12124,7 +12125,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-321"
+        "house_ref": "DT-319"
       },
       "geometry": {
         "type": "Polygon",
@@ -12160,7 +12161,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-318"
+        "house_ref": "DT-316"
       },
       "geometry": {
         "type": "Polygon",
@@ -12196,7 +12197,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-257"
+        "house_ref": "DT-255"
       },
       "geometry": {
         "type": "Polygon",
@@ -12232,7 +12233,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-287"
+        "house_ref": "DT-285"
       },
       "geometry": {
         "type": "Polygon",
@@ -12268,7 +12269,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-315"
+        "house_ref": "DT-313"
       },
       "geometry": {
         "type": "Polygon",
@@ -12304,7 +12305,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-305"
+        "house_ref": "DT-303"
       },
       "geometry": {
         "type": "Polygon",
@@ -12340,7 +12341,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-308"
+        "house_ref": "DT-306"
       },
       "geometry": {
         "type": "Polygon",
@@ -12376,7 +12377,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-300"
+        "house_ref": "DT-298"
       },
       "geometry": {
         "type": "Polygon",
@@ -12412,7 +12413,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-296"
+        "house_ref": "DT-294"
       },
       "geometry": {
         "type": "Polygon",
@@ -12456,7 +12457,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-275"
+        "house_ref": "DT-273"
       },
       "geometry": {
         "type": "Polygon",
@@ -12496,7 +12497,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-278"
+        "house_ref": "DT-276"
       },
       "geometry": {
         "type": "Polygon",
@@ -12532,7 +12533,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-087"
+        "house_ref": "DT-086"
       },
       "geometry": {
         "type": "Polygon",
@@ -12568,7 +12569,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-283"
+        "house_ref": "DT-281"
       },
       "geometry": {
         "type": "Polygon",
@@ -12604,7 +12605,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-281"
+        "house_ref": "DT-279"
       },
       "geometry": {
         "type": "Polygon",
@@ -12640,7 +12641,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-280"
+        "house_ref": "DT-278"
       },
       "geometry": {
         "type": "Polygon",
@@ -12676,7 +12677,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-256"
+        "house_ref": "DT-254"
       },
       "geometry": {
         "type": "Polygon",
@@ -12712,7 +12713,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-260"
+        "house_ref": "DT-258"
       },
       "geometry": {
         "type": "Polygon",
@@ -12748,7 +12749,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-263"
+        "house_ref": "DT-261"
       },
       "geometry": {
         "type": "Polygon",
@@ -12784,7 +12785,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-148"
+        "house_ref": "DT-147"
       },
       "geometry": {
         "type": "Polygon",
@@ -12828,7 +12829,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-083"
+        "house_ref": "DT-082"
       },
       "geometry": {
         "type": "Polygon",
@@ -12864,7 +12865,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-084"
+        "house_ref": "DT-083"
       },
       "geometry": {
         "type": "Polygon",
@@ -12900,7 +12901,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-262"
+        "house_ref": "DT-260"
       },
       "geometry": {
         "type": "Polygon",
@@ -12936,7 +12937,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-232"
+        "house_ref": "DT-230"
       },
       "geometry": {
         "type": "Polygon",
@@ -12972,7 +12973,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-162"
+        "house_ref": "DT-160"
       },
       "geometry": {
         "type": "Polygon",
@@ -13008,7 +13009,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-161"
+        "house_ref": "DT-159"
       },
       "geometry": {
         "type": "Polygon",
@@ -13044,7 +13045,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-149"
+        "house_ref": "DT-148"
       },
       "geometry": {
         "type": "Polygon",
@@ -13080,7 +13081,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-187"
+        "house_ref": "DT-185"
       },
       "geometry": {
         "type": "Polygon",
@@ -13116,7 +13117,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-171"
+        "house_ref": "DT-169"
       },
       "geometry": {
         "type": "Polygon",
@@ -13152,7 +13153,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-181"
+        "house_ref": "DT-179"
       },
       "geometry": {
         "type": "Polygon",
@@ -13188,7 +13189,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-255"
+        "house_ref": "DT-253"
       },
       "geometry": {
         "type": "Polygon",
@@ -13224,7 +13225,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-191"
+        "house_ref": "DT-189"
       },
       "geometry": {
         "type": "Polygon",
@@ -13376,7 +13377,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-233"
+        "house_ref": "DT-231"
       },
       "geometry": {
         "type": "Polygon",
@@ -13412,7 +13413,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-238"
+        "house_ref": "DT-236"
       },
       "geometry": {
         "type": "Polygon",
@@ -13448,7 +13449,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-224"
+        "house_ref": "DT-222"
       },
       "geometry": {
         "type": "Polygon",
@@ -13484,7 +13485,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-144"
+        "house_ref": "DT-143"
       },
       "geometry": {
         "type": "Polygon",
@@ -13520,7 +13521,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-154"
+        "house_ref": "DT-153"
       },
       "geometry": {
         "type": "Polygon",
@@ -13556,7 +13557,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-111"
+        "house_ref": "DT-110"
       },
       "geometry": {
         "type": "Polygon",
@@ -13596,7 +13597,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-105"
+        "house_ref": "DT-104"
       },
       "geometry": {
         "type": "Polygon",
@@ -13632,7 +13633,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-099"
+        "house_ref": "DT-098"
       },
       "geometry": {
         "type": "Polygon",
@@ -13668,7 +13669,7 @@
         "source": "manual_review",
         "_review_status": "edited",
         "_editor": "Don Thaen Geoman",
-        "house_ref": "DT-125"
+        "house_ref": "DT-124"
       },
       "geometry": {
         "type": "Polygon",
