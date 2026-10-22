@@ -36,12 +36,18 @@ footer{text-align:center;color:#607d89;padding:25px}
 .leaflet-control-zoom a{display:block;width:30px;height:30px;text-align:center;line-height:30px;color:#222;background:#fff;text-decoration:none;font-size:21px;font-weight:bold}
 .leaflet-control-attribution{background:#fffc;padding:0 5px;font-size:10px}
 .leaflet-marker-icon,.leaflet-marker-shadow{display:block}
+.legend{display:flex;flex-wrap:wrap;gap:9px 17px;margin:12px 0 5px;font-size:12px;color:#506b77}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{display:inline-block;width:11px;height:11px;border-radius:2px}
 </style></head>
 <body>
 <header class="hero"><h1>ระบบเฝ้าระวังโรค บ้านดอนแท่น</h1><p>ตำบลกลางเวียง อำเภอเวียงสา จังหวัดน่าน</p><span class="tag">ระบบต้นแบบ • ข้อมูลสมมติทั้งหมด ไม่ใช่รายงานสถานการณ์จริง</span></header>
 <main>
 <section class="row" aria-label="สรุปข้อมูล"><div class="card"><div class="label">จำนวนผู้ป่วยตัวอย่าง</div><div id="total" class="number">—</div></div><div class="card"><div class="label">โรคที่ติดตาม</div><div class="number">4</div></div><div class="card"><div class="label">ช่วงเวลาตัวอย่าง</div><div class="number">6 <small style="font-size:15px">เดือน</small></div></div><div class="card"><div class="label">หมู่บ้านเป้าหมาย</div><div class="number">1</div></div></section>
-<section class="layout"><div class="card"><h2>แผนที่หมู่บ้านดอนแท่น: ขอบเขต · หลังคาอาคาร · ภาพดาวเทียม</h2><div class="controls"><a href="./site-boundary-editor.html" style="display:inline-block;background:#bc7c1c;color:white;border-radius:8px;padding:10px 14px;text-decoration:none;font-weight:600">วาดขอบเขตวัดและโรงเรียน ↗</a><a href="./roof-editor.html" style="display:inline-block;background:#0a7884;color:white;border-radius:8px;padding:10px 14px;text-decoration:none;font-weight:600">เปิดเครื่องมือดิจิไทซ์หลังคา (Geoman) ↗</a><button id="loadRoofs" type="button">โหลดชั้นหลังคา/อาคาร</button><button id="importBuildings" type="button" style="background:#0b667d;color:white">นำเข้า GeoJSON หลังคาอาคาร</button><input id="buildingsFile" type="file" accept=".geojson,.json,application/geo+json" style="display:none"><button id="exportBuildings" type="button" style="background:#6d627e;color:white">ส่งออกชั้นอาคาร</button><button id="drawHouse" type="button" style="background:#256e9a">เพิ่มจุดบ้านจากสำรวจ</button><button id="drawRectangle" type="button" style="background:#287b88">วาดหลังคาสี่เหลี่ยม (2 มุม)</button><button id="drawRoof" type="button" style="background:#586582">วาดรูปอาคารจากสำรวจ</button><button id="finishRoof" type="button" style="display:none;background:#136c54">จบรูปอาคาร</button><button id="cancelDraw" type="button" style="display:none;background:#a14d35">ยกเลิกวาด</button><button id="exportSurvey" type="button" style="background:#176945">ส่งออก GeoJSON</button><button id="importSurvey" type="button" style="background:#566a78">นำเข้าไฟล์สำรวจ</button><input id="importSurveyFile" type="file" accept=".geojson,.json,application/geo+json" style="display:none"><button id="zoomVillage" type="button" style="background:#edf6f6;color:#0b677b">ซูมขอบเขตหมู่บ้าน</button></div><p class="note" id="roofStatus">จำนวนอาคาร: ยังไม่โหลดข้อมูล • เปิดชั้นข้อมูลได้ที่มุมขวาบนของแผนที่</p><p class="note" id="surveyStatus">แผนที่เดินดิน: ยังไม่มีรายการสำรวจ • เพิ่มจุดบ้านหรือวาดรูปอาคาร แล้วส่งออกไฟล์เพื่อเก็บรักษา</p><div id="map" aria-label="แผนที่ OpenStreetMap แสดงจุดอ้างอิงบ้านดอนแท่น"></div><p class="note">เส้นสีเขียวคือขอบเขตฉบับที่คุณตรวจและยืนยันแล้ว (ไม่ใช่แนวเขตทางการ) • สีเทาคือรูปอาคารใน OSM อาจไม่ครบ • จุดบ้านและรูปอาคารที่คุณสำรวจจะเป็นสีส้ม • ต้องกดส่งออก GeoJSON เพื่อสำรองข้อมูล • ไม่ควรระบุชื่อผู้ป่วยหรือข้อมูลสุขภาพรายบุคคล</p><a target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=18.58096&mlon=100.74879#map=16/18.58096/100.74879">เปิดแผนที่ต้นทาง ↗</a></div>
+<section class="layout"><div class="card"><h2>แผนที่พื้นที่และอาคาร บ้านดอนแท่น</h2>
+<p class="note" id="mapStatus">กำลังโหลดขอบเขตหมู่บ้าน หลังคาอาคาร และพื้นที่สำคัญ...</p>
+<div id="map" aria-label="แผนที่บ้านดอนแท่นพร้อมอาคาร วัด และโรงเรียน"></div>
+<div class="legend"><span><i style="background:#81939b"></i> รูปอาคารที่ดิจิไทซ์</span><span><i style="background:#1a9960"></i> ขอบเขตหมู่บ้าน</span><span><i style="background:#e39423"></i> วัดศรีดอนแท่น</span><span><i style="background:#287bc4"></i> โรงเรียนไทยรัฐวิทยา 45</span></div>
+<p class="note">แผนที่เพื่อการสำรวจชุมชน • รูปอาคารมาจากไฟล์ดิจิไทซ์ที่ปรับปรุงแล้ว ไม่ใช่จำนวนครัวเรือน • ขอบเขตวัดและโรงเรียนเป็นแนวที่ชุมชนวาด ยังไม่ใช่แนวเขตที่ดินทางราชการ • เปิด–ปิดชั้นข้อมูลได้ที่มุมขวาบนของแผนที่</p>
+</div>
 <div class="card"><h2>สรุปโรคตัวอย่าง</h2><div class="controls"><label for="disease">เลือกโรค</label><select id="disease"><option value="all">ทุกโรค</option><option>ไข้เลือดออก</option><option>ไข้หวัดใหญ่</option><option>อุจจาระร่วง</option><option>มือ เท้า ปาก</option></select></div><div id="bars"></div><p class="note">ตัวเลขสมมติสำหรับสาธิตเท่านั้น ไม่ควรใช้เพื่อสื่อสารความเสี่ยงหรือวางแผนควบคุมโรคจริง</p></div></section>
 <section class="card wide"><h2>แนวโน้มรายเดือน (ข้อมูลสมมติ)</h2><div id="monthly"></div></section>
 <section class="card wide"><h2>ตารางรายงานสาธิต</h2><div class="controls"><button id="download">ดาวน์โหลด CSV ตัวอย่าง</button><span class="note">CSV ใช้ฝึกนำข้อมูลไปวิเคราะห์ต่อได้</span></div><div style="overflow:auto"><table><thead><tr><th>เดือน</th><th>โรค</th><th>จำนวนตัวอย่าง (ราย)</th><th>หมายเหตุ</th></tr></thead><tbody id="tbody"></tbody></table></div></section>
@@ -66,221 +72,32 @@ sel.addEventListener("change",draw);draw();
 document.querySelector("#download").addEventListener("click",()=>{const selected=sel.value==="all"?rows:rows.filter(x=>x.disease===sel.value);const csv="\uFEFFเดือน,โรค,จำนวน,หมายเหตุ\r\n"+selected.map(x=>[x.month,x.disease,x.count,"ข้อมูลสมมติ"].join(",")).join("\r\n");const a=document.createElement("a");const u=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));a.href=u;a.download="don-thaen-demo-data.csv";a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)});
 
 
+
 if(window.L){
- const street=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:19});
- const aerial=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{attribution:'Imagery &copy; Esri and its providers',maxZoom:19});
- const map=L.map("map",{layers:[aerial]}).setView([18.58096,100.74879],15);
- const marker=L.circleMarker([18.58096,100.74879],{radius:6,color:"#1172a0",fillOpacity:1}).bindPopup("จุดอ้างอิงบ้านดอนแท่น").addTo(map);
- const roofs=L.geoJSON(null,{style:{color:"#757575",weight:1,fillColor:"#aeb3b4",fillOpacity:.65}});
- const survey=L.featureGroup().addTo(map);
- const boundaryOverlay=L.geoJSON(null,{style:{color:"#198753",weight:3,fillColor:"#23b577",fillOpacity:.08}}).addTo(map);
- const templeSites=L.geoJSON(null,{style:{color:"#e39423",weight:3,fillColor:"#e39423",fillOpacity:.19},onEachFeature:(feature,layer)=>layer.bindPopup(feature.properties?.name||"วัดศรีดอนแท่น")}).addTo(map);
- const schoolSites=L.geoJSON(null,{style:{color:"#287bc4",weight:3,fillColor:"#287bc4",fillOpacity:.19},onEachFeature:(feature,layer)=>layer.bindPopup(feature.properties?.name||"โรงเรียนไทยรัฐวิทยา 45")}).addTo(map);
- const layers=L.control.layers({"ภาพถ่ายดาวเทียม Esri":aerial,"แผนที่ถนน OSM":street},{"ขอบเขตหมู่บ้าน":boundaryOverlay,"ขอบเขตวัดศรีดอนแท่น":templeSites,"ขอบเขตโรงเรียนไทยรัฐวิทยา 45":schoolSites,"หลังคา OSM":roofs,"แผนที่เดินดิน (สำรวจ)":survey,"จุดอ้างอิง":marker},{collapsed:true}).addTo(map);
- const status=document.querySelector("#roofStatus"),surveyStatus=document.querySelector("#surveyStatus");
- let boundary=null,mode=null,vertices=[],tempLine=null,features=[];
- const storageKey="don-thaen-field-survey-v1";
- fetch("data/don-thaen-temple-school-boundaries.geojson",{cache:"no-store"})
-  .then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.json();})
-  .then(fc=>{for(const feature of fc.features||[]){if(feature.properties?.site_type==="temple")templeSites.addData(feature);if(feature.properties?.site_type==="school")schoolSites.addData(feature);}})
-  .catch(e=>console.warn("Cannot load temple/school boundaries:",e));
- function containsPoint(lon,lat,ring){
-   let inside=false;
-   for(let i=0,j=ring.length-1;i<ring.length;j=i++){
-    const xi=ring[i][0],yi=ring[i][1],xj=ring[j][0],yj=ring[j][1];
-    if(((yi>lat)!==(yj>lat))&&(lon<(xj-xi)*(lat-yi)/(yj-yi)+xi)) inside=!inside;
-   } return inside;
- }
- function within(lat,lon){
-   if(!boundary)return false;
-   const rings=boundary.geometry.coordinates;
-   return containsPoint(lon,lat,rings[0])&&!rings.slice(1).some(r=>containsPoint(lon,lat,r));
- }
- function refreshSurvey(){
-   survey.clearLayers();
-   features.forEach((f,i)=>{
-     const layer=L.geoJSON(f,{pointToLayer:(_,latlng)=>L.circleMarker(latlng,{radius:5,color:"#e27c21",fillColor:"#f59f28",fillOpacity:1}),
-       style:{color:"#e47c22",weight:2,fillColor:"#ffa631",fillOpacity:.25}}).addTo(survey);
-     layer.bindPopup("รายการสำรวจ "+(i+1)+' <button type="button" class="deleteSurvey" data-idx="'+i+'">ลบรายการนี้</button>');
-   });
-   surveyStatus.textContent="แผนที่เดินดิน: "+features.length+" รายการ (จุดบ้านหรือรูปอาคาร) • บันทึกไว้ในเบราว์เซอร์นี้เท่านั้น";
-   try{localStorage.setItem(storageKey,JSON.stringify(features));}catch(e){surveyStatus.textContent+=" • ไม่สามารถบันทึกอัตโนมัติได้ โปรดส่งออกไฟล์";}
- }
- map.on("popupopen",ev=>{
-   const el=ev.popup.getElement(),b=el?.querySelector(".deleteSurvey");
-   if(b)b.addEventListener("click",()=>{features.splice(Number(b.dataset.idx),1);map.closePopup();refreshSurvey();});
+ const osm=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:19});
+ const satellite=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{attribution:"Imagery &copy; Esri and providers",maxZoom:19});
+ const map=L.map("map",{layers:[satellite],zoomControl:true}).setView([18.58096,100.74879],15);
+ const roofLayer=L.geoJSON(null,{style:{color:"#566e78",weight:1,fillColor:"#8697a0",fillOpacity:.58}}).addTo(map);
+ const villageLayer=L.geoJSON(null,{style:{color:"#168851",weight:3,fillColor:"#21b76e",fillOpacity:.05}}).addTo(map);
+ const templeLayer=L.geoJSON(null,{style:{color:"#dc891e",weight:3,fillColor:"#e39423",fillOpacity:.28},onEachFeature:(f,l)=>l.bindPopup(f.properties?.name||"วัดศรีดอนแท่น")}).addTo(map);
+ const schoolLayer=L.geoJSON(null,{style:{color:"#277db8",weight:3,fillColor:"#287bc4",fillOpacity:.27},onEachFeature:(f,l)=>l.bindPopup(f.properties?.name||"โรงเรียนไทยรัฐวิทยา 45")}).addTo(map);
+ L.control.layers({"ภาพดาวเทียม Esri":satellite,"แผนที่ถนน OpenStreetMap":osm},{"อาคารดิจิไทซ์":roofLayer,"ขอบเขตหมู่บ้าน":villageLayer,"วัดศรีดอนแท่น":templeLayer,"โรงเรียนไทยรัฐวิทยา 45":schoolLayer},{collapsed:true}).addTo(map);
+ const status=document.querySelector("#mapStatus");
+ const fetchJson=async path=>{const response=await fetch(path,{cache:"no-store"});if(!response.ok)throw Error(path+" HTTP "+response.status);return response.json();};
+ Promise.allSettled([
+  fetchJson("data/don-thaen-boundary.geojson").then(fc=>{villageLayer.addData(fc);map.invalidateSize();map.fitBounds(villageLayer.getBounds(),{padding:[16,16]});}),
+  fetchJson("data/don-thaen-roofs-reviewed.geojson").then(fc=>{if(!Array.isArray(fc.features))throw Error("GeoJSON อาคารไม่ถูกต้อง");roofLayer.addData(fc);return fc.features.length;}),
+  fetchJson("data/don-thaen-temple-school-boundaries.geojson").then(fc=>{const feats=fc.features||[];templeLayer.addData({type:"FeatureCollection",features:feats.filter(f=>f.properties?.site_type==="temple")});schoolLayer.addData({type:"FeatureCollection",features:feats.filter(f=>f.properties?.site_type==="school")});return feats.length;})
+ ]).then(results=>{
+  const errors=results.filter(x=>x.status==="rejected").map(x=>x.reason?.message||"ไม่ทราบสาเหตุ");
+  if(errors.length)status.textContent="แผนที่โหลดบางชั้นข้อมูลไม่สำเร็จ: "+errors.join(" • ");
+  else status.textContent="อาคารดิจิไทซ์ "+results[1].value.toLocaleString("th-TH")+" รูป • ขอบเขตหมู่บ้าน • วัดศรีดอนแท่น • โรงเรียนไทยรัฐวิทยา 45";
  });
- try{const cached=JSON.parse(localStorage.getItem(storageKey)||"[]");if(Array.isArray(cached))features=cached;}catch(e){}
- refreshSurvey();
- fetch("data/don-thaen-boundary.geojson",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.json();}).then(fc=>{
-   boundary=fc.features[0];boundaryOverlay.addData(fc);map.invalidateSize();map.fitBounds(boundaryOverlay.getBounds(),{padding:[22,22]});
-   setTimeout(()=>map.invalidateSize(),400); loadPublishedBuildings();
- }).catch(e=>{status.textContent="โหลดขอบเขตหมู่บ้านไม่สำเร็จ: "+e.message;});
- window.addEventListener("resize",()=>map.invalidateSize());
- if(window.ResizeObserver)new ResizeObserver(()=>map.invalidateSize()).observe(document.querySelector("#map"));
- document.querySelector("#zoomVillage").addEventListener("click",()=>{if(boundary)map.fitBounds(boundaryOverlay.getBounds(),{padding:[22,22]});});
- const input=document.querySelector("#importSurveyFile");
- document.querySelector("#importSurvey").addEventListener("click",()=>input.click());
- input.addEventListener("change",async()=>{
-  const file=input.files?.[0];if(!file)return;
-  try{const fc=JSON.parse(await file.text());if(fc.type!=="FeatureCollection"||!Array.isArray(fc.features))throw Error("ไฟล์ต้องเป็น FeatureCollection");
-    const accepted=fc.features.filter(f=>f.type==="Feature"&&f.geometry&&["Point","Polygon"].includes(f.geometry.type)).slice(0,10000);
-    if(!confirm("นำเข้า "+accepted.length+" รายการ? จะรวมกับรายการเดิมในเบราว์เซอร์"))return;
-    features.push(...accepted);refreshSurvey();if(!map.hasLayer(survey))survey.addTo(map);
-  }catch(e){alert("อ่านไฟล์ไม่สำเร็จ: "+e.message);}finally{input.value="";}
- });
- document.querySelector("#exportSurvey").addEventListener("click",()=>{
-  const fc={type:"FeatureCollection",features:features};
-  const blob=new Blob([JSON.stringify(fc,null,2)],{type:"application/geo+json"});
-  const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="don-thaen-field-survey.geojson";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
- });
- function modeButtons(){
-   document.querySelector("#drawRectangle").textContent=mode==="rectangle"?"คลิกมุมแรกและมุมตรงข้าม...":"วาดหลังคาสี่เหลี่ยม (2 มุม)";
-   document.querySelector("#drawHouse").textContent=mode==="point"?"คลิกแผนที่เพื่อเพิ่มจุด":"เพิ่มจุดบ้านจากสำรวจ";
-   document.querySelector("#drawRoof").textContent=mode==="polygon"?"กำลังวาดรูปอาคาร...":"วาดรูปอาคารจากสำรวจ";
-   document.querySelector("#finishRoof").style.display=mode==="polygon"?"inline-block":"none";
-   document.querySelector("#cancelDraw").style.display=mode?"inline-block":"none";
-   map.getContainer().style.cursor=mode?"crosshair":"";
- }
- function resetMode(){mode=null;vertices=[];if(tempLine){map.removeLayer(tempLine);tempLine=null;}modeButtons();}
- document.querySelector("#drawHouse").addEventListener("click",()=>{resetMode();mode="point";modeButtons();surveyStatus.textContent="เลือกตำแหน่งบ้านที่ยืนยันจากการเดินสำรวจ โดยคลิกบนแผนที่";});
- document.querySelector("#drawRectangle").addEventListener("click",()=>{resetMode();mode="rectangle";modeButtons();surveyStatus.textContent="คลิกมุมแรกของหลังคา แล้วคลิกมุมตรงข้าม เพื่อสร้างรูปสี่เหลี่ยม";});
- document.querySelector("#drawRoof").addEventListener("click",()=>{resetMode();mode="polygon";modeButtons();surveyStatus.textContent="คลิกตามมุมอาคารที่สำรวจจริงอย่างน้อย 3 จุด แล้วกด จบรูปอาคาร";});
- document.querySelector("#cancelDraw").addEventListener("click",resetMode);
- map.on("click",e=>{
-   if(!mode||!boundary)return;
-   const lat=e.latlng.lat,lon=e.latlng.lng;
-   if(!within(lat,lon)){surveyStatus.textContent="จุดนี้อยู่นอกขอบเขตที่ยืนยันแล้ว";return;}
-   if(mode==="point"){features.push({type:"Feature",properties:{type:"house_point",source:"field_survey_manual"},geometry:{type:"Point",coordinates:[lon,lat]}});refreshSurvey();}
-   else if(mode==="rectangle"){
-     vertices.push([lat,lon]);
-     if(vertices.length===2){
-       const a=vertices[0],b=vertices[1];
-       const ring=[[a[1],a[0]],[b[1],a[0]],[b[1],b[0]],[a[1],b[0]],[a[1],a[0]]];
-       features.push({type:"Feature",properties:{type:"building_footprint",source:"field_survey_rectangle",verification:"pending"},geometry:{type:"Polygon",coordinates:[ring]}});
-       resetMode();refreshSurvey();
-     }else surveyStatus.textContent="คลิกมุมตรงข้ามของหลังคาเพื่อจบรูปสี่เหลี่ยม";
-   }
-   else{vertices.push([lat,lon]);if(tempLine)map.removeLayer(tempLine);tempLine=L.polyline(vertices,{color:"#e47c22",weight:3,dashArray:"5 5"}).addTo(map);
-     surveyStatus.textContent="วาดแล้ว "+vertices.length+" จุด • กด จบรูปอาคาร เมื่อครบ";}
- });
- document.querySelector("#finishRoof").addEventListener("click",()=>{
-   if(vertices.length<3){alert("ต้องกำหนดอย่างน้อย 3 จุด");return;}
-   const ring=vertices.map(p=>[p[1],p[0]]);ring.push(ring[0]);
-   features.push({type:"Feature",properties:{type:"building_footprint",source:"field_survey_manual"},geometry:{type:"Polygon",coordinates:[ring]}});
-   resetMode();refreshSurvey();
- });
-
- // Import downloadable building polygons from Overture Maps or other permitted GeoJSON sources.
- // Keep this independent of Overpass availability and the field-survey layer.
- let buildingFeatures=[];
- const buildingsInput=document.querySelector("#buildingsFile");
- document.querySelector("#importBuildings").addEventListener("click",()=>buildingsInput.click());
- const savedBuildingsKey="don-thaen-imported-buildings-v1";
- function setImportedBuildings(incoming,sourceLabel){
-   if(!boundary)throw Error("ยังโหลดขอบเขตหมู่บ้านไม่เสร็จ");
-   const valid=[];
-   for(const feature of incoming){
-     if(!feature?.geometry||!["Polygon","MultiPolygon"].includes(feature.geometry.type))continue;
-     try {
-       // Retain features with at least one representative vertex or its bounding box center inside the village.
-       const rings=feature.geometry.type==="Polygon"?[feature.geometry.coordinates[0]]:feature.geometry.coordinates.map(p=>p[0]);
-       let accept=false;
-       for(const ring of rings){
-         if(!Array.isArray(ring)||ring.length<4)continue;
-         const minX=Math.min(...ring.map(p=>p[0])),maxX=Math.max(...ring.map(p=>p[0]));
-         const minY=Math.min(...ring.map(p=>p[1])),maxY=Math.max(...ring.map(p=>p[1]));
-         if(within((minY+maxY)/2,(minX+maxX)/2)||ring.some(p=>within(p[1],p[0]))){accept=true;break;}
-       }
-       if(accept)valid.push({type:"Feature",properties:{...(feature.properties||{}),map_source:sourceLabel},geometry:feature.geometry});
-     }catch(e){/* skip malformed geometries */}
-   }
-   // OSM and imported polygons display through the same roof layer, but imported data is stable.
-   buildingFeatures=valid;
-   roofs.clearLayers();
-   roofs.addData({type:"FeatureCollection",features:buildingFeatures});
-   if(!map.hasLayer(roofs))roofs.addTo(map);
-   status.textContent="นำเข้ารูปอาคาร "+valid.length.toLocaleString("th-TH")+" รูปจาก "+sourceLabel+" • ยังไม่ใช่จำนวนครัวเรือน";
-   try{localStorage.setItem(savedBuildingsKey,JSON.stringify({source:sourceLabel,features:buildingFeatures}));}
-   catch(e){status.textContent+=" • ไฟล์ใหญ่เกินที่เบราว์เซอร์จะเก็บไว้ โปรดเก็บไฟล์ต้นฉบับ";}
- }
- buildingsInput.addEventListener("change",async()=>{
-   const file=buildingsInput.files?.[0];if(!file)return;
-   try{
-     if(file.size>25*1024*1024)throw Error("ไฟล์มีขนาดเกิน 25 MB");
-     const raw=JSON.parse(await file.text());
-     const incoming=raw.type==="FeatureCollection"?raw.features:raw.type==="Feature"?[raw]:null;
-     if(!Array.isArray(incoming))throw Error("ต้องเป็น GeoJSON FeatureCollection หรือ Feature");
-     if(!confirm("นำเข้า "+incoming.length+" รายการจากไฟล์ "+file.name+" เพื่อแสดงเป็นชั้นอาคาร?"))return;
-     setImportedBuildings(incoming,file.name);
-   }catch(e){status.textContent="นำเข้าอาคารไม่สำเร็จ: "+e.message;}
-   finally{buildingsInput.value="";}
- });
- document.querySelector("#exportBuildings").addEventListener("click",()=>{
-   if(!buildingFeatures.length){alert("ยังไม่มีอาคารที่นำเข้าจาก GeoJSON");return;}
-   const blob=new Blob([JSON.stringify({type:"FeatureCollection",features:buildingFeatures})],{type:"application/geo+json"});
-   const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="don-thaen-building-footprints.geojson";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
- });
- try{
-  const cached=JSON.parse(localStorage.getItem(savedBuildingsKey)||"null");
-  if(cached?.features?.length){
-    let retries=0;const doRestore=()=>{if(boundary)setImportedBuildings(cached.features,cached.source||"ไฟล์บันทึก");else if(retries++<25)setTimeout(doRestore,400);};
-    doRestore();
-  }
- }catch(e){}
-
-
- async function loadPublishedBuildings(){
-   try{
-     const res=await fetch("data/don-thaen-buildings.geojson",{cache:"no-store"});
-     if(res.status===404){status.textContent="ยังไม่มีชุดอาคารจาก Overture ที่เผยแพร่สำเร็จ • ใช้แผนที่เดินดินเพื่อสร้างรูปหลังคาได้";return;}
-     if(!res.ok)throw Error("HTTP "+res.status);
-     const fc=await res.json();
-     if(fc.type!=="FeatureCollection"||!Array.isArray(fc.features))throw Error("ไฟล์ GeoJSON ไม่ถูกต้อง");
-     const selected=fc.features.filter(f=>f.geometry&&["Polygon","MultiPolygon"].includes(f.geometry.type));
-     if(!selected.length)return;
-     roofs.clearLayers();roofs.addData({type:"FeatureCollection",features:selected});
-     if(!map.hasLayer(roofs))roofs.addTo(map);
-     status.textContent="ชุดอาคาร Overture Maps: "+selected.length.toLocaleString("th-TH")+" รูป • ยังไม่ใช่จำนวนครัวเรือน และควรตรวจภาคสนาม";
-     status.dataset.source="overture";
-   }catch(e){console.warn("Building dataset not available:",e);status.textContent="โหลดชุดอาคารถาวรไม่สำเร็จ • ยังใช้แผนที่เดินดินได้";}
- }
-
- document.querySelector("#loadRoofs").addEventListener("click",async()=>{
-  if(!boundary){status.textContent="โปรดรอขอบเขตหมู่บ้านโหลดก่อน";return;}
-  if(status.dataset.source==="overture"&&!confirm("มีข้อมูลอาคาร Overture โหลดอยู่แล้ว ต้องการทดลองแทนด้วยข้อมูล OSM หรือไม่?"))return;
-  const btn=document.querySelector("#loadRoofs");btn.disabled=true;
-  status.textContent="กำลังดึงรอยเท้าอาคารจาก OSM (Overpass)...";
-  const ring=boundary.geometry.coordinates[0],xs=ring.map(x=>x[0]),ys=ring.map(x=>x[1]);
-  const bbox=[Math.min(...ys),Math.min(...xs),Math.max(...ys),Math.max(...xs)];
-  const query='[out:json][timeout:40];way["building"]('+bbox.join(",")+');out geom;';
-  const hosts=["https://overpass.nchc.org.tw/api/interpreter","https://overpass.kumi.systems/api/interpreter","https://overpass-api.de/api/interpreter"];
-  let result=null,errors=[];
-  for(const host of hosts){
-    const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),18000);
-    try{
-      const response=await fetch(host+"?data="+encodeURIComponent(query),{signal:controller.signal});
-      if(!response.ok)throw Error("HTTP "+response.status);
-      result=await response.json();clearTimeout(timeout);break;
-    }catch(e){errors.push(e.message);clearTimeout(timeout);}
-  }
-  try{
-    if(!result)throw Error("Overpass ทุกแหล่งไม่ตอบสนอง ("+errors.join(", ")+")");
-    const seen=new Set(),featuresOSM=[];
-    for(const w of result.elements||[]){
-      if(w.type!=="way"||!w.geometry||w.geometry.length<4||seen.has(w.id))continue;
-      seen.add(w.id);
-      const crds=w.geometry.map(p=>[p.lon,p.lat]),centroid=crds.reduce((a,c)=>[a[0]+c[0],a[1]+c[1]],[0,0]).map(v=>v/crds.length);
-      if(!within(centroid[1],centroid[0]))continue;
-      if(crds[0][0]!==crds.at(-1)[0]||crds[0][1]!==crds.at(-1)[1])crds.push(crds[0]);
-      featuresOSM.push({type:"Feature",properties:{osm_id:w.id,building:w.tags?.building||"yes"},geometry:{type:"Polygon",coordinates:[crds]}});
-    }
-    roofs.clearLayers();roofs.addData({type:"FeatureCollection",features:featuresOSM});
-    if(!map.hasLayer(roofs))roofs.addTo(map);
-    status.textContent=featuresOSM.length?"ข้อมูล OSM: "+featuresOSM.length+" รูปอาคาร (จุดกึ่งกลางอยู่ในขอบเขต) • อาจไม่ครบทุกหลัง":"ยังไม่พบอาคารที่วาดไว้ใน OSM บริเวณนี้ • ใช้แผนที่เดินดินเพิ่มข้อมูลสำรวจได้";
-  }catch(e){status.textContent="ไม่สามารถโหลด OSM: "+e.message+" • ใช้เครื่องมือแผนที่เดินดินได้ตามปกติ";}
-  finally{btn.disabled=false;}
- });
-}else{document.querySelector("#map").textContent="ไม่สามารถโหลด Leaflet ได้ กรุณาตรวจสอบอินเทอร์เน็ต";}
+ window.addEventListener("load",()=>map.invalidateSize({pan:false}));
+ window.addEventListener("resize",()=>map.invalidateSize({pan:false}));
+ if(window.ResizeObserver)new ResizeObserver(()=>map.invalidateSize({pan:false})).observe(document.querySelector("#map"));
+}else{
+ document.querySelector("#map").textContent="ไม่สามารถโหลดแผนที่ได้ กรุณาตรวจสอบอินเทอร์เน็ต";
+}
 
 </script></body></html>
