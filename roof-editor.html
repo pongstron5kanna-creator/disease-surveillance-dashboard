@@ -41,7 +41,7 @@
 <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@2.20.2/dist/leaflet-geoman.min.js"></script>
 <script>
 (async function(){
-const $=id=>document.getElementById(id),key="don-thaen-roof-editor-v3-corrected";
+const $=id=>document.getElementById(id),key="don-thaen-roof-editor-v4-renumber336";
 const map=L.map("map",{preferCanvas:true,zoomControl:false}).setView([18.58096,100.74879],15);
 L.control.zoom({position:"bottomleft"}).addTo(map);
 const esri=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{attribution:"Imagery © Esri and providers",maxZoom:19}).addTo(map);
@@ -93,7 +93,7 @@ try{
  if(!boundaryResponse.ok)throw Error("ไฟล์ขอบเขต HTTP "+boundaryResponse.status);
  boundary.addData(await boundaryResponse.json());
  map.fitBounds(boundary.getBounds(),{padding:[20,20]});
- const buildingResponse=await fetch("data/don-thaen-roofs-reviewed.geojson");
+ const buildingResponse=await fetch("data/don-thaen-roofs-reviewed.geojson?revision=20261022-renumber336-v2");
  if(!buildingResponse.ok)throw Error("ไฟล์อาคาร HTTP "+buildingResponse.status);
  const initial=await buildingResponse.json();
  sourceCount=initial.features?.length||0;
@@ -119,7 +119,7 @@ $("file").addEventListener("change",async e=>{
 });
 $("reset").addEventListener("click",async()=>{
  if(!confirm("จะลบการแก้ไขที่เก็บในเบราว์เซอร์ และโหลดอาคารต้นฉบับกลับมา กรุณาส่งออก GeoJSON ก่อน ยืนยันหรือไม่?"))return;
- try{localStorage.removeItem(key);const response=await fetch("data/don-thaen-roofs-reviewed.geojson",{cache:"no-store"});if(!response.ok)throw Error("HTTP "+response.status);
+ try{localStorage.removeItem(key);const response=await fetch("data/don-thaen-roofs-reviewed.geojson?revision=20261022-renumber336-v2",{cache:"no-store"});if(!response.ok)throw Error("HTTP "+response.status);
  loadFeatures(await response.json());changeCount=0;count();status("คืนค่าเป็นชุดดิจิไทซ์ที่เผยแพร่แล้ว");
  }catch(e){status("คืนค่าไม่สำเร็จ: "+e.message);}
 });
